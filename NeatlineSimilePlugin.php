@@ -17,6 +17,8 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     protected $_hooks = array(
+        'install',
+        'uninstall',
         'neatline_public_js',
         'neatline_editor_js'
     );
@@ -26,6 +28,24 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
         'neatline_widgets',
         'neatline_record_tabs'
     );
+
+
+    /**
+     * Add columns.
+     */
+    public function hookInstall()
+    {
+        // TODO
+    }
+
+
+    /**
+     * Remove columns.
+     */
+    public function hookUninstall()
+    {
+        // TODO
+    }
 
 
     /**
