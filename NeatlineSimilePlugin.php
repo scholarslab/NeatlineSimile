@@ -22,6 +22,11 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     );
 
 
+    protected $_filters = array(
+        'neatline_widgets'
+    );
+
+
     /**
      * Queue public payload.
      */
