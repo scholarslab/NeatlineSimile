@@ -23,7 +23,8 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     protected $_filters = array(
-        'neatline_widgets'
+        'neatline_widgets',
+        'neatline_record_tabs'
     );
 
 
@@ -55,6 +56,23 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     {
         return array_merge($widgets, array(
             'SIMILE Timeline' => 'Simile'
+        ));
+    }
+
+
+    /**
+     * Add tab to record form.
+     *
+     * @param array $tabs Tabs, <NAME> => <slug>.
+     * @return array The array, with Simile.
+     */
+    public function filterNeatlineRecordTabs($tabs)
+    {
+        return array_merge($tabs, array(
+            'SIMILE Timeline' => array(
+                'slug' => 'simile',
+                'pane' => common('_simile_pane')
+            )
         ));
     }
 
