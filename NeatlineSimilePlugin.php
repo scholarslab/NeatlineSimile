@@ -32,9 +32,9 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array(
         'neatline_widgets',
+        'neatline_styles',
         'neatline_exhibit_tabs',
-        'neatline_record_tabs',
-        'neatline_styles'
+        'neatline_record_tabs'
     );
 
 
@@ -49,13 +49,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
             'INT(10) UNSIGNED NULL');
         NeatlinePlugin::addRecordField('simile_active',
             'TINYINT(1) NOT NULL');
-        NeatlinePlugin::addRecordField('simile_start',
-            'VARCHAR(100) NULL');
-        NeatlinePlugin::addRecordField('simile_end',
-            'VARCHAR(100) NULL');
         NeatlinePlugin::addRecordField('simile_start_visible',
             'VARCHAR(100) NULL');
         NeatlinePlugin::addRecordField('simile_end_visible',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_start',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_end',
             'VARCHAR(100) NULL');
     }
 
@@ -68,10 +68,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
         NeatlinePlugin::dropExhibitField('simile_focus');
         NeatlinePlugin::dropExhibitField('simile_zoom');
         NeatlinePlugin::dropRecordField('simile_active');
-        NeatlinePlugin::dropRecordField('simile_start');
-        NeatlinePlugin::dropRecordField('simile_end');
         NeatlinePlugin::dropRecordField('simile_start_visible');
         NeatlinePlugin::dropRecordField('simile_end_visible');
+        NeatlinePlugin::dropRecordField('simile_start');
+        NeatlinePlugin::dropRecordField('simile_end');
     }
 
 
@@ -87,7 +87,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     /**
-     * Queue public payload.
+     * Queue public payloads.
      *
      * @param array $args Array of arguments, with `exhibit`.
      */
@@ -98,7 +98,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     /**
-     * Queue editor payload.
+     * Queue editor payloads.
      *
      * @param array $args Array of arguments, with `exhibit`.
      */
@@ -118,6 +118,24 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     {
         return array_merge($widgets, array(
             self::NAME => self::ID
+        ));
+    }
+
+
+    /**
+     * Register the taggable styles.
+     *
+     * @param array $styles Array of column names.
+     * @return array The modified array.
+     */
+    public function filterNeatlineStyles($styles)
+    {
+        return array_merge($styles, array(
+            'simile_active',
+            'simile_start_visible',
+            'simile_end_visible',
+            'simile_start',
+            'simile_end'
         ));
     }
 
@@ -156,24 +174,6 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
                 )
             ));
         }
-    }
-
-
-    /**
-     * Register the taggable styles.
-     *
-     * @param array $styles Array of column names.
-     * @return array The modified array.
-     */
-    public function filterNeatlineStyles($styles)
-    {
-        return array_merge($styles, array(
-            'simile_active',
-            'simile_start',
-            'simile_end',
-            'simile_start_visible',
-            'simile_end_visible'
-        ));
     }
 
 
