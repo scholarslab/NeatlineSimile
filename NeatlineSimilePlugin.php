@@ -49,13 +49,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
             'INT(10) UNSIGNED NULL');
         NeatlinePlugin::addRecordField('simile_active',
             'TINYINT(1) NOT NULL');
-        NeatlinePlugin::addRecordField('simile_start_visible',
-            'VARCHAR(100) NULL');
-        NeatlinePlugin::addRecordField('simile_end_visible',
-            'VARCHAR(100) NULL');
         NeatlinePlugin::addRecordField('simile_start',
             'VARCHAR(100) NULL');
         NeatlinePlugin::addRecordField('simile_end',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_start_visible',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_end_visible',
             'VARCHAR(100) NULL');
     }
 
@@ -68,10 +68,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
         NeatlinePlugin::dropExhibitField('simile_focus');
         NeatlinePlugin::dropExhibitField('simile_zoom');
         NeatlinePlugin::dropRecordField('simile_active');
-        NeatlinePlugin::dropRecordField('simile_start_visible');
-        NeatlinePlugin::dropRecordField('simile_end_visible');
         NeatlinePlugin::dropRecordField('simile_start');
         NeatlinePlugin::dropRecordField('simile_end');
+        NeatlinePlugin::dropRecordField('simile_start_visible');
+        NeatlinePlugin::dropRecordField('simile_end_visible');
     }
 
 
@@ -132,10 +132,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     {
         return array_merge($styles, array(
             'simile_active',
-            'simile_start_visible',
-            'simile_end_visible',
             'simile_start',
-            'simile_end'
+            'simile_end',
+            'simile_start_visible',
+            'simile_end_visible'
         ));
     }
 
