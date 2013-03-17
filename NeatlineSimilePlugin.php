@@ -25,24 +25,38 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
         'install',
         'uninstall',
         'neatline_editor_underscore',
-        'neatline_public_js',
-        'neatline_editor_js'
+        'neatline_public_static',
+        'neatline_editor_static'
     );
 
 
     protected $_filters = array(
         'neatline_widgets',
         'neatline_exhibit_tabs',
-        'neatline_record_tabs'
+        'neatline_record_tabs',
+        'neatline_styles'
     );
 
 
     /**
-     * Add columns.
+     * Add fields.
      */
     public function hookInstall()
     {
-        // TODO
+        NeatlinePlugin::addExhibitField('simile_focus',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addExhibitField('simile_zoom',
+            'INT(10) UNSIGNED NULL');
+        NeatlinePlugin::addRecordField('simile_active',
+            'TINYINT(1) NOT NULL');
+        NeatlinePlugin::addRecordField('simile_start',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_end',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_start_visible',
+            'VARCHAR(100) NULL');
+        NeatlinePlugin::addRecordField('simile_end_visible',
+            'VARCHAR(100) NULL');
     }
 
 
@@ -51,14 +65,22 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookUninstall()
     {
-        // TODO
+        NeatlinePlugin::dropExhibitField('simile_focus');
+        NeatlinePlugin::dropExhibitField('simile_zoom');
+        NeatlinePlugin::dropRecordField('simile_active');
+        NeatlinePlugin::dropRecordField('simile_start');
+        NeatlinePlugin::dropRecordField('simile_end');
+        NeatlinePlugin::dropRecordField('simile_start_visible');
+        NeatlinePlugin::dropRecordField('simile_end_visible');
     }
 
 
     /**
      * Queue exhibit settings template.
+     *
+     * @param array $args Array of arguments, with `exhibit`.
      */
-    public function hookNeatlineEditorUnderscore()
+    public function hookNeatlineEditorUnderscore($args)
     {
         // TODO
     }
@@ -66,8 +88,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
     /**
      * Queue public payload.
+     *
+     * @param array $args Array of arguments, with `exhibit`.
      */
-    public function hookNeatlinePublicJs()
+    public function hookNeatlinePublicStatic($args)
     {
         // TODO
     }
@@ -75,8 +99,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
     /**
      * Queue editor payload.
+     *
+     * @param array $args Array of arguments, with `exhibit`.
      */
-    public function hookNeatlineEditorJs()
+    public function hookNeatlineEditorStatic($args)
     {
         // TODO
     }
@@ -130,6 +156,24 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
                 )
             ));
         }
+    }
+
+
+    /**
+     * Register the taggable styles.
+     *
+     * @param array $styles Array of column names.
+     * @return array The modified array.
+     */
+    public function filterNeatlineStyles($styles)
+    {
+        return array_merge($styles, array(
+            'simile_active',
+            'simile_start',
+            'simile_end',
+            'simile_start_visible',
+            'simile_end_visible'
+        ));
     }
 
 
