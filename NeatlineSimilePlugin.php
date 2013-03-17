@@ -149,11 +149,16 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterNeatlineExhibitTabs($tabs, $args)
     {
+
+        // Is SIMILE active on the exhibit?
         if ($args['exhibit']->hasWidget(self::ID)) {
+
             return array_merge($tabs, array(
                 self::NAME => self::SLUG
             ));
+
         }
+
     }
 
 
@@ -166,13 +171,17 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterNeatlineRecordTabs($tabs, $args)
     {
+
+        // Is SIMILE active on the exhibit?
         if ($args['exhibit']->hasWidget(self::ID)) {
+
             return array_merge($tabs, array(
                 self::NAME => array(
                     'form' => common('record'),
                     'slug' => self::SLUG
                 )
             ));
+
         }
     }
 
