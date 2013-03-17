@@ -16,9 +16,15 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 {
 
 
+    const NAME  = 'SIMILE Timeline';
+    const ID    = 'SIMILE';
+    const SLUG  = 'simile';
+
+
     protected $_hooks = array(
         'install',
         'uninstall',
+        'neatline_editor_underscore',
         'neatline_public_js',
         'neatline_editor_js'
     );
@@ -26,6 +32,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array(
         'neatline_widgets',
+        'neatline_exhibit_tabs',
         'neatline_record_tabs'
     );
 
@@ -43,6 +50,15 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      * Remove columns.
      */
     public function hookUninstall()
+    {
+        // TODO
+    }
+
+
+    /**
+     * Queue exhibit settings template.
+     */
+    public function hookNeatlineEditorUnderscore()
     {
         // TODO
     }
@@ -69,31 +85,51 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the widget.
      *
-     * @param array $presenters Presenters, <NAME> => <ID>.
+     * @param array $widgets Presenters, <NAME> => <ID>.
      * @return array The array, with Simile.
      */
     public function filterNeatlineWidgets($widgets)
     {
         return array_merge($widgets, array(
-            'SIMILE Timeline' => 'Simile'
+            self::NAME => self::ID
         ));
     }
 
 
     /**
-     * Add tab to record form.
+     * Register the exhibit tab.
      *
-     * @param array $tabs Tabs, <NAME> => <slug>.
+     * @param array $tabs Tabs, <NAME> => <SLUG>.
+     * @param array $args Array of arguments, with `exhibit`.
      * @return array The array, with Simile.
      */
-    public function filterNeatlineRecordTabs($tabs)
+    public function filterNeatlineExhibitTabs($tabs, $args)
     {
-        return array_merge($tabs, array(
-            'SIMILE Timeline' => array(
-                'slug' => 'simile',
-                'pane' => common('_simile_pane')
-            )
-        ));
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            return array_merge($tabs, array(
+                self::NAME => self::SLUG
+            ));
+        }
+    }
+
+
+    /**
+     * Register the record tab.
+     *
+     * @param array $tabs Presenters, <NAME> => { <form>, <slug> }.
+     * @param array $args Array of arguments, with `exhibit`.
+     * @return array The array, with Simile.
+     */
+    public function filterNeatlineRecordTabs($tabs, $args)
+    {
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            return array_merge($tabs, array(
+                self::NAME => array(
+                    'form' => common('record'),
+                    'slug' => self::SLUG
+                )
+            ));
+        }
     }
 
 

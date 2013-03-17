@@ -15,25 +15,25 @@
 
 <div class="control-group">
 
-  <?php echo common('input', array(
+  <?php echo common('neatline/input', array(
       'name'  => 'simile_start',
       'label' => 'Start Date',
       'bind'  => 'record.simile_start'
   )); ?>
 
-  <?php echo common('input', array(
+  <?php echo common('neatline/input', array(
       'name'  => 'simile_end',
       'label' => 'End Date',
       'bind'  => 'record.simile_end'
   )); ?>
 
-  <?php echo common('input', array(
+  <?php echo common('neatline/input', array(
       'name'  => 'simile_start_visible',
       'label' => 'Start Visible Date',
       'bind'  => 'record.simile_start_visible'
   )); ?>
 
-  <?php echo common('input', array(
+  <?php echo common('neatline/input', array(
       'name'  => 'simile_end_visible',
       'label' => 'End Visible Date',
       'bind'  => 'record.simile_end_visible'
