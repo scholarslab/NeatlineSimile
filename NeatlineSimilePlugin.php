@@ -82,7 +82,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlineEditorUnderscore($args)
     {
-        // TODO
+        echo common('exhibit');
     }
 
 
@@ -150,7 +150,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function filterNeatlineExhibitTabs($tabs, $args)
     {
 
-        // Is SIMILE active on the exhibit?
+        // Is SIMILE enabled for the exhibit?
         if ($args['exhibit']->hasWidget(self::ID)) {
 
             return array_merge($tabs, array(
@@ -172,7 +172,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function filterNeatlineRecordTabs($tabs, $args)
     {
 
-        // Is SIMILE active on the exhibit?
+        // Is SIMILE enabled for the exhibit?
         if ($args['exhibit']->hasWidget(self::ID)) {
 
             return array_merge($tabs, array(
