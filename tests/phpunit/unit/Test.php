@@ -11,7 +11,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class NeatlineSimile_Test extends NeatlineSimile_Test_AppTestCase
+class NeatlineSimile_Test extends NeatlineSimile_TestCase
 {
 
 
