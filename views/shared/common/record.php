@@ -16,27 +16,27 @@
 <div class="control-group">
 
   <?php echo common('neatline/input', array(
-      'name'  => 'simile_start',
+      'name'  => 'simile-start-date',
       'label' => 'Start Date',
-      'bind'  => 'record.simile_start'
+      'bind'  => 'record.simile_start_date'
   )); ?>
 
   <?php echo common('neatline/input', array(
-      'name'  => 'simile_end',
+      'name'  => 'simile-end-date',
       'label' => 'End Date',
-      'bind'  => 'record.simile_end'
+      'bind'  => 'record.simile_end_date'
   )); ?>
 
   <?php echo common('neatline/input', array(
-      'name'  => 'simile_start_visible',
+      'name'  => 'simile-start-visible-date',
       'label' => 'Start Visible Date',
-      'bind'  => 'record.simile_start_visible'
+      'bind'  => 'record.simile_start_visible_date'
   )); ?>
 
   <?php echo common('neatline/input', array(
-      'name'  => 'simile_end_visible',
+      'name'  => 'simile-end-visible',
       'label' => 'End Visible Date',
-      'bind'  => 'record.simile_end_visible'
+      'bind'  => 'record.simile_end_visible_date'
   )); ?>
 
 </div>
