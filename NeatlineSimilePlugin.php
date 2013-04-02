@@ -17,7 +17,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     const NAME  = 'SIMILE Timeline';
-    const ID    = 'simile';
+    const ID    = 'SIMILE';
 
 
     protected $_hooks = array(

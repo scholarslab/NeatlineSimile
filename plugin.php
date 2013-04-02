@@ -12,8 +12,10 @@
  */
 
 
-if (!defined('NL_SIMILE_DIR')) define('NL_SIMILE_DIR', dirname(__FILE__));
-require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
+if (!defined('NL_SIMILE_DIR')) {
+    define('NL_SIMILE_DIR', dirname(__FILE__));
+}
 
+require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
 $simile = new NeatlineSimilePlugin();
 $simile->setUp();
