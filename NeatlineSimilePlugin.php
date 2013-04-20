@@ -3,10 +3,8 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
- * Plugin manager class.
- *
  * @package     omeka
- * @subpackage  neatline-SIMILE
+ * @subpackage  neatline-Simile
  * @copyright   2012 Rector and Board of Visitors, University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
@@ -16,8 +14,8 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 {
 
 
-    const NAME  = 'SIMILE Timeline';
-    const ID    = 'SIMILE';
+    const NAME  = 'Simile';
+    const ID    = 'simile';
 
 
     protected $_hooks = array(
@@ -27,6 +25,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     protected $_filters = array(
+        'neatline_exhibit_tabs',
         'neatline_exhibit_widgets',
         'neatline_record_widgets'
     );
@@ -51,6 +50,21 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function hookNeatlineEditorStatic($args)
     {
         // TODO
+    }
+
+
+    /**
+     * Register the exhibit widget tab.
+     *
+     * @param array $tabs Tabs, <LABEL> => <SLUG>.
+     * @return array The array, with "Waypoints".
+     */
+    public function filterNeatlineExhibitTabs($tabs, $args)
+    {
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            $tabs[self::NAME] = self::ID;
+        }
+        return $tabs;
     }
 
 
