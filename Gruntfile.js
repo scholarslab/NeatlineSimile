@@ -94,11 +94,21 @@ module.exports = function(grunt) {
 
     },
 
+    stylus: {
+      compile: {
+        files: {
+          './views/shared/css/payloads/simile-public.css':
+            cfg.stylus.shared+'/public/*.styl'
+        }
+      }
+    },
+
     watch: {
       payload: {
         files: [
           '<%= concat.simile_public.src %>',
-          '<%= concat.simile_editor.src %>'
+          '<%= concat.simile_editor.src %>',
+          cfg.stylus.shared+'/**/*.styl'
         ],
         tasks: ['compile']
       }
@@ -118,7 +128,8 @@ module.exports = function(grunt) {
   // Assemble static assets.
   grunt.registerTask('compile', [
     'concat:simile_public',
-    'concat:simile_editor'
+    'concat:simile_editor',
+    'stylus'
   ]);
 
   // Assemble/min static assets.
