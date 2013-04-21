@@ -38,7 +38,9 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlinePublicStatic($args)
     {
-        // TODO
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            queue_js_file('payloads/simile-public');
+        }
     }
 
 
@@ -49,7 +51,9 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlineEditorStatic($args)
     {
-        // TODO
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            queue_js_file('payloads/simile-editor');
+        }
     }
 
 
