@@ -19,7 +19,7 @@ Neatline.module('Simile', function(
 
 
     /**
-     * Start SIMILE and load events.
+     * Start SIMILE, load events.
      */
     init: function() {
       this.__initSimile();
@@ -35,7 +35,6 @@ Neatline.module('Simile', function(
       // Disable `__history__.html`.
       SimileAjax.History.enabled = false;
 
-      // Instantiate timeline.
       this.timeline = Timeline.create(this.el, [
         Timeline.createBandInfo({
           intervalPixels: 100,
