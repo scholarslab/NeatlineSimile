@@ -3,6 +3,8 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
+ * Asset helpers.
+ *
  * @package     omeka
  * @subpackage  neatline-Simile
  * @copyright   2012 Rector and Board of Visitors, University of Virginia
@@ -10,12 +12,12 @@
  */
 
 
-if (!defined('NL_SIMILE_DIR')) {
-    define('NL_SIMILE_DIR', dirname(__FILE__));
+/**
+ * Include the Simile API.
+ */
+function simile_queueSimileApi()
+{
+    nl_appendScript(
+        'http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js'
+    );
 }
-
-require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
-require_once NL_SIMILE_DIR . '/helpers/Assets.php';
-
-$simile = new NeatlineSimilePlugin();
-$simile->setUp();

@@ -1,7 +1,0 @@
-{
-    "name": "NeatlineSimile"
-  , "version": "0.0.1"
-  , "dependencies": {
-      "simile": "https://github.com/davidmcclure/simile-production.git"
-  }
-}

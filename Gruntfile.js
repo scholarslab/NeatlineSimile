@@ -25,18 +25,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    shell: {
-      options: {
-        stdout: true
-      },
-      bower_cache_clean: {
-        command: 'rm -rf ~/.bower && bower cache-clean'
-      },
-      bower_install: {
-        command: 'bower install'
-      }
-    },
-
     symlink: {
       neatline: {
         link: './Neatline',
@@ -66,10 +54,7 @@ module.exports = function(grunt) {
     concat: {
 
       simile_public: {
-        src: [
-          cfg.vendor.js.simile,
-          cfg.src.shared+'/public/*.js'
-        ],
+        src: cfg.src.shared+'/public/*.js',
         dest: cfg.payloads.shared.js+'/simile-public.js'
       },
 
@@ -131,8 +116,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean',
     'symlink',
-    'shell:bower_cache_clean',
-    'shell:bower_install',
     'compile'
   ]);
 

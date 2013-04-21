@@ -19,10 +19,31 @@ Neatline.module('Simile', function(
 
 
     /**
-     * .
+     * Start SIMILE and load events.
      */
     init: function() {
+      this.__initSimile();
       // TODO
+    },
+
+
+    /**
+     * Instantiate SIMILE.
+     */
+    __initSimile: function() {
+
+      // Disable `__history__.html`.
+      SimileAjax.History.enabled = false;
+
+      // Instantiate timeline.
+      this.timeline = Timeline.create(this.el, [
+        Timeline.createBandInfo({
+          intervalPixels: 100,
+          intervalUnit: Timeline.DateTime.YEAR,
+          width: '100%'
+        })
+      ]);
+
     }
 
 

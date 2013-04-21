@@ -13,7 +13,7 @@ Neatline.module('Simile', function(
 
 
   Simile.addInitializer(function() {
-    // TODO
+    this.__view = new Simile.View();
   });
 
 
