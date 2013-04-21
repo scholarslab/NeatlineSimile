@@ -15,6 +15,15 @@
     }
   },
 
-  "jasmine":  "./tests/jasmine"
+  "jasmine":  "./tests/jasmine",
+
+  "vendor": {
+    "js": {
+      "simile": "./components/simile/dist/production/simile.js"
+    },
+    "css": {
+      "simile": "./components/simile/dist/production/simile.css"
+    }
+  }
 
 }

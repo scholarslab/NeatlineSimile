@@ -66,7 +66,10 @@ module.exports = function(grunt) {
     concat: {
 
       simile_public: {
-        src: cfg.src.shared+'/public/*.js',
+        src: [
+          cfg.vendor.js.simile,
+          cfg.src.shared+'/public/*.js'
+        ],
         dest: cfg.payloads.shared.js+'/simile-public.js'
       },
 
@@ -76,6 +79,14 @@ module.exports = function(grunt) {
           cfg.src.shared+'/editor/*.js'
         ],
         dest: cfg.payloads.shared.js+'/simile-editor.js'
+      },
+
+      simile_public_css: {
+        src: [
+          cfg.vendor.css.simile,
+          cfg.payloads.shared.css+'/simile-public.css'
+        ],
+        dest: cfg.payloads.shared.css+'/simile-editor.css'
       }
 
     },
@@ -129,13 +140,16 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', [
     'concat:simile_public',
     'concat:simile_editor',
-    'stylus'
+    'stylus',
+    'concat:simile_public_css'
   ]);
 
   // Assemble/min static assets.
   grunt.registerTask('compile:min', [
     'uglify:simile_public',
-    'uglify:simile_editor'
+    'uglify:simile_editor',
+    'stylus',
+    'concat:simile_public_css'
   ]);
 
 };

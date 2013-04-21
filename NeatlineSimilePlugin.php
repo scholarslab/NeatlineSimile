@@ -15,7 +15,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     const NAME  = 'SIMILE Timeline';
-    const ID    = 'simile';
+    const SLUG  = 'simile';
 
 
     protected $_hooks = array(
@@ -38,7 +38,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlinePublicStatic($args)
     {
-        if ($args['exhibit']->hasWidget(self::ID)) {
+        if ($args['exhibit']->hasWidget(self::SLUG)) {
             queue_css_file('payloads/simile-public');
             queue_js_file('payloads/simile-public');
         }
@@ -52,7 +52,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlineEditorStatic($args)
     {
-        if ($args['exhibit']->hasWidget(self::ID)) {
+        if ($args['exhibit']->hasWidget(self::SLUG)) {
             queue_js_file('payloads/simile-editor');
         }
     }
@@ -66,8 +66,8 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function filterNeatlineExhibitTabs($tabs, $args)
     {
-        if ($args['exhibit']->hasWidget(self::ID)) {
-            $tabs[self::NAME] = self::ID;
+        if ($args['exhibit']->hasWidget(self::SLUG)) {
+            $tabs[self::NAME] = self::SLUG;
         }
         return $tabs;
     }
@@ -76,13 +76,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the exhibit widget.
      *
-     * @param array $widgets Widgets, <NAME> => <ID>.
+     * @param array $widgets Widgets, <NAME> => <SLUG>.
      * @return array The array, with Simile.
      */
     public function filterNeatlineExhibitWidgets($widgets)
     {
         return array_merge($widgets, array(
-            self::NAME => self::ID
+            self::NAME => self::SLUG
         ));
     }
 
@@ -90,13 +90,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the record widget.
      *
-     * @param array $widgets Widgets, <NAME> => <ID>.
+     * @param array $widgets Widgets, <NAME> => <SLUG>.
      * @return array The array, with Simile.
      */
     public function filterNeatlineRecordWidgets($widgets)
     {
         return array_merge($widgets, array(
-            self::NAME => self::ID
+            self::NAME => self::SLUG
         ));
     }
 
