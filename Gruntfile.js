@@ -21,7 +21,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   var nlCfg = grunt.file.readJSON('../Neatline/config.json');
-  var cfg = grunt.file.readJSON('../Neatline/config.json');
+  var cfg = grunt.file.readJSON('./config.json');
 
   grunt.initConfig({
 
@@ -42,10 +42,75 @@ module.exports = function(grunt) {
           port: 1337
         }
       }
-    }
+    },
+
+    clean: {
+      payloads: [
+        cfg.payloads.shared.js,
+        cfg.payloads.shared.css
+      ]
+    },
+
+    concat: {
+
+      simile_public: {
+        src: cfg.src.shared+'/public/*.js',
+        dest: cfg.payloads.shared.js+'/simile-public.js'
+      },
+
+      simile_editor: {
+        src: [
+          '<%= concat.simile_public.src %>',
+          cfg.src.shared+'/editor/*.js'
+        ],
+        dest: cfg.payloads.shared.js+'/simile-editor.js'
+      }
+
+    },
+
+    uglify: {
+
+      simile_public: {
+        src: '<%= concat.simile_public.src %>',
+        dest: cfg.payloads.shared.js+'/simile-public.js'
+      },
+
+      simile_editor: {
+        src: '<%= concat.simile_editor.src %>',
+        dest: cfg.payloads.shared.js+'/simile-editor.js'
+      }
+
+    },
+
+    watch: {
+      payload: {
+        files: [
+          '<%= concat.simile_public.src %>',
+          '<%= concat.simile_editor.src %>'
+        ],
+        tasks: ['compile']
+      }
+    },
 
   });
 
-  grunt.registerTask('build', ['symlink']);
+  // Build the application.
+  grunt.registerTask('build', [
+    'clean',
+    'symlink',
+    'compile'
+  ]);
+
+  // Assemble static assets.
+  grunt.registerTask('compile', [
+    'concat:simile_public',
+    'concat:simile_editor'
+  ]);
+
+  // Assemble/min static assets.
+  grunt.registerTask('compile:min', [
+    'uglify:simile_public',
+    'uglify:simile_editor'
+  ]);
 
 };

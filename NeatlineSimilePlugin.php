@@ -14,7 +14,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 {
 
 
-    const NAME  = 'Simile';
+    const NAME  = 'SIMILE Timeline';
     const ID    = 'simile';
 
 
