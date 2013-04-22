@@ -24,6 +24,7 @@ Neatline.module('Simile', function(
     init: function() {
       this.__initSimile();
       this.__initSelect();
+      this.__initFilter();
     },
 
 
@@ -67,6 +68,39 @@ Neatline.module('Simile', function(
       this.band._eventPainter._showBubble = function(x, y, evt) {
         Neatline.vent.trigger('select', evt.nModel);
       };
+    },
+
+
+    /**
+     * Bind timeline scrolling to the filter.
+     */
+    __initFilter: function() {
+      this.band.addOnScrollListener(_.bind(this.setFilter, this));
+      this.setFilter();
+    },
+
+
+    /**
+     * Filter records by visibility dates.
+     */
+    setFilter: function() {
+      var center = this.band.getCenterVisibleDate();
+      Neatline.vent.trigger('setFilter', 'simile', function(layer) {
+
+        // Get start and end visibility dates.
+        var v1 = layer.nModel.get('show_after_date');
+        var v2 = layer.nModel.get('show_before_date');
+
+        // Hide the record if it (a) has a show after date that is after
+        // the current date or (b) has a show before date that is before
+        // the current date.
+
+        var visible = true;
+        if (v1) visible &= new Date(v1) < center;
+        if (v2) visible &= new Date(v2) > center;
+        return Boolean(visible);
+
+      });
     },
 
 
