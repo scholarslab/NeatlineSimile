@@ -13,7 +13,9 @@ Neatline.module('Simile', function(
 
 
   Simile.addInitializer(function() {
+    this.__collection = new Neatline.Shared.Record.Collection();
     this.__view = new Simile.View();
+    Neatline.execute('SIMILE:load');
   });
 
 

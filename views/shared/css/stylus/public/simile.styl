@@ -9,8 +9,12 @@
  */
 
 
+$textColor = #3f3f3f
+
+
 #simile
   border-radius 2px
+  cursor ew-resize
 
   .timeline-copyright
     display none
@@ -18,9 +22,12 @@
   .timeline-ether-bg
     background white
 
+  .timeline-event-label
+    color $textColor !important
+
   .timeline-date-label
     border-left 2px solid
-    color #3f3f3f
+    color $textColor
     height 2em
 
   .timeline-date-label-em
@@ -29,6 +36,18 @@
 
   .timeline-ether-weekends
     background none
+
+  .timeline-event-tape
+    border-radius 2px
+
+  .timeline-event-icon
+    background gray
+    border-radius 4px
+    height 8px
+    width 8px
+
+    img
+      display none
 
 #neatline
   #simile
