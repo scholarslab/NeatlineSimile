@@ -35,4 +35,16 @@ Neatline.module('Simile', function(
   Neatline.commands.setHandler('SIMILE:ingest', ingest);
 
 
+  /**
+   * Focus the timeline on a record's start date.
+   *
+   * @param {Object} model: The record model.
+   */
+  var focusByModel = function(model) {
+    Simile.__view.focusByModel(model);
+  };
+  Neatline.commands.setHandler('SIMILE:focusByModel', focusByModel);
+  Neatline.vent.on('select', focusByModel);
+
+
 });

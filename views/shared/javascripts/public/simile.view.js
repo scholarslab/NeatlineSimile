@@ -76,38 +76,55 @@ Neatline.module('Simile', function(
      * @param {Object} records: The records collection.
      */
     ingest: function(records) {
-
-      // Clear timeline.
       this.eventSource.clear();
+      records.each(_.bind(this.buildEvent, this));    
+    },
 
-      records.each(_.bind(function(record) {
 
-        // Default fields.
-        var data = {
-          text:   record.get('title'),
-          start:  new Date(record.get('start_date')),
-          color:  record.get('fill_color'),
-        };
+    /**
+     * Render a record on the timeline.
+     *
+     * @param {Object} record: The record.
+     */
+    buildEvent: function(record) {
 
-        // If present, add end date.
-        if (record.get('end_date')) {
-          data['end'] = new Date(record.get('end_date'));
-        }
+      // Pass if no start date.
+      if (!record.get('start_date')) return;
 
-        // Construct event, set model reference.
-        var event = new Timeline.DefaultEventSource.Event(data);
-        event.nModel = record;
+      // Default fields.
+      var data = {
+        text:   record.get('title'),
+        start:  new Date(record.get('start_date')),
+        color:  record.get('fill_color'),
+      };
 
-        // Add event to timeline.
-        this.eventSource._events.add(event);
-        this.eventSource._fire('onAddMany', []);
-        this.timeline.layout();
+      // If present, add end date.
+      var end = record.get('end_date');
+      if (end) data['end'] = new Date(end);
 
-        // Set event color.
-        this.setEventColor(event);
+      // Construct event, set model reference.
+      var event = new Timeline.DefaultEventSource.Event(data);
+      event.nModel = record;
 
-      }, this));
+      // Add to timeline.
+      this.eventSource._events.add(event);
+      this.eventSource._fire('onAddMany', []);
+      this.timeline.layout();
 
+      // Set color.
+      this.setEventColor(event);
+
+    },
+
+
+    /**
+     * Manifest the fill color on an event.
+     *
+     * @param {Object} model: The record model.
+     */
+    focusByModel: function(model) {
+      var start = model.get('start_date');
+      if (start) this.band.setCenterVisibleDate(new Date(start));
     },
 
 
