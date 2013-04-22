@@ -12,7 +12,7 @@ Neatline.module('Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  Simile.addInitializer(function() {
+  this.addInitializer(function() {
     this.__collection = new Neatline.Shared.Record.Collection();
     this.__view = new Simile.View();
     Neatline.execute('SIMILE:load');

@@ -12,7 +12,7 @@ Neatline.module('Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  Simile.View = Neatline.Shared.Widget.View.extend({
+  this.View = Neatline.Shared.Widget.View.extend({
 
 
     id: 'simile',
@@ -85,11 +85,11 @@ Neatline.module('Simile', function(
      */
     setFilter: function() {
       var center = this.band.getCenterVisibleDate();
-      Neatline.vent.trigger('setFilter', 'simile', function(layer) {
+      Neatline.vent.trigger('setFilter', 'simile', function(record) {
 
         // Get start and end visibility dates.
-        var v1 = layer.nModel.get('show_after_date');
-        var v2 = layer.nModel.get('show_before_date');
+        var v1 = record.get('show_after_date');
+        var v2 = record.get('show_before_date');
 
         // Hide the record if it (a) has a show after date that is after
         // the current date or (b) has a show before date that is before
