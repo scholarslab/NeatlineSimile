@@ -12,7 +12,7 @@ Neatline.module('Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  this.View = Neatline.Shared.Widget.View.extend({
+  Simile.View = Neatline.Shared.Widget.View.extend({
 
 
     id: 'simile',
@@ -89,7 +89,10 @@ Neatline.module('Simile', function(
     setFilter: function() {
       var center = this.band.getCenterVisibleDate();
       Neatline.vent.trigger('setFilter', {
-        key: 'simile',
+
+        source: Simile.ID,
+        key:    'simile',
+
         evaluator: function(record) {
 
           // Get start and end visibility dates.
@@ -106,6 +109,7 @@ Neatline.module('Simile', function(
           return Boolean(visible);
 
         }
+
       });
     },
 

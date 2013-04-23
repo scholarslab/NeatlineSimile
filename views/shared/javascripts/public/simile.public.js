@@ -20,7 +20,7 @@ Neatline.module('Simile', function(
       ingest(records);
     });
   };
-  Neatline.commands.setHandler(this.ID+':load', load);
+  Neatline.commands.setHandler(Simile.ID+':load', load);
   Neatline.vent.on('refresh', load);
 
 
@@ -32,7 +32,7 @@ Neatline.module('Simile', function(
   var ingest = function(records) {
     Simile.__view.ingest(records);
   };
-  Neatline.commands.setHandler(this.ID+':ingest', ingest);
+  Neatline.commands.setHandler(Simile.ID+':ingest', ingest);
 
 
   /**
@@ -43,7 +43,7 @@ Neatline.module('Simile', function(
   var focusByModel = function(model) {
     Simile.__view.focusByModel(model);
   };
-  Neatline.commands.setHandler(this.ID+':focusByModel', focusByModel);
+  Neatline.commands.setHandler(Simile.ID+':focusByModel', focusByModel);
 
 
   /**
@@ -54,7 +54,7 @@ Neatline.module('Simile', function(
   var select = function(args) {
     if (args.source !== 'SIMILE') focusByModel(args.model);
   };
-  Neatline.commands.setHandler(this.ID+':select', select);
+  Neatline.commands.setHandler(Simile.ID+':select', select);
   Neatline.vent.on('select', select);
 
 
