@@ -25,6 +25,20 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    shell: {
+      options: {
+        stdout: true
+      },
+      phpunit: {
+        command: 'phpunit --color',
+        options: {
+          execOptions: {
+            cwd: './tests/phpunit'
+          }
+        }
+      }
+    },
+
     symlink: {
       neatline: {
         link: './Neatline',
@@ -134,5 +148,8 @@ module.exports = function(grunt) {
     'stylus',
     'concat:simile_public_css'
   ]);
+
+  // Run PHPUnit.
+  grunt.registerTask('phpunit', 'shell:phpunit');
 
 };
