@@ -12,10 +12,13 @@ Neatline.module('Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
+  this.ID = 'SIMILE';
+
+
   this.addInitializer(function() {
     this.__collection = new Neatline.Shared.Record.Collection();
     this.__view = new Simile.View();
-    Neatline.execute('SIMILE:load');
+    Neatline.execute(this.ID+':load');
   });
 
 

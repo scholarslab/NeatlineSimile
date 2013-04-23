@@ -20,7 +20,7 @@ Neatline.module('Simile', function(
       ingest(records);
     });
   };
-  Neatline.commands.setHandler('SIMILE:load', load);
+  Neatline.commands.setHandler(this.ID+':load', load);
   Neatline.vent.on('refresh', load);
 
 
@@ -32,7 +32,7 @@ Neatline.module('Simile', function(
   var ingest = function(records) {
     Simile.__view.ingest(records);
   };
-  Neatline.commands.setHandler('SIMILE:ingest', ingest);
+  Neatline.commands.setHandler(this.ID+':ingest', ingest);
 
 
   /**
@@ -43,8 +43,19 @@ Neatline.module('Simile', function(
   var focusByModel = function(model) {
     Simile.__view.focusByModel(model);
   };
-  Neatline.commands.setHandler('SIMILE:focusByModel', focusByModel);
-  Neatline.vent.on('select', focusByModel);
+  Neatline.commands.setHandler(this.ID+':focusByModel', focusByModel);
+
+
+  /**
+   * Focus by model, unless the event was triggered by the timeline.
+   *
+   * @param {Object} args: Event arguments.
+   */
+  var select = function(args) {
+    if (args.source !== 'SIMILE') focusByModel(args.model);
+  };
+  Neatline.commands.setHandler(this.ID+':select', select);
+  Neatline.vent.on('select', select);
 
 
 });

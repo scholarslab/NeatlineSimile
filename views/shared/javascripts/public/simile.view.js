@@ -66,7 +66,10 @@ Neatline.module('Simile', function(
      */
     __initSelect: function() {
       this.band._eventPainter._showBubble = function(x, y, evt) {
-        Neatline.vent.trigger('select', evt.nModel);
+        Neatline.vent.trigger('select', {
+          model:  evt.nModel,
+          source: Simile.ID
+        });
       };
     },
 
@@ -85,21 +88,24 @@ Neatline.module('Simile', function(
      */
     setFilter: function() {
       var center = this.band.getCenterVisibleDate();
-      Neatline.vent.trigger('setFilter', 'simile', function(record) {
+      Neatline.vent.trigger('setFilter', {
+        key: 'simile',
+        evaluator: function(record) {
 
-        // Get start and end visibility dates.
-        var v1 = record.get('show_after_date');
-        var v2 = record.get('show_before_date');
+          // Get start and end visibility dates.
+          var v1 = record.get('show_after_date');
+          var v2 = record.get('show_before_date');
 
-        // Hide the record if it (a) has a show after date that is after
-        // the current date or (b) has a show before date that is before
-        // the current date.
+          // Hide the record if it (a) has a show after date that is after
+          // the current date or (b) has a show before date that is before
+          // the current date.
 
-        var visible = true;
-        if (v1) visible &= new Date(v1) < center;
-        if (v2) visible &= new Date(v2) > center;
-        return Boolean(visible);
+          var visible = true;
+          if (v1) visible &= new Date(v1) < center;
+          if (v2) visible &= new Date(v2) > center;
+          return Boolean(visible);
 
+        }
       });
     },
 
