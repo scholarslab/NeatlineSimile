@@ -17,6 +17,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-symbolic-link');
   grunt.loadNpmTasks('grunt-shell');
 
@@ -36,6 +37,9 @@ module.exports = function(grunt) {
             cwd: './tests/phpunit'
           }
         }
+      },
+      bower: {
+        command: 'bower install'
       }
     },
 
@@ -68,7 +72,10 @@ module.exports = function(grunt) {
     concat: {
 
       simile_public: {
-        src: cfg.src.shared+'/public/*.js',
+        src: [
+          cfg.vendor.js.simile,
+          cfg.src.shared+'/public/*.js'
+        ],
         dest: cfg.payloads.shared.js+'/simile-public.js'
       },
 
@@ -113,6 +120,18 @@ module.exports = function(grunt) {
       }
     },
 
+    copy: {
+      simile: {
+        files: [{
+          cwd: './components/simile/',
+          src: '**',
+          dest: cfg.payloads.shared.js+'/simile',
+          flatten: false,
+          expand: true
+        }]
+      }
+    },
+
     watch: {
       payload: {
         files: [
@@ -124,12 +143,51 @@ module.exports = function(grunt) {
       }
     },
 
+    jasmine: {
+
+      options: {
+        helpers: [
+          './Neatline/'+nlCfg.vendor.js.jasmine_jquery,
+          './Neatline/'+nlCfg.vendor.js.sinon,
+          './Neatline/'+nlCfg.jasmine+'/helpers/*.js',
+          './Neatline/'+nlCfg.jasmine+'/assertions/*.js',
+          cfg.jasmine+'/helpers/*.js'
+        ]
+      },
+
+      neatline: {
+        src: [
+          './Neatline/'+nlCfg.payloads.shared.js+'/neatline-public.js',
+          cfg.payloads.shared.js+'/simile-public.js'
+        ],
+        options: {
+          specs: cfg.jasmine+'/suites/public/**/*.spec.js'
+        }
+      },
+
+      editor: {
+        src: [
+          './Neatline/'+nlCfg.payloads.shared.js+'/neatline-editor.js',
+          cfg.payloads.shared.js+'/simile-editor.js'
+        ],
+        options: {
+          specs: cfg.jasmine+'/suites/editor/**/*.spec.js'
+        }
+      }
+
+    }
+
   });
+
+  // Run tests.
+  grunt.registerTask('default', 'test');
 
   // Build the application.
   grunt.registerTask('build', [
     'clean',
+    'shell:bower',
     'symlink',
+    'copy',
     'compile'
   ]);
 
@@ -149,7 +207,25 @@ module.exports = function(grunt) {
     'concat:simile_public_css'
   ]);
 
+  // Run all tests.
+  grunt.registerTask('test', [
+    'shell:phpunit',
+    'jasmine'
+  ]);
+
   // Run PHPUnit.
   grunt.registerTask('phpunit', 'shell:phpunit');
+
+  // Mount public Jasmine suite.
+  grunt.registerTask('jasmine:neatline:server', [
+    'jasmine:neatline:build',
+    'connect'
+  ]);
+
+  // Mount editor Jasmine suite.
+  grunt.registerTask('jasmine:editor:server', [
+    'jasmine:editor:build',
+    'connect'
+  ]);
 
 };

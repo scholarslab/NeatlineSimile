@@ -3,8 +3,6 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
 
 /**
- * Asset helpers.
- *
  * @package     omeka
  * @subpackage  neatline-Simile
  * @copyright   2012 Rector and Board of Visitors, University of Virginia
@@ -17,7 +15,17 @@
  */
 function simile_queueSimileApi()
 {
-    nl_appendScript(
-        'http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js'
+
+    // SimileAjax:
+    nl_appendScript(web_path_to(
+        'javascripts/payloads/simile/dist/timeline_ajax/simile-ajax-api.js').
+        '?bundle=true'
     );
+
+    // Timeline:
+    nl_appendScript(web_path_to(
+        'javascripts/payloads/simile/dist/timeline_js/timeline-api.js').
+        '?bundle=true'
+    );
+
 }
