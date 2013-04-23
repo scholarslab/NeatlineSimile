@@ -15,7 +15,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     const NAME  = 'SIMILE Timeline';
-    const SLUG  = 'simile';
+    const ID    = 'Simile';
 
 
     protected $_hooks = array(
@@ -38,7 +38,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlinePublicStatic($args)
     {
-        if ($args['exhibit']->hasWidget(self::SLUG)) {
+        if ($args['exhibit']->hasWidget(self::ID)) {
             queue_css_file('payloads/simile-public');
             queue_js_file('payloads/simile-public');
             simile_queueSimileApi();
@@ -53,7 +53,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookNeatlineEditorStatic($args)
     {
-        if ($args['exhibit']->hasWidget(self::SLUG)) {
+        if ($args['exhibit']->hasWidget(self::ID)) {
             queue_css_file('payloads/simile-public');
             queue_js_file('payloads/simile-editor');
             simile_queueSimileApi();
@@ -64,13 +64,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the exhibit widget tab.
      *
-     * @param array $tabs Tabs, <LABEL> => <SLUG>.
+     * @param array $tabs Tabs, <LABEL> => <ID>.
      * @return array The array, with "Waypoints".
      */
     public function filterNeatlineExhibitTabs($tabs, $args)
     {
-        if ($args['exhibit']->hasWidget(self::SLUG)) {
-            $tabs[self::NAME] = self::SLUG;
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            $tabs[self::NAME] = 'simile';
         }
         return $tabs;
     }
@@ -79,13 +79,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the exhibit widget.
      *
-     * @param array $widgets Widgets, <NAME> => <SLUG>.
+     * @param array $widgets Widgets, <NAME> => <ID>.
      * @return array The array, with Simile.
      */
     public function filterNeatlineExhibitWidgets($widgets)
     {
         return array_merge($widgets, array(
-            self::NAME => self::SLUG
+            self::NAME => self::ID
         ));
     }
 
@@ -93,13 +93,13 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Register the record widget.
      *
-     * @param array $widgets Widgets, <NAME> => <SLUG>.
+     * @param array $widgets Widgets, <NAME> => <ID>.
      * @return array The array, with Simile.
      */
     public function filterNeatlineRecordWidgets($widgets)
     {
         return array_merge($widgets, array(
-            self::NAME => self::SLUG
+            self::NAME => self::ID
         ));
     }
 

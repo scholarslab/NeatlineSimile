@@ -16,7 +16,7 @@ Neatline.module('Simile', function(
    * Load timeline events.
    */
   var load = function() {
-    Simile.__collection.update({widget: 'simile'}, function(records) {
+    Simile.__collection.update({widget: 'Simile'}, function(records) {
       ingest(records);
     });
   };
