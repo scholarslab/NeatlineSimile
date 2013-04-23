@@ -73,7 +73,6 @@ module.exports = function(grunt) {
 
       simile_public: {
         src: [
-          cfg.vendor.js.simile,
           cfg.src.shared+'/public/*.js'
         ],
         dest: cfg.payloads.shared.js+'/simile-public.js'
@@ -89,7 +88,6 @@ module.exports = function(grunt) {
 
       simile_public_css: {
         src: [
-          cfg.vendor.css.simile,
           cfg.payloads.shared.css+'/simile-public.css'
         ],
         dest: cfg.payloads.shared.css+'/simile-editor.css'

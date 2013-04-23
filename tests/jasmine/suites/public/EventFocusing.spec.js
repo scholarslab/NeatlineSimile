@@ -8,7 +8,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-describe('Stub', function() {
+describe('Event Focusing', function() {
 
 
   beforeEach(function() {
@@ -16,9 +16,9 @@ describe('Stub', function() {
   });
 
 
-  it('should', function() {
-    expect(true).toBeTruthy();
-  });
+  it('should focus on event on `select`');
+  it('should not focus when model has no start date');
+  it('should not focus when event is clicked');
 
 
 });

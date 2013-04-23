@@ -1,29 +1,20 @@
 {
 
   "src": {
-    "shared": "./views/shared/javascripts"
+    "shared":     "./views/shared/javascripts"
   },
 
   "stylus": {
-    "shared": "./views/shared/css/stylus"
+    "shared":     "./views/shared/css/stylus"
   },
 
   "payloads": {
     "shared": {
-      "js":   "./views/shared/javascripts/payloads",
-      "css":  "./views/shared/css/payloads"
+      "js":       "./views/shared/javascripts/payloads",
+      "css":      "./views/shared/css/payloads"
     }
   },
 
-  "jasmine":  "./tests/jasmine",
-
-  "vendor": {
-    "js": {
-      "simile": "./components/simile/dist/production/simile.js"
-    },
-    "css": {
-      "simile": "./components/simile/dist/production/simile.css"
-    }
-  }
+  "jasmine":      "./tests/jasmine"
 
 }

@@ -18,7 +18,15 @@ var SM = (function(SM) {
   SM.loadJsonFixtures = function() {
 
     this.json = {
-      // TODO
+
+      EventLoading: {
+        records: {
+          points:   readFixtures('EventLoading.records.points.json'),
+          spans:    readFixtures('EventLoading.records.spans.json'),
+          nostart:  readFixtures('EventLoading.records.nostart.json')
+        }
+      }
+
     };
 
   };
