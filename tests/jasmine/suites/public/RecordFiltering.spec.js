@@ -11,32 +11,155 @@
 describe('Record Filtering', function() {
 
 
+  var record;
+
+
   beforeEach(function() {
     SM.loadNeatline();
   });
 
 
+  afterEach(function() {
+    Neatline.vent.off('setFilter');
+  });
+
+
   describe('record has no visibility dates', function() {
-    it('should always be visible');
+
+    var async = new AsyncSpec(this);
+
+    beforeEach(function() {
+      record = new Neatline.Shared.Record.Model();
+    });
+
+    async.it('should always pass', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeTruthy();
+        done();
+      });
+
+      SM.setFocus('2000');
+
+    });
+
   });
 
 
   describe('record has show after date', function() {
-    it('should be visible when timeline is after the date');
-    it('should be hidden when timeline is before the date');
+
+    var async = new AsyncSpec(this);
+
+    beforeEach(function() {
+      record = new Neatline.Shared.Record.Model({
+        show_after_date: '2000'
+      });
+    });
+
+    async.it('should pass when TL is after the date', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeTruthy();
+        done();
+      });
+
+      SM.setFocus('2001');
+
+    });
+
+    async.it('should block when TL is before the date', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeFalsy();
+        done();
+      });
+
+      SM.setFocus('1999');
+
+    });
+
   });
 
 
   describe('record has show before date', function() {
-    it('should be visible when timeline is before the date');
-    it('should be hidden when timeline is after the date');
+
+    var async = new AsyncSpec(this);
+
+    beforeEach(function() {
+      record = new Neatline.Shared.Record.Model({
+        show_before_date: '2000'
+      });
+    });
+
+    async.it('should pass when before the date', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeTruthy();
+        done();
+      });
+
+      SM.setFocus('1999');
+
+    });
+
+    async.it('should block when after the date', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeFalsy();
+        done();
+      });
+
+      SM.setFocus('2001');
+
+    });
+
   });
 
 
   describe('record has show after and before dates', function() {
-    it('should be visible when timeline is between dates');
-    it('should be hidden when timeline is before the interval');
-    it('should be hidden when timeline is after the interval');
+
+    var async = new AsyncSpec(this);
+
+    beforeEach(function() {
+      record = new Neatline.Shared.Record.Model({
+        show_after_date: '2000',
+        show_before_date: '2010'
+      });
+    });
+
+    async.it('should pass when inside the interval', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeTruthy();
+        done();
+      });
+
+      SM.setFocus('2005');
+
+    });
+
+    async.it('should block when before the interval', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeFalsy();
+        done();
+      });
+
+      SM.setFocus('1999');
+
+    });
+
+    async.it('should block when after the interval', function(done) {
+
+      Neatline.vent.on('setFilter', function(args) {
+        expect(args.evaluator(record)).toBeFalsy();
+        done();
+      });
+
+      SM.setFocus('2011');
+
+    });
+
   });
 
 

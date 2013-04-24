@@ -89,7 +89,7 @@ Neatline.module('Simile', function(
         evaluator: _.bind(function(record) {
 
           // Hide the record if it either:
-          //  - Has a `show_after_date` that is after the current date;
+          //  - Has a `show_after_date` that is after the current date.
           //  - Has a `show_before_date` that is before the current date.
 
           var center = this.band.getCenterVisibleDate();

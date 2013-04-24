@@ -50,7 +50,7 @@ describe('Outgoing Events', function() {
       vent = spyOn(Neatline.vent, 'trigger');
 
       // Move timeline.
-      SM.vw.PUBLIC.band.setCenterVisibleDate(new Date('2000'));
+      SM.setFocus(new Date('2000'));
 
     });
 
