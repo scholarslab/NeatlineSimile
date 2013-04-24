@@ -41,13 +41,16 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
         $sql = "CREATE TABLE IF NOT EXISTS
             `{$this->_db->prefix}neatline_simile_exhibit_expansion` (
+
             `id`                INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             `default_date`      VARCHAR(100) NULL,
             `interval_unit`     VARCHAR(100) NULL,
             `interval_pixels`   INT(10) UNSIGNED NULL,
             `track_height`      INT(10) UNSIGNED NULL,
             `tape_height`       INT(10) UNSIGNED NULL,
+
              PRIMARY KEY        (`id`)
+
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
         $this->_db->query($sql);
