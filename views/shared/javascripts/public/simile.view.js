@@ -84,29 +84,24 @@ Neatline.module('Simile', function(
      * Filter records by visibility dates.
      */
     setFilter: function() {
-      var center = this.band.getCenterVisibleDate();
       Neatline.vent.trigger('setFilter', {
+        source: Simile.ID, key: 'simile',
+        evaluator: _.bind(function(record) {
 
-        source: Simile.ID,
-        key:    'simile',
+          // Hide the record if it either:
+          //  - Has a `show_after_date` that is after the current date;
+          //  - Has a `show_before_date` that is before the current date.
 
-        evaluator: function(record) {
-
-          // Get start and end visibility dates.
+          var center = this.band.getCenterVisibleDate();
           var v1 = record.get('show_after_date');
           var v2 = record.get('show_before_date');
-
-          // Hide the record if it (a) has a show after date that is after
-          // the current date or (b) has a show before date that is before
-          // the current date.
 
           var visible = true;
           if (v1) visible &= new Date(v1) < center;
           if (v2) visible &= new Date(v2) > center;
           return Boolean(visible);
 
-        }
-
+        }, this)
       });
     },
 
@@ -172,7 +167,7 @@ Neatline.module('Simile', function(
      */
     setEventColors: function() {
       _.each(this.getEvents(), _.bind(function(event) {
-        this.getEventElement(event).css(
+        $(this.getEventElement(event)).css(
           'background', event.nModel.get('fill_color')
         );
       }, this));
@@ -191,10 +186,10 @@ Neatline.module('Simile', function(
      * Get an event's DOM element on the timeline.
      *
      * @param {Object} event: The event.
-     * @param {Object}: The DOM element.
+     * @return {Object}: The DOM element.
      */
     getEventElement: function(event) {
-      return $(this.band._eventPainter._eventIdToElmt[event._id]);
+      return this.band._eventPainter._eventIdToElmt[event._id];
     },
 
 

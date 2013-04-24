@@ -25,6 +25,10 @@ var SM = (function(SM) {
           spans:    readFixtures('EventLoading.records.spans.json'),
           nostart:  readFixtures('EventLoading.records.nostart.json')
         }
+      },
+
+      OutgoingEvents: {
+        records:    readFixtures('OutgoingEvents.records.json')
       }
 
     };

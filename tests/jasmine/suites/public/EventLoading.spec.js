@@ -101,9 +101,9 @@ describe('Event Loading', function() {
       var el2 = SM.vw.PUBLIC.getEventElement(evt[1]);
       var el3 = SM.vw.PUBLIC.getEventElement(evt[2]);
 
-      var hex1 = SM.rgbToHex(el1.css('background-color'));
-      var hex2 = SM.rgbToHex(el2.css('background-color'));
-      var hex3 = SM.rgbToHex(el3.css('background-color'));
+      var hex1 = SM.rgbToHex($(el1).css('background-color'));
+      var hex2 = SM.rgbToHex($(el2).css('background-color'));
+      var hex3 = SM.rgbToHex($(el3).css('background-color'));
 
       expect(hex1).toEqual('#111111');
       expect(hex2).toEqual('#222222');
