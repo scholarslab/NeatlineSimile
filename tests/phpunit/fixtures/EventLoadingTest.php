@@ -57,6 +57,7 @@ class FixturesTest_EventLoading extends NeatlineSimile_FixtureCase
         );
 
         $record3->start_date = null;
+        $record3->save();
 
         $this->resetResponse();
         $this->writeFixtureFromRoute('neatline/records',

@@ -34,6 +34,17 @@ var SM = (function(SM) {
   };
 
 
+  /**
+   * Refresh the timeline.
+   *
+   * @param {Object} response: The response body.
+   */
+  SM.refreshWidget = function(response) {
+    Neatline.vent.trigger('refresh');
+    this.respondSimile200(response);
+  };
+
+
   return SM;
 
 

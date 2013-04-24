@@ -33,9 +33,6 @@ Neatline.module('Simile', function(
      */
     __initSimile: function() {
 
-      // Clobber `__history__.html`.
-      SimileAjax.History.enabled = false;
-
       // Reference the event source.
       this.eventSource = new Timeline.DefaultEventSource();
 
@@ -122,6 +119,7 @@ Neatline.module('Simile', function(
     ingest: function(records) {
       this.eventSource.clear();
       records.each(_.bind(this.buildEvent, this));    
+      this.setEventColors();
     },
 
 
@@ -155,9 +153,6 @@ Neatline.module('Simile', function(
       this.eventSource._fire('onAddMany', []);
       this.timeline.layout();
 
-      // Set color.
-      this.setEventColor(event);
-
     },
 
 
@@ -174,13 +169,21 @@ Neatline.module('Simile', function(
 
     /**
      * Manifest the fill color on an event.
-     *
-     * @param {Object} event: The event to update.
      */
-    setEventColor: function(event) {
-      $(this.getEventElement(event)).css(
-        'background', event.nModel.get('fill_color')
-      );
+    setEventColors: function() {
+      _.each(this.getEvents(), _.bind(function(event) {
+        this.getEventElement(event).css(
+          'background', event.nModel.get('fill_color')
+        );
+      }, this));
+    },
+
+
+    /**
+     * Get an array of all events on the timeline.
+     */
+    getEvents: function() {
+      return this.eventSource._events._events._a;
     },
 
 
@@ -191,7 +194,7 @@ Neatline.module('Simile', function(
      * @param {Object}: The DOM element.
      */
     getEventElement: function(event) {
-      return this.band._eventPainter._eventIdToElmt[event._id];
+      return $(this.band._eventPainter._eventIdToElmt[event._id]);
     },
 
 

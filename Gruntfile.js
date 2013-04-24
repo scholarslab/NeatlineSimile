@@ -149,7 +149,8 @@ module.exports = function(grunt) {
           './Neatline/'+nlCfg.vendor.js.sinon,
           './Neatline/'+nlCfg.jasmine+'/helpers/*.js',
           './Neatline/'+nlCfg.jasmine+'/assertions/*.js',
-          cfg.jasmine+'/helpers/*.js'
+          cfg.jasmine+'/helpers/*.js',
+          cfg.jasmine+'/assertions/*.js'
         ]
       },
 
@@ -178,7 +179,7 @@ module.exports = function(grunt) {
   });
 
   // Run tests.
-  grunt.registerTask('default', 'test');
+  grunt.registerTask('default', 'phpunit');
 
   // Build the application.
   grunt.registerTask('build', [
@@ -203,12 +204,6 @@ module.exports = function(grunt) {
     'uglify:simile_editor',
     'stylus',
     'concat:simile_public_css'
-  ]);
-
-  // Run all tests.
-  grunt.registerTask('test', [
-    'shell:phpunit',
-    'jasmine'
   ]);
 
   // Run PHPUnit.
