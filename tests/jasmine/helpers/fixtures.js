@@ -29,6 +29,10 @@ var SM = (function(SM) {
 
       OutgoingEvents: {
         records:    readFixtures('OutgoingEvents.records.json')
+      },
+
+      EventFocusing: {
+        records:    readFixtures('EventFocusing.records.json')
       }
 
     };

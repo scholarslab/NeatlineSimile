@@ -13,12 +13,61 @@ describe('Event Focusing', function() {
 
   beforeEach(function() {
     SM.loadNeatline();
+    SM.vw.PUBLIC.band.setCenterVisibleDate(new Date('1999-02-01'));
   });
 
 
-  it('should focus on event on `select`');
-  it('should not focus when model has no start date');
-  it('should not focus when event is clicked');
+  it('should focus on event on `select`', function() {
+
+    // --------------------------------------------------------------------
+    // When the `select` event is triggered with a model that has a start
+    // date, the timeline should focus on the date.
+    // --------------------------------------------------------------------
+
+    var record = new Neatline.Shared.Record.Model({
+      start_date: '2000-02-01'
+    });
+
+    // `select` should focus timeline.
+    Neatline.vent.trigger('select', { model: record });
+    SM.assertCurrentYear(2000);
+
+  });
+
+
+  it('should not focus when model has no start date', function() {
+
+    // --------------------------------------------------------------------
+    // When the model does not have a start date, the timeline should not
+    // change focus position.
+    // --------------------------------------------------------------------
+
+    var record = new Neatline.Shared.Record.Model();
+
+    // `select` should not focus timeline.
+    Neatline.vent.trigger('select', { model: record });
+    SM.assertCurrentYear(1999);
+
+  });
+
+
+  it('should not focus when event is clicked', function() {
+
+    // --------------------------------------------------------------------
+    // When a timeline event is clicked, the timeline should _not_ focus
+    // on the start date of the event.
+    // --------------------------------------------------------------------
+
+    // Load an event.
+    SM.respondSimile200(SM.json.EventFocusing.records);
+
+    // Click on the event.
+    SM.clickEvent(SM.vw.PUBLIC.getEvents()[0]);
+
+    // Should not focus.
+    SM.assertCurrentYear(1999);
+
+  });
 
 
 });

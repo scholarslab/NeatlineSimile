@@ -132,7 +132,7 @@ Neatline.module('Simile', function(
       var data = {
         text:   record.get('title'),
         start:  new Date(record.get('start_date')),
-        color:  record.get('fill_color'),
+        color:  record.get('fill_color')
       };
 
       // If present, add end date.

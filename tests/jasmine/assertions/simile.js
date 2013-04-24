@@ -22,6 +22,17 @@ var SM = (function(SM) {
   };
 
 
+  /**
+   * Assert the current year of the focus date.
+   *
+   * @param {Number} year: The current year.
+   */
+  SM.assertCurrentYear = function(year) {
+    var now = this.vw.PUBLIC.band.getCenterVisibleDate().getFullYear();
+    expect(now).toEqual(year);
+  };
+
+
   return SM;
 
 

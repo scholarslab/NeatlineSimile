@@ -45,6 +45,16 @@ var SM = (function(SM) {
   };
 
 
+  /**
+   * Click on an event.
+   *
+   * @param {Object} event: The event.
+   */
+  SM.clickEvent = function(event) {
+    this.vw.PUBLIC.band._eventPainter.showBubble(event);
+  };
+
+
   return SM;
 
 

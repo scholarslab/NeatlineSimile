@@ -17,8 +17,8 @@ describe('Outgoing Events', function() {
   describe('setFilter', function() {
 
     // --------------------------------------------------------------------
-    // The `setFilter` event should be published with a key and evaluator
-    // when the exhibit starts and when the timeline is moved.
+    // The `setFilter` event should be published with a source, key, and
+    // evaluator when the exhibit starts and when the timeline is moved.
     // --------------------------------------------------------------------
 
     afterEach(function() {
@@ -28,12 +28,10 @@ describe('Outgoing Events', function() {
       // Should publish `setFilter`.
       expect(args[0]).toEqual('setFilter');
 
-      // Should provide `source` and `key`.
+      // Should provide source, key, and evaluator.
       expect(args[1].source).toEqual(Neatline.Simile.ID);
-      expect(args[1].key).toEqual('simile');
-
-      // Should provide `evaluator`.
       expect(_.isFunction(args[1].evaluator)).toBeTruthy();
+      expect(args[1].key).toEqual('simile');
 
     });
 
@@ -51,7 +49,7 @@ describe('Outgoing Events', function() {
       SM.loadNeatline();
       vent = spyOn(Neatline.vent, 'trigger');
 
-      // Scroll the timeline.
+      // Move timeline.
       SM.vw.PUBLIC.band.setCenterVisibleDate(new Date('2000'));
 
     });
@@ -64,8 +62,8 @@ describe('Outgoing Events', function() {
     it('should publish `select` when event is clicked', function() {
 
       // ------------------------------------------------------------------
-      // The `select` event should be published with the corresponding
-      // model when an event is clicked.
+      // The `select` event should be published with a source and model
+      // when an event is clicked.
       // ------------------------------------------------------------------
 
       SM.loadNeatline();
