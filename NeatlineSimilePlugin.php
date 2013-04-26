@@ -27,6 +27,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     protected $_filters = array(
+        'neatline_exhibit_expansions',
         'neatline_exhibit_tabs',
         'neatline_exhibit_widgets',
         'neatline_record_widgets'
@@ -40,9 +41,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     {
 
         $sql = "CREATE TABLE IF NOT EXISTS
-            `{$this->_db->prefix}neatline_simile_exhibit_expansion` (
+            `{$this->_db->prefix}neatline_simile_exhibit_expansions` (
 
             `id`                INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+            `parent_id`         INT(10) UNSIGNED NULL,
             `default_date`      VARCHAR(100) NULL,
             `interval_unit`     VARCHAR(100) NULL,
             `interval_pixels`   INT(10) UNSIGNED NULL,
@@ -64,7 +66,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function hookUninstall()
     {
         $sql = "DROP TABLE IF EXISTS
-            `{$this->_db->prefix}neatline_simile_exhibit_expansion`";
+            `{$this->_db->prefix}neatline_simile_exhibit_expansions`";
         $this->_db->query($sql);
     }
 
@@ -100,10 +102,25 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
 
     /**
+     * Register the exhibit expansion.
+     *
+     * @param array $tables Exhibit expansions.
+     * @return array The modified array.
+     */
+    public function filterNeatlineExhibitExpansions($tables)
+    {
+        $tables[] = $this->_db->getTable(
+            'NeatlineSimileExhibitExpansion'
+        );
+        return $tables;
+    }
+
+
+    /**
      * Register the exhibit widget tab.
      *
      * @param array $tabs Tabs, <LABEL> => <ID>.
-     * @return array The array, with "Waypoints".
+     * @return array The modified array.
      */
     public function filterNeatlineExhibitTabs($tabs, $args)
     {
@@ -118,7 +135,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      * Register the exhibit widget.
      *
      * @param array $widgets Widgets, <NAME> => <ID>.
-     * @return array The array, with Simile.
+     * @return array The modified array.
      */
     public function filterNeatlineExhibitWidgets($widgets)
     {
@@ -132,7 +149,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      * Register the record widget.
      *
      * @param array $widgets Widgets, <NAME> => <ID>.
-     * @return array The array, with Simile.
+     * @return array The modified array.
      */
     public function filterNeatlineRecordWidgets($widgets)
     {
