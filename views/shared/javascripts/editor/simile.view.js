@@ -12,12 +12,18 @@ Neatline.module('Editor.Exhibit.Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  Simile.ID = 'EDITOR:SIMILE';
+  Simile.View = Backbone.Neatline.View.extend({
 
 
-  Simile.addInitializer(function() {
-    Simile.__router = new Simile.Router();
-    Simile.__view   = new Simile.View();
+    template:   '#simile-form-template',
+    className:  'form-stacked simile',
+    tagName:    'form',
+
+    events: {
+      'click a[name="save"]': 'save'
+    }
+
+
   });
 
 

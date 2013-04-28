@@ -14,7 +14,7 @@
 <script id="simile-form-template" type="text/templates">
 
   <div class="control-group">
-
+    test
   </div>
 
   <?php echo common('neatline/save'); ?>

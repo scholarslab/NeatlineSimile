@@ -12,13 +12,15 @@ Neatline.module('Editor.Exhibit.Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  Simile.ID = 'EDITOR:SIMILE';
-
-
-  Simile.addInitializer(function() {
-    Simile.__router = new Simile.Router();
-    Simile.__view   = new Simile.View();
-  });
+  /**
+   * Fetch the exhibit and display the form.
+   *
+   * @param {Object} container: The container element.
+   */
+  var display = function(container) {
+    Simile.__view.showIn(container);
+  };
+  Neatline.commands.setHandler(Simile.ID+':display', display);
 
 
 });

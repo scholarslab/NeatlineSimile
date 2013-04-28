@@ -12,12 +12,31 @@ Neatline.module('Editor.Exhibit.Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  Simile.ID = 'EDITOR:SIMILE';
+  Simile.Router = Neatline.Editor.Router.extend({
 
 
-  Simile.addInitializer(function() {
-    Simile.__router = new Simile.Router();
-    Simile.__view   = new Simile.View();
+    routes: {
+      simile: 'simile'
+    },
+
+
+    /**
+     * Show the SIMILE defaults form.
+     */
+    simile: function() {
+
+      Neatline.execute('EDITOR:display', [
+        'EDITOR:EXHIBIT',
+        'EDITOR:SIMILE'
+      ]);
+
+      Neatline.execute(
+        'EDITOR:EXHIBIT:activateTab', 'simile'
+      );
+
+    }
+
+
   });
 
 
