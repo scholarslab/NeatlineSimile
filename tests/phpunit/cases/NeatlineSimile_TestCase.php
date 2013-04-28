@@ -26,7 +26,7 @@ class NeatlineSimile_TestCase extends Neatline_AbstractCase
         $this->user = $this->db->getTable('User')->find(1);
         $this->_authenticateUser($this->user);
 
-        // Install Neatline and NeatlineWaypoints.
+        // Install Neatline and NeatlineSimile.
         $pluginHelper = new Omeka_Test_Helper_Plugin;
         $pluginHelper->setUp('Neatline');
         $pluginHelper->setUp('NeatlineSimile');

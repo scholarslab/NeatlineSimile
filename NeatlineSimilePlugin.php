@@ -21,6 +21,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     protected $_hooks = array(
         'install',
         'uninstall',
+        'neatline_editor_templates',
         'neatline_public_static',
         'neatline_editor_static'
     );
@@ -68,6 +69,19 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
         $sql = "DROP TABLE IF EXISTS
             `{$this->_db->prefix}neatline_simile_exhibit_expansions`";
         $this->_db->query($sql);
+    }
+
+
+    /**
+     * Queue editor templates.
+     *
+     * @param array $args Array of arguments, with `exhibit`.
+     */
+    public function hookNeatlineEditorTemplates($args)
+    {
+        if ($args['exhibit']->hasWidget(self::ID)) {
+            echo get_view()->partial('editor/form.php');
+        }
     }
 
 
