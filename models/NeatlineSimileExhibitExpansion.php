@@ -13,11 +13,11 @@ class NeatlineSimileExhibitExpansion extends Neatline_ExpansionRow
 {
 
 
-    public $default_date;       // VARCHAR(100) NULL
-    public $interval_unit;      // VARCHAR(100) NULL
-    public $interval_pixels;    // INT(10) UNSIGNED NULL
-    public $track_height;       // INT(10) UNSIGNED NULL
-    public $tape_height;        // INT(10) UNSIGNED NULL
+    public $simile_default_date;    // VARCHAR(100) NULL
+    public $simile_interval_unit;   // VARCHAR(100) NULL
+    public $simile_interval_pixels; // INT(10) UNSIGNED NULL
+    public $simile_track_height;    // INT(10) UNSIGNED NULL
+    public $simile_tape_height;     // INT(10) UNSIGNED NULL
 
 
 }
