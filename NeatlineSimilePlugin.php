@@ -81,8 +81,8 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function hookNeatlineEditorTemplates($args)
     {
         if ($args['exhibit']->hasWidget(self::ID)) {
-            echo get_view()->partial('editor/strings.php');
-            echo get_view()->partial('editor/form.php');
+            echo get_view()->partial('simile/editor/strings.php');
+            echo get_view()->partial('simile/editor/form.php');
         }
     }
 

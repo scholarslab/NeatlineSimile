@@ -26,15 +26,16 @@
         'label' => 'Interval Unit',
         'bind'  => 'exhibit.simile_interval_unit',
         'options' => array(
-          'Second'  => 'SECOND',
-          'Minute'  => 'MINUTE',
-          'Hour'    => 'HOUR',
-          'Day'     => 'DAY',
-          'Week'    => 'WEEK',
-          'Month'   => 'MONTH',
-          'Year'    => 'YEAR',
-          'Decade'  => 'DECADE',
-          'Century' => 'CENTURY'
+            'Second'      => 'SECOND',
+            'Minute'      => 'MINUTE',
+            'Hour'        => 'HOUR',
+            'Day'         => 'DAY',
+            'Week'        => 'WEEK',
+            'Month'       => 'MONTH',
+            'Year'        => 'YEAR',
+            'Decade'      => 'DECADE',
+            'Century'     => 'CENTURY',
+            'Millennium'  => 'MILLENNIUM'
         )
     )); ?>
 
