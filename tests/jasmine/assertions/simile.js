@@ -33,6 +33,47 @@ var SM = (function(SM) {
   };
 
 
+  /**
+   * Assert the interval unit.
+   *
+   * @param {Number} ms: The time unit in milliseconds.
+   */
+  SM.assertIntervalUnit = function(ms) {
+    expect(this.vw.PUBLIC.band._bandInfo.ether._interval).toEqual(ms);
+  };
+
+
+  /**
+   * Assert the interval width.
+   *
+   * @param {Number} pixels: The width.
+   */
+  SM.assertIntervalPixels = function(pixels) {
+    expect(this.vw.PUBLIC.band._bandInfo.ether._pixelsPerInterval).
+      toEqual(pixels);
+  };
+
+
+  /**
+   * Assert the track height.
+   *
+   * @param {Number} height: The height.
+   */
+  SM.assertTrackHeight = function(height) {
+    expect(this.vw.PUBLIC.theme.event.track.height).toEqual(height);
+  };
+
+
+  /**
+   * Assert the tape height.
+   *
+   * @param {Number} height: The height.
+   */
+  SM.assertTapeHeight = function(height) {
+    expect(this.vw.PUBLIC.theme.event.tape.height).toEqual(height);
+  };
+
+
   return SM;
 
 

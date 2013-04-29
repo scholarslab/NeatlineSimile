@@ -13,7 +13,7 @@ describe('Event Focusing', function() {
 
   beforeEach(function() {
     SM.loadNeatline();
-    SM.vw.PUBLIC.band.setCenterVisibleDate(new Date('1999-02-01'));
+    SM.vw.PUBLIC.setCenterDate('1999-02-01');
   });
 
 

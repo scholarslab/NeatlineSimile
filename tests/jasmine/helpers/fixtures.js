@@ -33,6 +33,10 @@ var SM = (function(SM) {
 
       EventFocusing: {
         records:    readFixtures('EventFocusing.records.json')
+      },
+
+      Form: {
+        records:    readFixtures('Form.records.json')
       }
 
     };

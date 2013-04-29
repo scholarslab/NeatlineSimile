@@ -16,68 +16,6 @@ describe('Exhibit Defaults', function() {
   });
 
 
-  it('should set track height', function() {
-
-    // --------------------------------------------------------------------
-    // When the exhibit starts, the `simile_track_height` field should be
-    // manifested in the timeline theme.
-    // --------------------------------------------------------------------
-
-    NL.startApplication();
-    SM.aliasNeatline();
-
-    expect(SM.vw.PUBLIC.theme.event.track.height).toEqual(30);
-
-  });
-
-
-  it('should set tape height', function() {
-
-    // --------------------------------------------------------------------
-    // When the exhibit starts, the `simile_tape_height` field should be
-    // manifested in the timeline theme.
-    // --------------------------------------------------------------------
-
-    NL.startApplication();
-    SM.aliasNeatline();
-
-    expect(SM.vw.PUBLIC.theme.event.tape.height).toEqual(8);
-
-  });
-
-
-  it('should set interval pixels', function() {
-
-    // --------------------------------------------------------------------
-    // When the exhibit starts, the `simile_tape_height` field should be
-    // manifested in the timeline theme.
-    // --------------------------------------------------------------------
-
-    NL.startApplication();
-    SM.aliasNeatline();
-
-    expect(SM.vw.PUBLIC.band._bandInfo.ether._pixelsPerInterval).
-      toEqual(100);
-
-  });
-
-
-  it('should set interval unit', function() {
-
-    // --------------------------------------------------------------------
-    // When the exhibit starts, the `simile_interval_unit` field should be
-    // manifested in the timeline theme.
-    // --------------------------------------------------------------------
-
-    NL.startApplication();
-    SM.aliasNeatline();
-
-    expect(SM.vw.PUBLIC.band._bandInfo.ether._interval).
-      toEqual(1000*60*60*24*365);
-
-  });
-
-
   it('should set default date', function() {
 
     // --------------------------------------------------------------------
@@ -107,6 +45,66 @@ describe('Exhibit Defaults', function() {
     SM.aliasNeatline();
 
     SM.assertCurrentYear(new Date().getFullYear());
+
+  });
+
+
+  it('should set interval unit', function() {
+
+    // --------------------------------------------------------------------
+    // When the exhibit starts, the `simile_interval_unit` field should be
+    // manifested in the timeline theme.
+    // --------------------------------------------------------------------
+
+    NL.startApplication();
+    SM.aliasNeatline();
+
+    SM.assertIntervalUnit(1000*60*60*24*365);
+
+  });
+
+
+  it('should set interval pixels', function() {
+
+    // --------------------------------------------------------------------
+    // When the exhibit starts, the `simile_tape_height` field should be
+    // manifested in the timeline theme.
+    // --------------------------------------------------------------------
+
+    NL.startApplication();
+    SM.aliasNeatline();
+
+    SM.assertIntervalPixels(100);
+
+  });
+
+
+  it('should set track height', function() {
+
+    // --------------------------------------------------------------------
+    // When the exhibit starts, the `simile_track_height` field should be
+    // manifested in the timeline theme.
+    // --------------------------------------------------------------------
+
+    NL.startApplication();
+    SM.aliasNeatline();
+
+    SM.assertTrackHeight(30);
+
+  });
+
+
+  it('should set tape height', function() {
+
+    // --------------------------------------------------------------------
+    // When the exhibit starts, the `simile_tape_height` field should be
+    // manifested in the timeline theme.
+    // --------------------------------------------------------------------
+
+    NL.startApplication();
+    SM.aliasNeatline();
+
+    SM.assertTapeHeight(10);
 
   });
 
