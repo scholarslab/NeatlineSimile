@@ -17,7 +17,7 @@ Neatline.module('Editor.Exhibit.Simile', function(
 
   Simile.addInitializer(function() {
     Simile.__router = new Simile.Router();
-    Simile.__view   = new Simile.View();
+    Simile.__view = new Simile.View();
   });
 
 

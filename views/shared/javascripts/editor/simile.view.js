@@ -21,6 +21,52 @@ Neatline.module('Editor.Exhibit.Simile', function(
 
     events: {
       'click a[name="save"]': 'save'
+    },
+
+
+    /**
+     * Construct the exhibit model and bind to form.
+     */
+    init: function() {
+      this.model = new Neatline.Editor.Exhibit.Model();
+      rivets.bind(this.$el, { exhibit: this.model });
+    },
+
+
+    /**
+     * Save the settings.
+     */
+    save: function() {
+      this.model.save(null, {
+        success:  _.bind(this.onSaveSuccess, this),
+        error:    _.bind(this.onSaveError, this)
+      });
+    },
+
+
+    /**
+     * When a save succeeds.
+     */
+    onSaveSuccess: function() {
+
+      // Flash success message.
+      Neatline.execute('EDITOR:notifySuccess',
+        SM_STRINGS.settings.save.success
+      );
+
+    },
+
+
+    /**
+     * When a save fails.
+     */
+    onSaveError: function() {
+
+      // Flash error message.
+      Neatline.execute('EDITOR:notifyError',
+        SM_STRINGS.settings.save.error
+      );
+
     }
 
 

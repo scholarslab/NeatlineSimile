@@ -13,7 +13,7 @@ Neatline.module('Editor.Exhibit.Simile', function(
 
 
   /**
-   * Fetch the exhibit and display the form.
+   * Display the form.
    *
    * @param {Object} container: The container element.
    */

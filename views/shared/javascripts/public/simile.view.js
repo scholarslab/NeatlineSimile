@@ -33,6 +33,9 @@ Neatline.module('Simile', function(
      */
     __initSimile: function() {
 
+      // Destroy existing timeline.
+      if (this.timeline) this.timeline.dispose();
+
       // Reference the event source.
       this.eventSource = new Timeline.DefaultEventSource();
 

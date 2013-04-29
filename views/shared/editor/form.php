@@ -14,7 +14,51 @@
 <script id="simile-form-template" type="text/templates">
 
   <div class="control-group">
-    test
+
+    <?php echo common('neatline/input', array(
+        'name'  => 'simile-default-date',
+        'label' => 'Default Date',
+        'bind'  => 'exhibit.simile_default_date'
+    )); ?>
+
+    <?php echo common('neatline/select', array(
+        'name'  => 'neatline-interval-unit',
+        'label' => 'Interval Unit',
+        'bind'  => 'exhibit.simile_interval_unit',
+        'options' => array(
+          'Second'  => 'SECOND',
+          'Minute'  => 'MINUTE',
+          'Hour'    => 'HOUR',
+          'Day'     => 'DAY',
+          'Week'    => 'WEEK',
+          'Month'   => 'MONTH',
+          'Year'    => 'YEAR',
+          'Decade'  => 'DECADE',
+          'Century' => 'CENTURY'
+        )
+    )); ?>
+
+    <?php echo common('neatline/input', array(
+        'name'  => 'simile-interval-pixels',
+        'label' => 'Interval Pixels',
+        'bind'  => 'exhibit.simile_interval_pixels',
+        'class' => 'integer'
+    )); ?>
+
+    <?php echo common('neatline/input', array(
+        'name'  => 'simile-track-height',
+        'label' => 'Track Height',
+        'bind'  => 'exhibit.simile_track_height',
+        'class' => 'integer'
+    )); ?>
+
+    <?php echo common('neatline/input', array(
+        'name'  => 'simile-tape-height',
+        'label' => 'Tape Height',
+        'bind'  => 'exhibit.simile_tape_height',
+        'class' => 'integer'
+    )); ?>
+
   </div>
 
   <?php echo common('neatline/save'); ?>
