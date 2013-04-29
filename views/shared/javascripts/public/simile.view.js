@@ -22,9 +22,15 @@ Neatline.module('Simile', function(
      * Start SIMILE.
      */
     init: function() {
-      this.__initSimile(new Neatline.Editor.Exhibit.Model());
+
+      // Create exhibit model from defaults.
+      var exhibit = new Neatline.Editor.Exhibit.Model();
+
+      // Start the timeline.
+      this.__initSimile(exhibit);
       this.__initSelect();
       this.__initFilter();
+
     },
 
 
@@ -35,38 +41,37 @@ Neatline.module('Simile', function(
      */
     __initSimile: function(exhibit) {
 
-      var date    = exhibit.get('simile_default_date');
-      var track   = exhibit.get('simile_track_height');
-      var tape    = exhibit.get('simile_tape_height');
-      var pixels  = exhibit.get('simile_interval_pixels');
-      var unit    = exhibit.get('simile_interval_unit');
-
       // Destroy existing timeline.
       if (this.timeline) this.timeline.dispose();
 
       // Reference the event source.
       this.eventSource = new Timeline.DefaultEventSource();
 
+      // Alias default settings.
+      var track   = exhibit.get('simile_track_height');
+      var tape    = exhibit.get('simile_tape_height');
+      var pixels  = exhibit.get('simile_interval_pixels');
+      var unit    = exhibit.get('simile_interval_unit');
+      var date    = exhibit.get('simile_default_date');
+
       // Set theme properties.
       var theme = Timeline.ClassicTheme.create();
-      theme.event.track.height = track;
-      theme.event.tape.height  = tape;
+      theme.event.track.height = parseInt(track);
+      theme.event.tape.height  = parseInt(tape);
 
       // Create the timeline.
       this.timeline = Timeline.create(this.el, [
         Timeline.createBandInfo({
           intervalUnit:   Timeline.DateTime[unit],
-          intervalPixels: pixels,
+          intervalPixels: parseInt(pixels),
           eventSource:    this.eventSource,
-          width:          '100%',
-          theme:          theme
+          width:  '100%',
+          theme:  theme
         })
       ]);
 
-      // Reference the band.
+      // Reference band, set date.
       this.band = this.timeline.getBand(0);
-
-      // Set default date.
       this.setCenterDate(date);
 
     },

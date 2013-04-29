@@ -25,6 +25,18 @@ Neatline.module('Simile', function(
 
 
   /**
+   * Reinstantiate the timeline from an exhibit model.
+   *
+   * @param {Object} exhibit: The exhibit model.
+   */
+  var restart = function(exhibit) {
+    Simile.__view.__initSimile(exhibit);
+    ingest(Simile.__collection);
+  };
+  Neatline.commands.setHandler(Simile.ID+':restart', restart);
+
+
+  /**
    * Render a collection of records on the timeline.
    *
    * @param {Object} records: The collection of records.

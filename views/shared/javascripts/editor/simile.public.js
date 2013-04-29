@@ -19,6 +19,7 @@ Neatline.module('Editor.Exhibit.Simile', function(
    */
   var display = function(container) {
     Simile.__view.showIn(container);
+    Simile.__view.buildWidgets();
   };
   Neatline.commands.setHandler(Simile.ID+':display', display);
 

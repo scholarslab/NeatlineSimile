@@ -28,8 +28,29 @@ Neatline.module('Editor.Exhibit.Simile', function(
      * Construct the exhibit model and bind to form.
      */
     init: function() {
+
+      // Create exhibit, bind to form.
       this.model = new Neatline.Editor.Exhibit.Model();
       rivets.bind(this.$el, { exhibit: this.model });
+
+      // Update simile on model change.
+      this.listenTo(this.model, 'change', _.bind(function() {
+        Neatline.execute('SIMILE:restart', this.model);
+      }, this));
+
+    },
+
+
+    /**
+     * Instantiate integer draggers.
+     */
+    buildWidgets: function() {
+
+      // INTEGERS
+      this.$('input.integer').draggableInput({
+        type: 'integer', min: 0, max: 500
+      });
+
     },
 
 
