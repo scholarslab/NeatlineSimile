@@ -115,8 +115,8 @@ Neatline.module('Simile', function(
           //  - Has a `show_before_date` that is before the current date.
 
           var center = this.band.getCenterVisibleDate();
-          var v1 = record.get('show_after_date');
-          var v2 = record.get('show_before_date');
+          var v1 = record.get('after_date');
+          var v2 = record.get('before_date');
 
           var visible = true;
           if (v1) visible &= new Date(v1) < center;
@@ -135,7 +135,7 @@ Neatline.module('Simile', function(
      */
     ingest: function(records) {
       this.eventSource.clear();
-      records.each(_.bind(this.buildEvent, this));    
+      records.each(_.bind(this.buildEvent, this));
       this.setEventColors();
     },
 

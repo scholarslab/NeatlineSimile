@@ -52,7 +52,7 @@ describe('Record Filtering', function() {
 
     beforeEach(function() {
       record = new Neatline.Shared.Record.Model({
-        show_after_date: '2000'
+        after_date: '2000'
       });
     });
 
@@ -87,7 +87,7 @@ describe('Record Filtering', function() {
 
     beforeEach(function() {
       record = new Neatline.Shared.Record.Model({
-        show_before_date: '2000'
+        before_date: '2000'
       });
     });
 
@@ -122,8 +122,8 @@ describe('Record Filtering', function() {
 
     beforeEach(function() {
       record = new Neatline.Shared.Record.Model({
-        show_after_date: '2000',
-        show_before_date: '2010'
+        after_date: '2000',
+        before_date: '2010'
       });
     });
 
