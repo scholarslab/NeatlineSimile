@@ -24,7 +24,7 @@ Neatline.module('Simile', function(
     init: function() {
 
       // Create exhibit model from defaults.
-      var exhibit = new Neatline.Editor.Exhibit.Model();
+      var exhibit = new Neatline.Shared.Exhibit.Model();
 
       // Start the timeline.
       this.__initSimile(exhibit);
@@ -55,18 +55,21 @@ Neatline.module('Simile', function(
       var date    = exhibit.get('simile_default_date');
 
       // Set theme properties.
-      var theme = Timeline.ClassicTheme.create();
-      theme.event.track.height = parseInt(track);
-      theme.event.tape.height  = parseInt(tape);
+      this.theme = Timeline.ClassicTheme.create();
+      this.theme.event.track.height = parseInt(track);
+      this.theme.event.tape.height  = parseInt(tape);
 
       // Create the timeline.
       this.timeline = Timeline.create(this.el, [
         Timeline.createBandInfo({
+
           intervalUnit:   Timeline.DateTime[unit],
           intervalPixels: parseInt(pixels),
           eventSource:    this.eventSource,
-          width:  '100%',
-          theme:  theme
+
+          theme: this.theme,
+          width: '100%',
+
         })
       ]);
 

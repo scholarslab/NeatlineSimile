@@ -30,7 +30,7 @@ Neatline.module('Editor.Exhibit.Simile', function(
     init: function() {
 
       // Create exhibit, bind to form.
-      this.model = new Neatline.Editor.Exhibit.Model();
+      this.model = new Neatline.Shared.Exhibit.Model();
       rivets.bind(this.$el, { exhibit: this.model });
 
       // Update simile on model change.
