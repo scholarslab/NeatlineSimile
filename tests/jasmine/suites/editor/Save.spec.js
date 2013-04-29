@@ -19,8 +19,8 @@ describe('Form Save', function() {
     SM.loadEditor();
 
     el = {
-      date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
       unit:   SM.vw.EDITOR.$('select[name="simile-interval-unit"]'),
+      date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
       pixels: SM.vw.EDITOR.$('input[name="simile-interval-pixels"]'),
       tape:   SM.vw.EDITOR.$('input[name="simile-tape-height"]'),
       track:  SM.vw.EDITOR.$('input[name="simile-track-height"]'),
@@ -37,8 +37,8 @@ describe('Form Save', function() {
     // be issued to the exhibit API with the new data.
     // --------------------------------------------------------------------
 
-    el.date.    val('1').   trigger('change');
     el.unit.    val('DAY'). trigger('change');
+    el.date.    val('1').   trigger('change');
     el.pixels.  val('2').   trigger('change');
     el.tape.    val('3').   trigger('change');
     el.track.   val('4').   trigger('change');
@@ -46,16 +46,16 @@ describe('Form Save', function() {
     // Click "Save" button.
     el.save.trigger('click');
 
-    // Route should be /neatline/put/:id, method PUT.
+    // Should issue PUT request to exhibits API.
     NL.assertLastRequestRoute(Neatline.global.exhibits_api);
     NL.assertLastRequestMethod('PUT');
 
-    // Decode request parameters.
+    // Parse request parameters.
     var params = NL.getLastRequestParams();
 
-    // Check query string values.
-    expect(params.simile_default_date).     toEqual('1');
+    // Check request parameters.
     expect(params.simile_interval_unit).    toEqual('DAY');
+    expect(params.simile_default_date).     toEqual('1');
     expect(params.simile_interval_pixels).  toEqual('2');
     expect(params.simile_tape_height).      toEqual('3');
     expect(params.simile_track_height).     toEqual('4');
