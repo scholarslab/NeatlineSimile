@@ -33,6 +33,9 @@ class FixturesTest_HtmlPartials extends NeatlineSimile_TestCase
         $exhibit->widgets = 'Simile';
         $exhibit->save();
 
+        // Reload to join extensions.
+        $exhibit = $this->reload($exhibit);
+
         // Set exhibit on view.
         get_view()->neatline_exhibit = $exhibit;
 

@@ -22,7 +22,7 @@
     )); ?>
 
     <?php echo common('neatline/select', array(
-        'name'  => 'neatline-interval-unit',
+        'name'  => 'simile-interval-unit',
         'label' => 'Interval Unit',
         'bind'  => 'exhibit.simile_interval_unit',
         'options' => array(
