@@ -4,7 +4,7 @@
 
 /**
  * @package     omeka
- * @subpackage  neatline
+ * @subpackage  neatline-Simile
  * @copyright   2012 Rector and Board of Visitors, University of Virginia
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
@@ -13,11 +13,11 @@ class NeatlineSimileExhibitExpansion extends Neatline_ExpansionRow
 {
 
 
-    public $simile_default_date;    // VARCHAR(100) NULL
-    public $simile_interval_unit;   // VARCHAR(100) NULL
-    public $simile_interval_pixels; // INT(10) UNSIGNED NULL
-    public $simile_track_height;    // INT(10) UNSIGNED NULL
-    public $simile_tape_height;     // INT(10) UNSIGNED NULL
+    public $simile_default_date;                // VARCHAR(100) NULL
+    public $simile_interval_unit   = 'YEAR';    // VARCHAR(100) NULL
+    public $simile_interval_pixels = 100;       // INT(10) UNSIGNED NULL
+    public $simile_tape_height     = 8;         // INT(10) UNSIGNED NULL
+    public $simile_track_height    = 30;        // INT(10) UNSIGNED NULL
 
 
 }

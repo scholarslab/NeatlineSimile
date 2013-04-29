@@ -22,8 +22,8 @@ describe('Form Save', function() {
       date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
       unit:   SM.vw.EDITOR.$('select[name="simile-interval-unit"]'),
       pixels: SM.vw.EDITOR.$('input[name="simile-interval-pixels"]'),
-      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]'),
       tape:   SM.vw.EDITOR.$('input[name="simile-tape-height"]'),
+      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]'),
       save:   SM.vw.EDITOR.$('a[name="save"]')
     };
 
@@ -40,8 +40,8 @@ describe('Form Save', function() {
     el.date.    val('1').   trigger('change');
     el.unit.    val('DAY'). trigger('change');
     el.pixels.  val('2').   trigger('change');
-    el.track.   val('3').   trigger('change');
-    el.tape.    val('4').   trigger('change');
+    el.tape.    val('3').   trigger('change');
+    el.track.   val('4').   trigger('change');
 
     // Click "Save" button.
     el.save.trigger('click');
@@ -57,8 +57,8 @@ describe('Form Save', function() {
     expect(params.simile_default_date).     toEqual('1');
     expect(params.simile_interval_unit).    toEqual('DAY');
     expect(params.simile_interval_pixels).  toEqual('2');
-    expect(params.simile_track_height).     toEqual('3');
-    expect(params.simile_tape_height).      toEqual('4');
+    expect(params.simile_tape_height).      toEqual('3');
+    expect(params.simile_track_height).     toEqual('4');
 
   });
 

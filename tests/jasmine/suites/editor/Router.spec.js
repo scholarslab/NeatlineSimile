@@ -22,7 +22,7 @@ describe('Form Router', function() {
   });
 
 
-  it('#waypoints', function() {
+  it('#simile', function() {
 
     NL.navigate('simile');
 

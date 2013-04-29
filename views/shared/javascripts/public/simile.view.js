@@ -22,7 +22,7 @@ Neatline.module('Simile', function(
      * Start SIMILE.
      */
     init: function() {
-      this.__initSimile();
+      this.__initSimile(new Neatline.Editor.Exhibit.Model());
       this.__initSelect();
       this.__initFilter();
     },
@@ -30,8 +30,16 @@ Neatline.module('Simile', function(
 
     /**
      * Instantiate SIMILE.
+     *
+     * @param {Object} exhibit: An exhibit model.
      */
-    __initSimile: function() {
+    __initSimile: function(exhibit) {
+
+      var date    = exhibit.get('simile_default_date');
+      var track   = exhibit.get('simile_track_height');
+      var tape    = exhibit.get('simile_tape_height');
+      var pixels  = exhibit.get('simile_interval_pixels');
+      var unit    = exhibit.get('simile_interval_unit');
 
       // Destroy existing timeline.
       if (this.timeline) this.timeline.dispose();
@@ -41,14 +49,14 @@ Neatline.module('Simile', function(
 
       // Set theme properties.
       var theme = Timeline.ClassicTheme.create();
-      theme.event.track.height  = 30;
-      theme.event.tape.height   = 8;
+      theme.event.track.height = track;
+      theme.event.tape.height  = tape;
 
       // Create the timeline.
       this.timeline = Timeline.create(this.el, [
         Timeline.createBandInfo({
-          intervalUnit:   Timeline.DateTime.YEAR,
-          intervalPixels: 100,
+          intervalUnit:   Timeline.DateTime[unit],
+          intervalPixels: pixels,
           eventSource:    this.eventSource,
           width:          '100%',
           theme:          theme
@@ -57,6 +65,9 @@ Neatline.module('Simile', function(
 
       // Reference the band.
       this.band = this.timeline.getBand(0);
+
+      // Set default date.
+      this.setCenterDate(date);
 
     },
 
@@ -155,13 +166,24 @@ Neatline.module('Simile', function(
 
 
     /**
+     * Center the timeline on a date.
+     *
+     * @param {String} date: The date.
+     */
+    setCenterDate: function(date) {
+      if (_.isString(date)) {
+        this.band.setCenterVisibleDate(new Date(date));
+      }
+    },
+
+
+    /**
      * Manifest the fill color on an event.
      *
      * @param {Object} model: The record model.
      */
     focusByModel: function(model) {
-      var start = model.get('start_date');
-      if (start) this.band.setCenterVisibleDate(new Date(start));
+      this.setCenterDate(model.get('start_date'));
     },
 
 
