@@ -21,8 +21,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-symbolic-link');
   grunt.loadNpmTasks('grunt-shell');
 
-  var nlCfg = grunt.file.readJSON('../Neatline/config.json');
-  var cfg = grunt.file.readJSON('./config.json');
+  var nlPaths = grunt.file.readJSON('../Neatline/paths.json');
+  var paths = grunt.file.readJSON('./paths.json');
 
   grunt.initConfig({
 
@@ -64,8 +64,8 @@ module.exports = function(grunt) {
 
     clean: {
       payloads: [
-        cfg.payloads.shared.js,
-        cfg.payloads.shared.css
+        paths.payloads.shared.js,
+        paths.payloads.shared.css
       ]
     },
 
@@ -73,24 +73,24 @@ module.exports = function(grunt) {
 
       simile_public: {
         src: [
-          cfg.src.shared+'/public/*.js'
+          paths.src.shared+'/public/*.js'
         ],
-        dest: cfg.payloads.shared.js+'/simile-public.js'
+        dest: paths.payloads.shared.js+'/simile-public.js'
       },
 
       simile_editor: {
         src: [
           '<%= concat.simile_public.src %>',
-          cfg.src.shared+'/editor/*.js'
+          paths.src.shared+'/editor/*.js'
         ],
-        dest: cfg.payloads.shared.js+'/simile-editor.js'
+        dest: paths.payloads.shared.js+'/simile-editor.js'
       },
 
       simile_public_css: {
         src: [
-          cfg.payloads.shared.css+'/simile-public.css'
+          paths.payloads.shared.css+'/simile-public.css'
         ],
-        dest: cfg.payloads.shared.css+'/simile-editor.css'
+        dest: paths.payloads.shared.css+'/simile-editor.css'
       }
 
     },
@@ -99,12 +99,12 @@ module.exports = function(grunt) {
 
       simile_public: {
         src: '<%= concat.simile_public.src %>',
-        dest: cfg.payloads.shared.js+'/simile-public.js'
+        dest: paths.payloads.shared.js+'/simile-public.js'
       },
 
       simile_editor: {
         src: '<%= concat.simile_editor.src %>',
-        dest: cfg.payloads.shared.js+'/simile-editor.js'
+        dest: paths.payloads.shared.js+'/simile-editor.js'
       }
 
     },
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
       compile: {
         files: {
           './views/shared/css/payloads/simile-public.css':
-            cfg.stylus.shared+'/public/*.styl'
+            paths.stylus.shared+'/public/*.styl'
         }
       }
     },
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
         files: [{
           cwd: './components/simile/',
           src: '**',
-          dest: cfg.payloads.shared.js+'/simile',
+          dest: paths.payloads.shared.js+'/simile',
           flatten: false,
           expand: true
         }]
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
         files: [
           '<%= concat.simile_public.src %>',
           '<%= concat.simile_editor.src %>',
-          cfg.stylus.shared+'/**/*.styl'
+          paths.stylus.shared+'/**/*.styl'
         ],
         tasks: ['compile']
       }
@@ -145,33 +145,33 @@ module.exports = function(grunt) {
 
       options: {
         helpers: [
-          './Neatline/'+nlCfg.vendor.js.jasmine_jquery,
-          './Neatline/'+nlCfg.vendor.js.jasmine_async,
-          './Neatline/'+nlCfg.vendor.js.sinon,
-          './Neatline/'+nlCfg.jasmine+'/helpers/*.js',
-          './Neatline/'+nlCfg.jasmine+'/assertions/*.js',
-          cfg.jasmine+'/helpers/*.js',
-          cfg.jasmine+'/assertions/*.js'
+          './Neatline/'+nlPaths.vendor.js.jasmine_jquery,
+          './Neatline/'+nlPaths.vendor.js.jasmine_async,
+          './Neatline/'+nlPaths.vendor.js.sinon,
+          './Neatline/'+nlPaths.jasmine+'/helpers/*.js',
+          './Neatline/'+nlPaths.jasmine+'/assertions/*.js',
+          paths.jasmine+'/helpers/*.js',
+          paths.jasmine+'/assertions/*.js'
         ]
       },
 
       neatline: {
         src: [
-          './Neatline/'+nlCfg.payloads.shared.js+'/neatline-public.js',
-          cfg.payloads.shared.js+'/simile-public.js'
+          './Neatline/'+nlPaths.payloads.shared.js+'/neatline-public.js',
+          paths.payloads.shared.js+'/simile-public.js'
         ],
         options: {
-          specs: cfg.jasmine+'/suites/public/**/*.spec.js'
+          specs: paths.jasmine+'/suites/public/**/*.spec.js'
         }
       },
 
       editor: {
         src: [
-          './Neatline/'+nlCfg.payloads.shared.js+'/neatline-editor.js',
-          cfg.payloads.shared.js+'/simile-editor.js'
+          './Neatline/'+nlPaths.payloads.shared.js+'/neatline-editor.js',
+          paths.payloads.shared.js+'/simile-editor.js'
         ],
         options: {
-          specs: cfg.jasmine+'/suites/editor/**/*.spec.js'
+          specs: paths.jasmine+'/suites/editor/**/*.spec.js'
         }
       }
 

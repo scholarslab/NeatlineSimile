@@ -41,7 +41,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function hookInstall()
     {
 
-        $sql = "CREATE TABLE IF NOT EXISTS
+        $this->_db->query("CREATE TABLE IF NOT EXISTS
             `{$this->_db->prefix}neatline_simile_exhibit_expansions` (
 
             `id`            INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -55,9 +55,7 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
              PRIMARY KEY        (`id`)
 
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
-
-        $this->_db->query($sql);
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
 
     }
 
@@ -67,9 +65,9 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookUninstall()
     {
-        $sql = "DROP TABLE IF EXISTS
-            `{$this->_db->prefix}neatline_simile_exhibit_expansions`";
-        $this->_db->query($sql);
+        $this->_db->query("DROP TABLE IF EXISTS
+            `{$this->_db->prefix}neatline_simile_exhibit_expansions`"
+        );
     }
 
 
