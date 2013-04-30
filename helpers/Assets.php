@@ -16,15 +16,15 @@
 function simile_queueSimileApi()
 {
 
-    // SimileAjax:
+    // SimileAjax
     nl_appendScript(web_path_to(
-        'javascripts/payloads/simile/timeline_ajax/simile-ajax-api.js') .
+        'javascripts/payloads/simile/ajax/simile-ajax-api.js') .
         '?bundle=true'
     );
 
-    // Timeline:
+    // Timeline
     nl_appendScript(web_path_to(
-        'javascripts/payloads/simile/timeline_js/timeline-api.js') .
+        'javascripts/payloads/simile/js/timeline-api.js') .
         '?bundle=true'
     );
 
