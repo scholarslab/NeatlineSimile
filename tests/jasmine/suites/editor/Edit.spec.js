@@ -32,6 +32,7 @@ describe('Form Edit', function() {
 
   afterEach(function() {
 
+    var spy = spyOn(Neatline.vent, 'trigger');
     var evt = SM.vw.PUBLIC.getEvents();
 
     // Should re-render events.
@@ -42,6 +43,14 @@ describe('Form Edit', function() {
     expect(evt[2]._start).toEqual(new Date('2003'));
     expect(evt[2]._end).toEqual(new Date('2003'));
     SM.assertEventCount(3);
+
+    // Should re-bind scroll listener.
+    SM.setFocus('2000');
+    expect(spy.mostRecentCall.args[0]).toEqual('setFilter');
+
+    // Should re-bind select listener.
+    SM.clickEvent(evt[0]);
+    expect(spy.mostRecentCall.args[0]).toEqual('select');
 
   });
 

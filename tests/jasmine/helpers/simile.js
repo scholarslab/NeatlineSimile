@@ -18,7 +18,7 @@ var SM = (function(SM) {
    * @param {Object} event: The event.
    */
   SM.clickEvent = function(event) {
-    this.vw.PUBLIC.band._eventPainter.showBubble(event);
+    this.vw.PUBLIC.band._eventPainter._showBubble(1, 2, event);
   };
 
 
