@@ -24,7 +24,7 @@ describe('Form Edit', function() {
       unit:   SM.vw.EDITOR.$('select[name="simile-interval-unit"]'),
       pixels: SM.vw.EDITOR.$('input[name="simile-interval-pixels"]'),
       tape:   SM.vw.EDITOR.$('input[name="simile-tape-height"]'),
-      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]'),
+      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]')
     };
 
   });
@@ -32,8 +32,9 @@ describe('Form Edit', function() {
 
   afterEach(function() {
 
-    // Should re-render collection.
     var evt = SM.vw.PUBLIC.getEvents();
+
+    // Should re-render events.
     expect(evt[0]._start).toEqual(new Date('2001'));
     expect(evt[0]._end).toEqual(new Date('2001'));
     expect(evt[1]._start).toEqual(new Date('2002'));
@@ -52,7 +53,7 @@ describe('Form Edit', function() {
     // preview the new date.
     // --------------------------------------------------------------------
 
-    el.date.val('1900').trigger('change');
+    el.date.val('1900-02-01').trigger('change');
     SM.assertCurrentYear(1900);
 
   });

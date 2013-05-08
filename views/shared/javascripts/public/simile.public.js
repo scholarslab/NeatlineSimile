@@ -25,7 +25,7 @@ Neatline.module('Simile', function(
 
 
   /**
-   * Reinstantiate the timeline from an exhibit model.
+   * Restart the timeline and re-render the current collection.
    *
    * @param {Object} exhibit: The exhibit model.
    */
