@@ -30,8 +30,13 @@ Neatline.module('Simile', function(
    * @param {Object} exhibit: The exhibit model.
    */
   var restart = function(exhibit) {
-    Simile.__view.__initSimile(exhibit);
+
+    // Restart the timeline.
+    Simile.__view.init(exhibit);
+
+    // Re-render the events.
     ingest(Simile.__collection);
+
   };
   Neatline.commands.setHandler(Simile.ID+':restart', restart);
 

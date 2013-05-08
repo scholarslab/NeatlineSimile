@@ -20,11 +20,13 @@ Neatline.module('Simile', function(
 
     /**
      * Start SIMILE.
+     *
+     * @param {Object} exhibit: An exhibit model.
      */
-    init: function() {
+    init: function(exhibit) {
 
-      // Create exhibit model from defaults.
-      var exhibit = new Neatline.Shared.Exhibit.Model();
+      // Create if exhibit from defaults if none passed.
+      exhibit = exhibit || new Neatline.Shared.Exhibit.Model();
 
       // Start the timeline.
       this.__initSimile(exhibit);
