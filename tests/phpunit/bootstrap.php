@@ -22,6 +22,6 @@ require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
 require_once NL_DIR . '/NeatlinePlugin.php';
 
 // Load abstract test cases.
-require_once NL_TEST_DIR . '/cases/Neatline_AbstractCase.php';
-require_once 'cases/NeatlineSimile_TestCase.php';
-require_once 'cases/NeatlineSimile_FixtureCase.php';
+require_once NL_TEST_DIR . '/cases/Neatline_Case_Abstract.php';
+require_once 'cases/NeatlineSimile_Case_Default.php';
+require_once 'cases/NeatlineSimile_Case_Fixture.php';

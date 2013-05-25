@@ -9,7 +9,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class NeatlineSimileExhibitExpansion extends Neatline_ExpansionRow
+class NeatlineSimileExhibitExpansion extends Neatline_Row_Expansion
 {
 
 

@@ -9,7 +9,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class FixturesTest_OutgoingEvents extends NeatlineSimile_FixtureCase
+class FixturesTest_OutgoingEvents extends NeatlineSimile_Case_Fixture
 {
 
 

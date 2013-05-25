@@ -9,7 +9,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class FixturesTest_Form extends NeatlineSimile_FixtureCase
+class FixturesTest_Form extends NeatlineSimile_Case_Fixture
 {
 
 
