@@ -161,7 +161,7 @@ module.exports = function(grunt) {
           paths.payloads.shared.js+'/simile-public.js'
         ],
         options: {
-          specs: paths.jasmine+'/integration/public/**/*.spec.js'
+          specs: paths.jasmine+'/integration/neatline/**/*.spec.js'
         }
       },
 
