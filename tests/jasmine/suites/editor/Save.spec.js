@@ -47,7 +47,7 @@ describe('Form Save', function() {
     el.save.trigger('click');
 
     // Should issue PUT request to exhibits API.
-    NL.assertLastRequestRoute(Neatline.global.exhibits_api);
+    NL.assertLastRequestRoute(Neatline.g.neatline.exhibits_api);
     NL.assertLastRequestMethod('PUT');
 
     // Parse request parameters.

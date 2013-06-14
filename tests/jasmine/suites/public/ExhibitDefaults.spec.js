@@ -24,7 +24,7 @@ describe('Exhibit Defaults', function() {
     // --------------------------------------------------------------------
 
     // Mock `simile_default_date`.
-    Neatline.global.exhibit.simile_default_date = '1900-02-01';
+    Neatline.g.neatline.exhibit.simile_default_date = '1900-02-01';
 
     NL.startApplication();
     SM.aliasNeatline();
