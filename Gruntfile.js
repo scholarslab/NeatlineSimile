@@ -66,6 +66,10 @@ module.exports = function(grunt) {
       payloads: [
         paths.payloads.shared.js,
         paths.payloads.shared.css
+      ],
+      fixtures: [
+        paths.jasmine+'/fixtures/*.json',
+        paths.jasmine+'/fixtures/*.html'
       ]
     },
 
@@ -180,7 +184,10 @@ module.exports = function(grunt) {
   });
 
   // Run tests.
-  grunt.registerTask('default', 'phpunit');
+  grunt.registerTask('default', [
+    'clean:fixtures',
+    'phpunit'
+  ]);
 
   // Build the application.
   grunt.registerTask('build', [

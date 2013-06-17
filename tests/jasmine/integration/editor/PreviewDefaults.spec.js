@@ -12,7 +12,7 @@ describe('Preview Defaults', function() {
 
 
   var el, fx = {
-    records: readFixtures('Form.records.json')
+    records: readFixtures('EditorForm.records.json')
   };
 
 
