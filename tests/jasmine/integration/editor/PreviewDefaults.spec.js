@@ -8,16 +8,18 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-describe('Form Edit', function() {
+describe('Preview Defaults', function() {
 
 
-  var el;
+  var el, fx = {
+    records: readFixtures('Form.records.json')
+  };
 
 
   beforeEach(function() {
 
     SM.loadEditor();
-    SM.respondSimile200(SM.json.Form.records);
+    SM.respondSimile200(fx.records);
 
     el = {
       date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
