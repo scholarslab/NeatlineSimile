@@ -113,8 +113,8 @@ Neatline.module('Simile', function(
         evaluator: _.bind(function(record) {
 
           // Hide the record if it either:
-          //  - Has a `show_after_date` that is after the current date.
-          //  - Has a `show_before_date` that is before the current date.
+          //  - Has a `after_date` that is after the current date.
+          //  - Has a `before_date` that is before the current date.
 
           var center = this.band.getCenterVisibleDate();
           var v1 = record.get('after_date');
@@ -181,7 +181,7 @@ Neatline.module('Simile', function(
      * @param {String} date: The date.
      */
     setCenterDate: function(date) {
-      if (_.isString(date)) {
+      if (moment(String(date)).isValid()) {
         this.band.setCenterVisibleDate(new Date(date));
       }
     },
@@ -193,7 +193,25 @@ Neatline.module('Simile', function(
      * @param {Object} model: The record model.
      */
     focusByModel: function(model) {
-      this.setCenterDate(model.get('start_date'));
+
+      // Parse start and end dates.
+      var d1 = moment(String(model.get('start_date')));
+      var d2 = moment(String(model.get('end_date')));
+
+      // If both a start date and an end date are defined, focus on the
+      // middle point between the two on the timeline.
+
+      if (d1.isValid() && d2.isValid()) {
+        var middle = d1.add('milliseconds', (d2-d1) / 2);
+        this.setCenterDate(middle.toDate().toISOString());
+      }
+
+      // If just a start date is defined, focus on it.
+
+      else if (d1.isValid()) {
+        this.setCenterDate(d1.toDate().toISOString());
+      }
+
     },
 
 

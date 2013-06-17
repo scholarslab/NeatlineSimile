@@ -77,6 +77,7 @@ module.exports = function(grunt) {
 
       simile_public: {
         src: [
+          paths.vendor.moment,
           paths.src.shared+'/public/*.js'
         ],
         dest: paths.payloads.shared.js+'/simile-public.js'

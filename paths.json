@@ -17,6 +17,8 @@
 
   "jasmine":      "./tests/jasmine",
 
-  "simile":       "./components/simile"
+  "vendor": {
+    "moment":     "./components/moment/moment.js"
+  }
 
 }
