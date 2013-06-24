@@ -69,6 +69,8 @@ Neatline.module('Simile', function(
           intervalPixels: parseInt(pixels),
           eventSource:    this.eventSource,
 
+          timeZone: SimileAjax.DateTime.getTimezone(),
+
           theme: this.theme,
           width: '100%',
 
