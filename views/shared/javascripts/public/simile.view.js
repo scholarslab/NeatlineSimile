@@ -67,9 +67,8 @@ Neatline.module('Simile', function(
 
           intervalUnit:   Timeline.DateTime[unit],
           intervalPixels: parseInt(pixels),
+          timeZone:       SimileAjax.DateTime.getTimezone(),
           eventSource:    this.eventSource,
-
-          timeZone: SimileAjax.DateTime.getTimezone(),
 
           theme: this.theme,
           width: '100%',
