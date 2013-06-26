@@ -43,7 +43,7 @@ class NeatlineSimile_Case_Default extends Neatline_Case_Abstract
      *
      * @return string The directory.
      */
-    protected function getFixturesPath()
+    protected function _getFixturesPath()
     {
         return NL_SIMILE_DIR . '/tests/jasmine/fixtures/';
     }
