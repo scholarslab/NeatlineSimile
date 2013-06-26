@@ -8,8 +8,8 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-Neatline.module('Simile', function(
-  Simile, Neatline, Backbone, Marionette, $, _) {
+Neatline.module('Simile', { startWithParent: false,
+  define: function(Simile, Neatline, Backbone, Marionette, $, _) {
 
 
   /**
@@ -75,4 +75,4 @@ Neatline.module('Simile', function(
   Neatline.vent.on('select', select);
 
 
-});
+}});
