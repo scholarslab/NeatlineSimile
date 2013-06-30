@@ -30,6 +30,7 @@ Neatline.module('Simile', { startWithParent: false,
 
       // Start the timeline.
       this.__initSimile(exhibit);
+      this.__initResize();
       this.__initSelect();
       this.__initFilter();
 
@@ -80,6 +81,16 @@ Neatline.module('Simile', { startWithParent: false,
       this.band = this.timeline.getBand(0);
       this.setCenterDate(date);
 
+    },
+
+
+    /**
+     * When the window is resized, resize the timeline.
+     */
+    __initResize: function() {
+      $(window).resize(_.bind(function() {
+        this.timeline.layout()
+      }, this));
     },
 
 
