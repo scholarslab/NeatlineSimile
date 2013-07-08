@@ -9,7 +9,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class FixturesTest_Html extends NeatlineSimile_Case_Default
+class FixturesTest_SharedHtml extends NeatlineSimile_Case_Default
 {
 
 
@@ -24,35 +24,29 @@ class FixturesTest_Html extends NeatlineSimile_Case_Default
 
         parent::setUp();
 
-        // Mock exhibit.
         $exhibit = $this->_exhibit();
-        $exhibit->base_layer = 'OpenStreetMap';
+        $exhibit->spatial_layer = 'OpenStreetMap';
         $exhibit->widgets = 'Simile';
         $exhibit->save();
 
         // Reload to join extensions.
-        $exhibit = $this->_reload($exhibit);
-
-        // Set exhibit on view.
-        get_view()->neatline_exhibit = $exhibit;
+        $this->exhibit = $this->_reload($exhibit);
 
     }
 
 
     public function testNeatlinePartial()
     {
-        $this->_writeFixture(
-            get_view()->partial('exhibits/partials/exhibit.php'),
-            'neatline-partial.html'
+        $this->_writeExhibitMarkupFixture(
+            $this->exhibit, 'SharedHtml.exhibit.html'
         );
     }
 
 
     public function testEditorPartial()
     {
-        $this->_writeFixture(
-            get_view()->partial('exhibits/partials/editor_core.php'),
-            'editor-partial.html'
+        $this->_writeEditorMarkupFixture(
+            $this->exhibit, 'SharedHtml.editor.html'
         );
     }
 

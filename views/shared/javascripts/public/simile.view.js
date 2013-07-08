@@ -263,7 +263,7 @@ Neatline.module('Simile', { startWithParent: false,
      */
     clear: function() {
       this.eventSource.clear();
-    },
+    }
 
 
   });

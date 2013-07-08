@@ -16,7 +16,7 @@ var SM = (function(SM) {
    * Load neatline application.
    */
   SM.loadNeatline = function() {
-    loadFixtures('neatline-partial.html');
+    loadFixtures('SharedHtml.exhibit.html');
     NL.__initNeatline();
     this.aliasNeatline();
   };
@@ -26,7 +26,7 @@ var SM = (function(SM) {
    * Load editor application.
    */
   SM.loadEditor = function() {
-    loadFixtures('editor-partial.html');
+    loadFixtures('SharedHtml.editor.html');
     NL.__initEditor();
     this.aliasEditor();
   };
