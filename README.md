@@ -6,7 +6,7 @@ For example, if a record is plotted as a point on the map and has a "After Date"
 
 ## Installation
 
-To get started, download the latest version from the Omeka add-ons repository and install the plugin just like any other Omeka plugin:
+  1. Download the latest version of the plugin from the Omeka add-ons repository.
 
   1. Uncompress the `.zip` archive.
 
