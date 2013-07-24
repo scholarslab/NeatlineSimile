@@ -54,10 +54,17 @@ module.exports = function(grunt) {
     },
 
     connect: {
-      server: {
+      options: {
+        port: 1337
+      },
+      temporary: {
         options: {
-          keepalive: true,
-          port: 1337
+          keepalive: false
+        }
+      },
+      keepalive: {
+        options: {
+          keepalive: true
         }
       }
     },
@@ -149,6 +156,7 @@ module.exports = function(grunt) {
     jasmine: {
 
       options: {
+        host: 'http://localhost:1337',
         helpers: [
           './Neatline/'+nlPaths.vendor.js.jasmine_jquery,
           './Neatline/'+nlPaths.vendor.js.jasmine_async,
@@ -187,7 +195,8 @@ module.exports = function(grunt) {
   // Run tests.
   grunt.registerTask('default', [
     'clean:fixtures',
-    'phpunit'
+    'phpunit',
+    'jasmine'
   ]);
 
   // Build the application.
@@ -218,16 +227,23 @@ module.exports = function(grunt) {
   // Run PHPUnit.
   grunt.registerTask('phpunit', 'shell:phpunit');
 
+  // Run Jasmine via Connect server.
+  grunt.registerTask('jasmine:connect', [
+    'connect:temporary',
+    'jasmine:neatline',
+    'jasmine:editor'
+  ]);
+
   // Mount public Jasmine suite.
   grunt.registerTask('jasmine:neatline:server', [
     'jasmine:neatline:build',
-    'connect'
+    'connect:keepalive'
   ]);
 
   // Mount editor Jasmine suite.
   grunt.registerTask('jasmine:editor:server', [
     'jasmine:editor:build',
-    'connect'
+    'connect:keepalive'
   ]);
 
 };
