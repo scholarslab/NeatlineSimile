@@ -62,7 +62,7 @@ module.exports = function(grunt) {
           keepalive: false
         }
       },
-      keepalive: {
+      permanent: {
         options: {
           keepalive: true
         }
@@ -196,7 +196,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'clean:fixtures',
     'phpunit',
-    'jasmine'
+    'jasmine:connect'
   ]);
 
   // Build the application.
@@ -237,13 +237,13 @@ module.exports = function(grunt) {
   // Mount public Jasmine suite.
   grunt.registerTask('jasmine:neatline:server', [
     'jasmine:neatline:build',
-    'connect:keepalive'
+    'connect:permanent'
   ]);
 
   // Mount editor Jasmine suite.
   grunt.registerTask('jasmine:editor:server', [
     'jasmine:editor:build',
-    'connect:keepalive'
+    'connect:permanent'
   ]);
 
 };

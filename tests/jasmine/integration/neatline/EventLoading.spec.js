@@ -21,6 +21,7 @@ describe('Event Loading', function() {
   beforeEach(function() {
     SM.loadNeatline();
     SM.respondSimile200(fx.points);
+    SM.vw.PUBLIC.setCenterDate('2000');
   });
 
 
