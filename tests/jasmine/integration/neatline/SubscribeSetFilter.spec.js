@@ -67,7 +67,7 @@ describe('Subscribe `setFilter`', function() {
 
     });
 
-    async.it('should block when TL is before the date', function(done) {
+    async.it('should fail when TL is before the date', function(done) {
 
       Neatline.vent.on('setFilter', function(args) {
         expect(args.evaluator(record)).toBeFalsy();
@@ -102,7 +102,7 @@ describe('Subscribe `setFilter`', function() {
 
     });
 
-    async.it('should block when after the date', function(done) {
+    async.it('should fail when after the date', function(done) {
 
       Neatline.vent.on('setFilter', function(args) {
         expect(args.evaluator(record)).toBeFalsy();
@@ -138,7 +138,7 @@ describe('Subscribe `setFilter`', function() {
 
     });
 
-    async.it('should block when before the interval', function(done) {
+    async.it('should fail when before the interval', function(done) {
 
       Neatline.vent.on('setFilter', function(args) {
         expect(args.evaluator(record)).toBeFalsy();
@@ -149,7 +149,7 @@ describe('Subscribe `setFilter`', function() {
 
     });
 
-    async.it('should block when after the interval', function(done) {
+    async.it('should fail when after the interval', function(done) {
 
       Neatline.vent.on('setFilter', function(args) {
         expect(args.evaluator(record)).toBeFalsy();
