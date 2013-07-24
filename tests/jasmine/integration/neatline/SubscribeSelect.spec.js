@@ -18,7 +18,7 @@ describe('Subscribe `select`', function() {
 
   beforeEach(function() {
     SM.loadNeatline();
-    SM.vw.PUBLIC.setCenterDate('1999-02-01');
+    SM.setFocus('1999-02-01');
   });
 
 

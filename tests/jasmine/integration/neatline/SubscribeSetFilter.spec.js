@@ -46,7 +46,7 @@ describe('Subscribe `setFilter`', function() {
   });
 
 
-  describe('record has show after date', function() {
+  describe('record has AFTER date', function() {
 
     var async = new AsyncSpec(this);
 
@@ -81,7 +81,7 @@ describe('Subscribe `setFilter`', function() {
   });
 
 
-  describe('record has show before date', function() {
+  describe('record has BEFORE date', function() {
 
     var async = new AsyncSpec(this);
 
@@ -116,7 +116,7 @@ describe('Subscribe `setFilter`', function() {
   });
 
 
-  describe('record has show after and before dates', function() {
+  describe('record has AFTER and BEFORE dates', function() {
 
     var async = new AsyncSpec(this);
 

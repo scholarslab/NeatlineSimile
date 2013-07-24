@@ -28,7 +28,7 @@ var SM = (function(SM) {
    * @param {String} date: The date.
    */
   SM.setFocus = function(date) {
-    this.vw.PUBLIC.band.setCenterVisibleDate(new Date(date));
+    this.vw.PUBLIC.setCenterDate(new Date(date));
   };
 
 
