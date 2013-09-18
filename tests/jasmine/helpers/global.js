@@ -12,5 +12,5 @@
 /**
  * Load SIMILE.
  */
-document.write('<script type="text/javascript" src="/components/simile/ajax/simile-ajax-api.js?bundle=true"></script>');
-document.write('<script type="text/javascript" src="/components/simile/js/timeline-api.js?bundle=true"></script>');
+document.write('<script type="text/javascript" src="/bower_components/simile/ajax/simile-ajax-api.js?bundle=true"></script>');
+document.write('<script type="text/javascript" src="/bower_components/simile/js/timeline-api.js?bundle=true"></script>');

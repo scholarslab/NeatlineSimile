@@ -18,7 +18,7 @@
   "jasmine":      "./tests/jasmine",
 
   "vendor": {
-    "moment":     "./components/moment/moment.js"
+    "moment":     "./bower_components/moment/moment.js"
   }
 
 }
