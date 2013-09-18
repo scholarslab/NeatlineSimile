@@ -10,6 +10,10 @@
 
 describe('Preview Defaults', function() {
 
+  // --------------------------------------------------------------------------
+  // When the values of the inputs in the timeline defaults form are changed,
+  // the new settings should be immediately previewed on the timeline.
+  // --------------------------------------------------------------------------
 
   var el, fx = {
     records: readFixtures('EditorForm.records.json')

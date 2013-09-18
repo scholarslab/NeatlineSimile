@@ -19,8 +19,8 @@ describe('Exhibit Defaults', function() {
   it('should set default date', function() {
 
     // ------------------------------------------------------------------------
-    // If a default date for the timeline has been set, the date should be set
-    // when the exhibit starts.
+    // If a default date for the timeline has been set, it should be set when
+    // the exhibit starts.
     // ------------------------------------------------------------------------
 
     // Mock `simile_default_date`.
@@ -52,8 +52,7 @@ describe('Exhibit Defaults', function() {
   it('should set interval unit', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit starts, the `simile_interval_unit` field should be
-    // manifested in the timeline theme.
+    // The "Interval Unit" field should be manifested.
     // ------------------------------------------------------------------------
 
     NL.startApplication();
@@ -67,8 +66,7 @@ describe('Exhibit Defaults', function() {
   it('should set interval pixels', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit starts, the `simile_tape_height` field should be
-    // manifested in the timeline theme.
+    // The "Interval Pixels" field should be manifested.
     // ------------------------------------------------------------------------
 
     NL.startApplication();
@@ -82,8 +80,7 @@ describe('Exhibit Defaults', function() {
   it('should set track height', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit starts, the `simile_track_height` field should be
-    // manifested in the timeline theme.
+    // The "Track Height" field should be manifested.
     // ------------------------------------------------------------------------
 
     NL.startApplication();
@@ -97,8 +94,7 @@ describe('Exhibit Defaults', function() {
   it('should set tape height', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit starts, the `simile_tape_height` field should be
-    // manifested in the timeline theme.
+    // The "Tape Height" field should be manifested.
     // ------------------------------------------------------------------------
 
     NL.startApplication();

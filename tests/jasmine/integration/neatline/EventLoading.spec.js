@@ -28,8 +28,8 @@ describe('Event Loading', function() {
   it('should load events when exhibit starts', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit starts, records that arrive in the initial query
-    // should be displayed on the timeline.
+    // When the exhibit starts, the starting set of records that arrives in
+    // the initial query should be rendered on the timeline.
     // ------------------------------------------------------------------------
 
     SM.assertEventCount(3);
@@ -58,8 +58,8 @@ describe('Event Loading', function() {
   it('should render duration events', function() {
 
     // ------------------------------------------------------------------------
-    // Records that have a defined `start_date` and `end_date` should be
-    // rendered as duration events (end date after start date).
+    // Records that have a defined `start_date` `end_date` should be rendered
+    // as duration events (end date after start date).
     // ------------------------------------------------------------------------
 
     SM.refreshWidget(fx.spans);
@@ -78,7 +78,7 @@ describe('Event Loading', function() {
   it('should not render events with no start date', function() {
 
     // ------------------------------------------------------------------------
-    // Records with no `start_date` should not be displayed.
+    // Records with no `start_date` should not be displayed at all.
     // ------------------------------------------------------------------------
 
     SM.refreshWidget(fx.nostart);
@@ -90,8 +90,8 @@ describe('Event Loading', function() {
   describe('should set fill colors', function() {
 
     // ------------------------------------------------------------------------
-    // The DOM element used to represent point events should be set to the
-    // record's `fill_color`.
+    // The DOM elements used to represent point on the timeline should be set
+    // to the record's `fill_color`.
     // ------------------------------------------------------------------------
 
     it('point events', function() {
@@ -125,7 +125,7 @@ describe('Event Loading', function() {
   it('should reload events when exhibit is refreshed', function() {
 
     // ------------------------------------------------------------------------
-    // When the exhibit is refreshed, updated events should be loaded.
+    // When the exhibit is refreshed, the events should be updated.
     // ------------------------------------------------------------------------
 
     Neatline.vent.trigger('refresh');

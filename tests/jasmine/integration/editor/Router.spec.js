@@ -27,13 +27,17 @@ describe('Router', function() {
 
   it('#simile', function() {
 
+    // ------------------------------------------------------------------------
+    // `#simile` should activate the tab and show the timeline defaults form.
+    // ------------------------------------------------------------------------
+
     NL.navigate('simile');
 
-    // Tabs and waypoints form should be visible.
+    // Tabs and SIMILE form should be visible.
     expect(NL.vw.EDITOR.__ui.editor).toContain(NL.vw.EXHIBIT.$el);
     expect(NL.vw.EDITOR.__ui.editor).toContain(SM.vw.EDITOR.$el);
 
-    // "Simile" tab should be active.
+    // "SIMILE Timeline" tab should be active.
     expect(el.simile).toHaveClass('active');
 
   });
