@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -18,10 +18,10 @@ describe('Publications', function() {
 
   describe('setFilter', function() {
 
-    // --------------------------------------------------------------------
-    // The `setFilter` event should be published with a source, key, and
-    // evaluator when the exhibit starts and when the timeline is moved.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // The `setFilter` event should be published with a source, evaluator, and
+    // key when the exhibit starts and when the timeline is moved.
+    // ------------------------------------------------------------------------
 
     afterEach(function() {
 
@@ -63,10 +63,10 @@ describe('Publications', function() {
 
     it('should publish `select` when event is clicked', function() {
 
-      // ------------------------------------------------------------------
-      // The `select` event should be published with a source and model
-      // when an event is clicked.
-      // ------------------------------------------------------------------
+      // ----------------------------------------------------------------------
+      // The `select` event should be published with a source and model when
+      // an event is clicked.
+      // ----------------------------------------------------------------------
 
       SM.loadNeatline();
       SM.respondSimile200(fx.records);

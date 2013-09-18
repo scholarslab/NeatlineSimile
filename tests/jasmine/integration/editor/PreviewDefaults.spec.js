@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -57,68 +57,33 @@ describe('Preview Defaults', function() {
   });
 
 
-  it('should update default date', function() {
-
-    // --------------------------------------------------------------------
-    // When the value of "Default Date" is changed, the timeline should
-    // preview the new date.
-    // --------------------------------------------------------------------
-
+  it('should preview default date', function() {
     el.date.val('1900-02-01').trigger('change');
     SM.assertCurrentYear(1900);
-
   });
 
 
-  it('should update interval unit', function() {
-
-    // --------------------------------------------------------------------
-    // When the value of "Interval Unit" is changed, the timeline should
-    // preview the new unit.
-    // --------------------------------------------------------------------
-
+  it('should preview interval unit', function() {
     el.unit.val('DAY').trigger('change');
     SM.assertIntervalUnit(1000*60*60*24);
-
   });
 
 
-  it('should update interval pixels', function() {
-
-    // --------------------------------------------------------------------
-    // When the value of "Interval Pixels" is changed, the timeline should
-    // preview the new interval.
-    // --------------------------------------------------------------------
-
+  it('should preview interval pixels', function() {
     el.pixels.val('50').trigger('change');
     SM.assertIntervalPixels(50);
-
   });
 
 
-  it('should update track height', function() {
-
-    // --------------------------------------------------------------------
-    // When the value of "Track Height" is changed, the timeline should
-    // preview the new height.
-    // --------------------------------------------------------------------
-
+  it('should preview track height', function() {
     el.track.val('50').trigger('change');
     SM.assertTrackHeight(50);
-
   });
 
 
   it('should update tape height', function() {
-
-    // --------------------------------------------------------------------
-    // When the value of "Tape Height" is changed, the timeline should
-    // preview the new height.
-    // --------------------------------------------------------------------
-
     el.tape.val('50').trigger('change');
     SM.assertTapeHeight(50);
-
   });
 
 

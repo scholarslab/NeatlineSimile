@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -18,10 +18,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set default date', function() {
 
-    // --------------------------------------------------------------------
-    // If a default date for the timeline has been set, the date should be
-    // set when the exhibit starts.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // If a default date for the timeline has been set, the date should be set
+    // when the exhibit starts.
+    // ------------------------------------------------------------------------
 
     // Mock `simile_default_date`.
     Neatline.g.neatline.exhibit.simile_default_date = '1900-02-01';
@@ -36,10 +36,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set current date when no default exists', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When no default date is defined, the timeline should default to the
     // current date.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     NL.startApplication();
     SM.aliasNeatline();
@@ -51,10 +51,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set interval unit', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit starts, the `simile_interval_unit` field should be
     // manifested in the timeline theme.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     NL.startApplication();
     SM.aliasNeatline();
@@ -66,10 +66,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set interval pixels', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit starts, the `simile_tape_height` field should be
     // manifested in the timeline theme.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     NL.startApplication();
     SM.aliasNeatline();
@@ -81,10 +81,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set track height', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit starts, the `simile_track_height` field should be
     // manifested in the timeline theme.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     NL.startApplication();
     SM.aliasNeatline();
@@ -96,10 +96,10 @@ describe('Exhibit Defaults', function() {
 
   it('should set tape height', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit starts, the `simile_tape_height` field should be
     // manifested in the timeline theme.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     NL.startApplication();
     SM.aliasNeatline();

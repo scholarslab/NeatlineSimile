@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -122,8 +122,8 @@ describe('Subscribe `setFilter`', function() {
 
     beforeEach(function() {
       record = new Neatline.Shared.Record.Model({
-        after_date: '2000',
-        before_date: '2010'
+        after_date:   '2000',
+        before_date:  '2010'
       });
     });
 

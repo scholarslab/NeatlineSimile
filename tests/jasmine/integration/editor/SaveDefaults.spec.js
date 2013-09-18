@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -32,10 +32,10 @@ describe('Save Defaults', function() {
 
   it('should issue PUT request when "Save" is clicked', function() {
 
-    // --------------------------------------------------------------------
-    // When the "Save" button is clicked, a well-formed PUT request should
-    // be issued to the exhibit API with the new data.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // When the "Save" button is clicked, a PUT request should be issued to
+    // the exhibit API with the new values.
+    // ------------------------------------------------------------------------
 
     el.unit.    val('DAY'). trigger('change');
     el.date.    val('1').   trigger('change');

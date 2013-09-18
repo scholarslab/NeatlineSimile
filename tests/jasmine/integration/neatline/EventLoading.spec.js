@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=76; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
 
 /**
  * @package     omeka
@@ -27,10 +27,10 @@ describe('Event Loading', function() {
 
   it('should load events when exhibit starts', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit starts, records that arrive in the initial query
     // should be displayed on the timeline.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     SM.assertEventCount(3);
 
@@ -39,10 +39,10 @@ describe('Event Loading', function() {
 
   it('should render point events', function() {
 
-    // --------------------------------------------------------------------
-    // Records that have a defined `start_date` but no `end_date` should
-    // be rendered as point events (end date same as start date).
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
+    // Records that have a defined `start_date` but no `end_date` should be
+    // rendered as point events (end date same as start date).
+    // ------------------------------------------------------------------------
 
     var evt = SM.vw.PUBLIC.getEvents();
     expect(evt[0]._start).toEqual(new Date('2001'));
@@ -57,10 +57,10 @@ describe('Event Loading', function() {
 
   it('should render duration events', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // Records that have a defined `start_date` and `end_date` should be
     // rendered as duration events (end date after start date).
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     SM.refreshWidget(fx.spans);
 
@@ -77,9 +77,9 @@ describe('Event Loading', function() {
 
   it('should not render events with no start date', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // Records with no `start_date` should not be displayed.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     SM.refreshWidget(fx.nostart);
     SM.assertEventCount(2);
@@ -89,10 +89,10 @@ describe('Event Loading', function() {
 
   describe('should set fill colors', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // The DOM element used to represent point events should be set to the
     // record's `fill_color`.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     it('point events', function() {
       SM.refreshWidget(fx.points);
@@ -124,9 +124,9 @@ describe('Event Loading', function() {
 
   it('should reload events when exhibit is refreshed', function() {
 
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // When the exhibit is refreshed, updated events should be loaded.
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     Neatline.vent.trigger('refresh');
     SM.respondSimile200(fx.spans);

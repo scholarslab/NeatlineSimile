@@ -1,6 +1,6 @@
 <?php
 
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=76; */
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 cc=80; */
 
 /**
  * @package     omeka
@@ -13,11 +13,6 @@ class FixturesTest_EventLoading extends NeatlineSimile_Case_Fixture
 {
 
 
-    /**
-     * `EventLoading.records.points.json`
-     * `EventLoading.records.spans.json`
-     * `EventLoading.records.nostart.json`
-     */
     public function testPoints()
     {
 
