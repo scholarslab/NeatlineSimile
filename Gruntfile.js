@@ -80,6 +80,7 @@ module.exports = function(grunt) {
         paths.jasmine+'/fixtures/*.json',
         paths.jasmine+'/fixtures/*.html'
       ],
+      bower: '/bower_components',
       pkg: 'pkg'
     },
 
