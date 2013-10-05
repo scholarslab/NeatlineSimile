@@ -41,21 +41,24 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
     public function hookInstall()
     {
 
-        $this->_db->query("CREATE TABLE IF NOT EXISTS
-            `{$this->_db->prefix}neatline_simile_exhibit_expansions` (
+        $this->_db->query(<<<SQL
+        CREATE TABLE IF NOT EXISTS
 
-            `id`        INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-            `parent_id` INT(10) UNSIGNED NULL,
+            {$this->_db->prefix}neatline_simile_exhibit_expansions (
 
-            `simile_default_date`       VARCHAR(100) NULL,
-            `simile_interval_unit`      VARCHAR(100) NULL ,
-            `simile_interval_pixels`    INT(10) UNSIGNED NULL,
-            `simile_tape_height`        INT(10) UNSIGNED NULL,
-            `simile_track_height`       INT(10) UNSIGNED NULL,
+            id                      INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+            parent_id               INT(10) UNSIGNED NULL,
+            simile_default_date     VARCHAR(100) NULL,
+            simile_interval_unit    VARCHAR(100) NULL ,
+            simile_interval_pixels  INT(10) UNSIGNED NULL,
+            simile_tape_height      INT(10) UNSIGNED NULL,
+            simile_track_height     INT(10) UNSIGNED NULL,
 
-             PRIMARY KEY        (`id`)
+            PRIMARY KEY             (id)
 
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
+        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+SQL
+);
 
     }
 
@@ -65,9 +68,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
      */
     public function hookUninstall()
     {
-        $this->_db->query("DROP TABLE IF EXISTS
-            `{$this->_db->prefix}neatline_simile_exhibit_expansions`"
-        );
+        $this->_db->query(<<<SQL
+        DROP TABLE {$this->_db->prefix}neatline_simile_exhibit_expansions
+SQL
+);
     }
 
 

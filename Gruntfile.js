@@ -22,9 +22,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-symbolic-link');
   grunt.loadNpmTasks('grunt-shell');
 
-  var pkg     = grunt.file.readJSON('./package.json');
+  var pkg     = grunt.file.readJSON('package.json');
   var nlPaths = grunt.file.readJSON('../Neatline/paths.json');
-  var paths   = grunt.file.readJSON('./paths.json');
+  var paths   = grunt.file.readJSON('paths.json');
 
   grunt.initConfig({
 
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         command: 'phpunit --color',
         options: {
           execOptions: {
-            cwd: './tests/phpunit'
+            cwd: 'tests/phpunit'
           }
         }
       },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 
     symlink: {
       neatline: {
-        link: './Neatline',
+        link: 'Neatline',
         target: '../Neatline',
         options: {
           overwrite: true
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         paths.jasmine+'/fixtures/*.json',
         paths.jasmine+'/fixtures/*.html'
       ],
-      pkg: './pkg'
+      pkg: 'pkg'
     },
 
     concat: {
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
     copy: {
       simile: {
         files: [{
-          cwd: './bower_components/simile/',
+          cwd: 'bower_components/simile/',
           src: '**',
           dest: paths.payloads.shared.js+'/simile',
           flatten: false,
@@ -160,12 +160,13 @@ module.exports = function(grunt) {
 
       options: {
         host: 'http://localhost:1337',
+        template: 'Neatline/'+nlPaths.jasmine+'/runner.tmpl',
         helpers: [
-          './Neatline/'+nlPaths.vendor.js.jasmine_jquery,
-          './Neatline/'+nlPaths.vendor.js.jasmine_async,
-          './Neatline/'+nlPaths.vendor.js.sinon,
-          './Neatline/'+nlPaths.jasmine+'/helpers/*.js',
-          './Neatline/'+nlPaths.jasmine+'/assertions/*.js',
+          'Neatline/'+nlPaths.vendor.js.jasmine_jquery,
+          'Neatline/'+nlPaths.vendor.js.jasmine_async,
+          'Neatline/'+nlPaths.vendor.js.sinon,
+          'Neatline/'+nlPaths.jasmine+'/helpers/*.js',
+          'Neatline/'+nlPaths.jasmine+'/assertions/*.js',
           paths.jasmine+'/helpers/*.js',
           paths.jasmine+'/assertions/*.js'
         ]
@@ -173,7 +174,7 @@ module.exports = function(grunt) {
 
       neatline: {
         src: [
-          './Neatline/'+nlPaths.payloads.shared.js+'/neatline-public.js',
+          'Neatline/'+nlPaths.payloads.shared.js+'/neatline-public.js',
           paths.payloads.shared.js+'/simile-public.js'
         ],
         options: {
@@ -183,7 +184,7 @@ module.exports = function(grunt) {
 
       editor: {
         src: [
-          './Neatline/'+nlPaths.payloads.shared.js+'/neatline-editor.js',
+          'Neatline/'+nlPaths.payloads.shared.js+'/neatline-editor.js',
           paths.payloads.shared.js+'/simile-editor.js'
         ],
         options: {
@@ -201,7 +202,9 @@ module.exports = function(grunt) {
         },
         dest: 'NeatlineSimile/',
         src: [
+
           '**',
+
           '!.git/**',
           '!package.json',
           '!node_modules/**',
@@ -211,6 +214,7 @@ module.exports = function(grunt) {
           '!Neatline/**',
           '!pkg/**',
           '!tests/**'
+
         ]
       }
 
