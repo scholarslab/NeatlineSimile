@@ -209,6 +209,7 @@ module.exports = function(grunt) {
           '!.git/**',
           '!package.json',
           '!node_modules/**',
+          '!bower_components/**',
           '!.grunt/**',
           '!Gruntfile.js',
           '!paths.json',
