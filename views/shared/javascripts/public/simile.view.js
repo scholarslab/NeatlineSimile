@@ -25,6 +25,9 @@ Neatline.module('Simile', { startWithParent: false,
      */
     init: function(exhibit) {
 
+      // Clobber `__history__.html`.
+      SimileAjax.History.enabled = false;
+
       // Create if exhibit from defaults if none passed.
       exhibit = exhibit || new Neatline.Shared.Exhibit.Model();
 
