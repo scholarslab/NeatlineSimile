@@ -12,16 +12,22 @@ Neatline.module('Editor.Exhibit.Simile', function(
   Simile, Neatline, Backbone, Marionette, $, _) {
 
 
-  /**
-   * Display the form.
-   *
-   * @param {Object} container: The container element.
-   */
-  var display = function(container) {
-    Simile.__view.showIn(container);
-    Simile.__view.buildWidgets();
-  };
-  Neatline.commands.setHandler(Simile.ID+':display', display);
+  Simile.addInitializer(function() {
+
+
+    /**
+     * Display the form.
+     *
+     * @param {Object} container: The container element.
+     */
+    var display = function(container) {
+      Simile.__view.showIn(container);
+      Simile.__view.buildWidgets();
+    };
+    Neatline.commands.setHandler(Simile.ID+':display', display);
+
+
+  });
 
 
 });
