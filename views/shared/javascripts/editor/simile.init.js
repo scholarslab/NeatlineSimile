@@ -11,12 +11,8 @@
 Neatline.module('Editor.Exhibit.Simile', function(Simile) {
 
 
-  Simile.ID = 'EDITOR:SIMILE';
-
-
   Simile.addInitializer(function() {
-    Simile.__router = new Simile.Router();
-    Simile.__view = new Simile.View();
+    Simile.__controller = new Simile.Controller();
   });
 
 

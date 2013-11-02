@@ -28,7 +28,7 @@ var SM = (function(SM) {
   SM.aliasEditor = function() {
     this.vw = {
       PUBLIC: Neatline.Simile.__controller.view,
-      EDITOR: Neatline.Editor.Exhibit.Simile.__view
+      EDITOR: Neatline.Editor.Exhibit.Simile.__controller.view
     };
   };
 

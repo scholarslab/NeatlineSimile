@@ -19,7 +19,7 @@ describe('Router', function() {
     SM.loadEditor();
 
     el = {
-      simile: NL.vw.EXHIBIT.$('li[data-slug="simile"]')
+      simile: NL.v.exhibit.$('li[data-slug="simile"]')
     };
 
   });
@@ -34,8 +34,8 @@ describe('Router', function() {
     NL.navigate('simile');
 
     // Tabs and SIMILE form should be visible.
-    expect(NL.vw.EDITOR.__ui.editor).toContain(NL.vw.EXHIBIT.$el);
-    expect(NL.vw.EDITOR.__ui.editor).toContain(SM.vw.EDITOR.$el);
+    expect(NL.v.editor.__ui.editor).toContain(NL.v.exhibit.$el);
+    expect(NL.v.editor.__ui.editor).toContain(SM.vw.EDITOR.$el);
 
     // "SIMILE Timeline" tab should be active.
     expect(el.simile).toHaveClass('active');
