@@ -8,11 +8,10 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-Neatline.module('Editor.Exhibit.Simile', function(
-  Simile, Neatline, Backbone, Marionette, $, _) {
+Neatline.module('Editor.Exhibit.Simile', function(Simile) {
 
 
-  Simile.View = Backbone.Neatline.View.extend({
+  Simile.View = Neatline.Shared.View.extend({
 
 
     template:   '#simile-form-template',

@@ -9,7 +9,7 @@
  */
 
 Neatline.module('Simile', { startWithParent: false,
-  define: function(Simile, Neatline, Backbone, Marionette, $, _) {
+  define: function(Simile) {
 
 
   Simile.View = Neatline.Shared.Widget.View.extend({
@@ -21,15 +21,14 @@ Neatline.module('Simile', { startWithParent: false,
     /**
      * Start SIMILE.
      *
-     * @param {Object} exhibit: An exhibit model.
+     * @param {Object} options
      */
-    init: function(exhibit) {
+    init: function(options) {
 
-      // Clobber `__history__.html`.
-      SimileAjax.History.enabled = false;
+      this.slug = options.slug;
 
       // Create if exhibit from defaults if none passed.
-      exhibit = exhibit || new Neatline.Shared.Exhibit.Model();
+      var exhibit = options.exhibit || new Neatline.Shared.Exhibit.Model();
 
       // Start the timeline.
       this.__initSimile(exhibit);
@@ -101,12 +100,11 @@ Neatline.module('Simile', { startWithParent: false,
      * Publish `select` on event click.
      */
     __initSelect: function() {
-      this.band._eventPainter._showBubble = function(x, y, evt) {
+      this.band._eventPainter._showBubble = _.bind(function(x, y, evt) {
         Neatline.vent.trigger('select', {
-          model:  evt.nModel,
-          source: Simile.ID
+          model: evt.nModel, source: this.slug
         });
-      };
+      }, this);
     },
 
 
@@ -124,7 +122,7 @@ Neatline.module('Simile', { startWithParent: false,
      */
     setFilter: function() {
       Neatline.vent.trigger('setFilter', {
-        source: Simile.ID, key: 'simile',
+        source: this.slug, key: 'simile',
         evaluator: _.bind(function(record) {
 
           // Hide the record if it either:

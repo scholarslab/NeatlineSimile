@@ -31,9 +31,9 @@ describe('Publications', function() {
       expect(args[0]).toEqual('setFilter');
 
       // Should provide source, key, and evaluator.
-      expect(args[1].source).toEqual(Neatline.Simile.ID);
-      expect(_.isFunction(args[1].evaluator)).toBeTruthy();
+      expect(args[1].source).toEqual(Neatline.Simile.__controller.slug);
       expect(args[1].key).toEqual('simile');
+      expect(_.isFunction(args[1].evaluator)).toBeTruthy();
 
     });
 
@@ -78,8 +78,7 @@ describe('Publications', function() {
 
       // Should publish `select`.
       expect(vent).toHaveBeenCalledWith('select', {
-        source: Neatline.Simile.ID,
-        model:  event.nModel
+        model: event.nModel, source: Neatline.Simile.__controller.slug
       });
 
     });

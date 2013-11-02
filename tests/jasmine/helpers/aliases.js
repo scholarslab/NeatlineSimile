@@ -17,7 +17,7 @@ var SM = (function(SM) {
    */
   SM.aliasNeatline = function() {
     this.vw = {
-      PUBLIC: Neatline.Simile.__view
+      PUBLIC: Neatline.Simile.__controller.view
     };
   };
 
@@ -27,7 +27,7 @@ var SM = (function(SM) {
    */
   SM.aliasEditor = function() {
     this.vw = {
-      PUBLIC: Neatline.Simile.__view,
+      PUBLIC: Neatline.Simile.__controller.view,
       EDITOR: Neatline.Editor.Exhibit.Simile.__view
     };
   };

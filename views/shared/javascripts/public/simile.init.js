@@ -9,10 +9,7 @@
  */
 
 Neatline.module('Simile', { startWithParent: false,
-  define: function(Simile, Neatline, Backbone, Marionette, $, _) {
-
-
-  Simile.ID = 'SIMILE';
+  define: function(Simile) {
 
 
   /**
@@ -25,12 +22,11 @@ Neatline.module('Simile', { startWithParent: false,
 
 
   /**
-   * Instantiate the components and trigger the starting event query.
+   * Start the controller, suppress the request to `__history__.html`.
    */
   Simile.addInitializer(function() {
-    Simile.__collection = new Neatline.Shared.Record.Collection();
-    Simile.__view = new Simile.View();
-    Neatline.execute(Simile.ID+':load');
+    Simile.__controller = new Simile.Controller();
+    SimileAjax.History.enabled = false;
   });
 
 
