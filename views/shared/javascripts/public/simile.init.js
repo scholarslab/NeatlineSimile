@@ -25,8 +25,8 @@ Neatline.module('Simile', { startWithParent: false,
    * Start the controller, suppress the request to `__history__.html`.
    */
   Simile.addInitializer(function() {
-    Simile.__controller = new Simile.Controller();
     SimileAjax.History.enabled = false;
+    Simile.__controller = new Simile.Controller();
   });
 
 

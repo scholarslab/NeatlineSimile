@@ -18,6 +18,10 @@ Neatline.module('Simile', { startWithParent: false,
     id: 'simile',
 
 
+    // INITIALIZERS
+    // ------------------------------------------------------------------------
+
+
     /**
      * Start SIMILE.
      *
@@ -27,15 +31,23 @@ Neatline.module('Simile', { startWithParent: false,
 
       this.slug = options.slug;
 
-      // Create if exhibit from defaults if none passed.
-      var exhibit = options.exhibit || new Neatline.Shared.Exhibit.Model();
+      // Initialize the collection of records.
+      this.records = new Neatline.Shared.Record.Collection();
 
-      // Start the timeline.
+      // Start SIMILE with the templated exhibit.
+      this.start(new Neatline.Shared.Exhibit.Model());
+
+    },
+
+
+    /**
+     * Start SIMILE.
+     */
+    start: function(exhibit) {
       this.__initSimile(exhibit);
       this.__initResize();
       this.__initSelect();
       this.__initFilter();
-
     },
 
 
@@ -117,40 +129,24 @@ Neatline.module('Simile', { startWithParent: false,
     },
 
 
+    // RECORDS
+    // ------------------------------------------------------------------------
+
+
     /**
-     * Filter records by visibility dates.
+     * Load timeline events.
      */
-    setFilter: function() {
-      Neatline.vent.trigger('setFilter', {
-        source: this.slug, key: 'simile',
-        evaluator: _.bind(function(record) {
-
-          // Hide the record if it either:
-          //  - Has a `after_date` that is after the current date.
-          //  - Has a `before_date` that is before the current date.
-
-          var center = this.band.getCenterVisibleDate();
-          var v1 = record.get('after_date');
-          var v2 = record.get('before_date');
-
-          var visible = true;
-          if (v1) visible &= new Date(v1) < center;
-          if (v2) visible &= new Date(v2) > center;
-          return Boolean(visible);
-
-        }, this)
-      });
+    load: function() {
+      this.records.update({ widget: 'Simile' }, _.bind(this.ingest, this));
     },
 
 
     /**
-     * Render a collection of records.
-     *
-     * @param {Object} records: The records collection.
+     * Render the collection of records.
      */
-    ingest: function(records) {
+    ingest: function() {
       this.eventSource.clear();
-      records.each(_.bind(this.buildEvent, this));
+      this.records.each(_.bind(this.buildEvent, this));
       this.setEventColors();
     },
 
@@ -186,6 +182,10 @@ Neatline.module('Simile', { startWithParent: false,
       this.timeline.layout();
 
     },
+
+
+    // VIEWPORT
+    // ------------------------------------------------------------------------
 
 
     /**
@@ -229,6 +229,32 @@ Neatline.module('Simile', { startWithParent: false,
 
 
     /**
+     * Filter records by visibility dates.
+     */
+    setFilter: function() {
+      Neatline.vent.trigger('setFilter', {
+        source: this.slug, key: 'simile',
+        evaluator: _.bind(function(record) {
+
+          // Hide the record if it either:
+          //  - Has a `after_date` that is after the current date.
+          //  - Has a `before_date` that is before the current date.
+
+          var center = this.band.getCenterVisibleDate();
+          var v1 = record.get('after_date');
+          var v2 = record.get('before_date');
+
+          var visible = true;
+          if (v1) visible &= new Date(v1) < center;
+          if (v2) visible &= new Date(v2) > center;
+          return Boolean(visible);
+
+        }, this)
+      });
+    },
+
+
+    /**
      * Manifest the fill color on an event.
      */
     setEventColors: function() {
@@ -238,6 +264,10 @@ Neatline.module('Simile', { startWithParent: false,
         );
       }, this));
     },
+
+
+    // HELPERS
+    // ------------------------------------------------------------------------
 
 
     /**

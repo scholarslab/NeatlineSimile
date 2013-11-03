@@ -23,16 +23,14 @@ Neatline.module('Simile', { startWithParent: false,
     ],
 
     commands: [
-      'focusByModel',
       'restart'
     ],
 
 
     /**
-     * Instantiate the components and load starting events.
+     * Create the view and load starting events.
      */
     init: function() {
-      this.collection = new Neatline.Shared.Record.Collection();
       this.view = new Simile.View({ slug: this.slug });
       this.load();
     },
@@ -42,30 +40,7 @@ Neatline.module('Simile', { startWithParent: false,
      * Load timeline events.
      */
     load: function() {
-     this.collection.update({widget: 'Simile'}, _.bind(function(records) {
-        this.ingest(records);
-      }, this));
-    },
-
-
-    /**
-     * Restart the timeline and re-render the current collection.
-     *
-     * @param {Object} exhibit: The exhibit model.
-     */
-    restart: function(exhibit) {
-      this.view.init(exhibit);
-      this.ingest(this.collection);
-    },
-
-
-    /**
-     * Render a collection of records on the timeline.
-     *
-     * @param {Object} records: The collection of records.
-     */
-    ingest: function(records) {
-      this.view.ingest(records);
+      this.view.load();
     },
 
 
@@ -75,17 +50,18 @@ Neatline.module('Simile', { startWithParent: false,
      * @param {Object} args: Event arguments.
      */
     select: function(args) {
-      if (args.source !== this.slug) this.focusByModel(args.model);
+      if (args.source !== this.slug) this.view.focusByModel(args.model);
     },
 
 
     /**
-     * Focus the timeline on a record's start date.
+     * Restart the timeline and re-render the current collection.
      *
-     * @param {Object} model: The record model.
+     * @param {Object} exhibit: The exhibit model.
      */
-    focusByModel: function(model) {
-      this.view.focusByModel(model);
+    restart: function(exhibit) {
+      this.view.start(exhibit);
+      this.view.ingest(this.view.records);
     }
 
 

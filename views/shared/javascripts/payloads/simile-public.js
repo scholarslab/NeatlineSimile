@@ -1799,16 +1799,14 @@ Neatline.module('Simile', { startWithParent: false,
     ],
 
     commands: [
-      'focusByModel',
       'restart'
     ],
 
 
     /**
-     * Instantiate the components and load starting events.
+     * Create the view and load starting events.
      */
     init: function() {
-      this.collection = new Neatline.Shared.Record.Collection();
       this.view = new Simile.View({ slug: this.slug });
       this.load();
     },
@@ -1818,30 +1816,7 @@ Neatline.module('Simile', { startWithParent: false,
      * Load timeline events.
      */
     load: function() {
-     this.collection.update({widget: 'Simile'}, _.bind(function(records) {
-        this.ingest(records);
-      }, this));
-    },
-
-
-    /**
-     * Restart the timeline and re-render the current collection.
-     *
-     * @param {Object} exhibit: The exhibit model.
-     */
-    restart: function(exhibit) {
-      this.view.init(exhibit);
-      this.ingest(this.collection);
-    },
-
-
-    /**
-     * Render a collection of records on the timeline.
-     *
-     * @param {Object} records: The collection of records.
-     */
-    ingest: function(records) {
-      this.view.ingest(records);
+      this.view.load();
     },
 
 
@@ -1851,17 +1826,18 @@ Neatline.module('Simile', { startWithParent: false,
      * @param {Object} args: Event arguments.
      */
     select: function(args) {
-      if (args.source !== this.slug) this.focusByModel(args.model);
+      if (args.source !== this.slug) this.view.focusByModel(args.model);
     },
 
 
     /**
-     * Focus the timeline on a record's start date.
+     * Restart the timeline and re-render the current collection.
      *
-     * @param {Object} model: The record model.
+     * @param {Object} exhibit: The exhibit model.
      */
-    focusByModel: function(model) {
-      this.view.focusByModel(model);
+    restart: function(exhibit) {
+      this.view.start(exhibit);
+      this.view.ingest(this.view.records);
     }
 
 
@@ -1897,8 +1873,8 @@ Neatline.module('Simile', { startWithParent: false,
    * Start the controller, suppress the request to `__history__.html`.
    */
   Simile.addInitializer(function() {
-    Simile.__controller = new Simile.Controller();
     SimileAjax.History.enabled = false;
+    Simile.__controller = new Simile.Controller();
   });
 
 
@@ -1924,6 +1900,10 @@ Neatline.module('Simile', { startWithParent: false,
     id: 'simile',
 
 
+    // INITIALIZERS
+    // ------------------------------------------------------------------------
+
+
     /**
      * Start SIMILE.
      *
@@ -1933,15 +1913,23 @@ Neatline.module('Simile', { startWithParent: false,
 
       this.slug = options.slug;
 
-      // Create if exhibit from defaults if none passed.
-      var exhibit = options.exhibit || new Neatline.Shared.Exhibit.Model();
+      // Initialize the collection of records.
+      this.records = new Neatline.Shared.Record.Collection();
 
-      // Start the timeline.
+      // Start SIMILE with the templated exhibit.
+      this.start(new Neatline.Shared.Exhibit.Model());
+
+    },
+
+
+    /**
+     * Start SIMILE.
+     */
+    start: function(exhibit) {
       this.__initSimile(exhibit);
       this.__initResize();
       this.__initSelect();
       this.__initFilter();
-
     },
 
 
@@ -2023,40 +2011,24 @@ Neatline.module('Simile', { startWithParent: false,
     },
 
 
+    // RECORDS
+    // ------------------------------------------------------------------------
+
+
     /**
-     * Filter records by visibility dates.
+     * Load timeline events.
      */
-    setFilter: function() {
-      Neatline.vent.trigger('setFilter', {
-        source: this.slug, key: 'simile',
-        evaluator: _.bind(function(record) {
-
-          // Hide the record if it either:
-          //  - Has a `after_date` that is after the current date.
-          //  - Has a `before_date` that is before the current date.
-
-          var center = this.band.getCenterVisibleDate();
-          var v1 = record.get('after_date');
-          var v2 = record.get('before_date');
-
-          var visible = true;
-          if (v1) visible &= new Date(v1) < center;
-          if (v2) visible &= new Date(v2) > center;
-          return Boolean(visible);
-
-        }, this)
-      });
+    load: function() {
+      this.records.update({ widget: 'Simile' }, _.bind(this.ingest, this));
     },
 
 
     /**
-     * Render a collection of records.
-     *
-     * @param {Object} records: The records collection.
+     * Render the collection of records.
      */
-    ingest: function(records) {
+    ingest: function() {
       this.eventSource.clear();
-      records.each(_.bind(this.buildEvent, this));
+      this.records.each(_.bind(this.buildEvent, this));
       this.setEventColors();
     },
 
@@ -2092,6 +2064,10 @@ Neatline.module('Simile', { startWithParent: false,
       this.timeline.layout();
 
     },
+
+
+    // VIEWPORT
+    // ------------------------------------------------------------------------
 
 
     /**
@@ -2135,6 +2111,32 @@ Neatline.module('Simile', { startWithParent: false,
 
 
     /**
+     * Filter records by visibility dates.
+     */
+    setFilter: function() {
+      Neatline.vent.trigger('setFilter', {
+        source: this.slug, key: 'simile',
+        evaluator: _.bind(function(record) {
+
+          // Hide the record if it either:
+          //  - Has a `after_date` that is after the current date.
+          //  - Has a `before_date` that is before the current date.
+
+          var center = this.band.getCenterVisibleDate();
+          var v1 = record.get('after_date');
+          var v2 = record.get('before_date');
+
+          var visible = true;
+          if (v1) visible &= new Date(v1) < center;
+          if (v2) visible &= new Date(v2) > center;
+          return Boolean(visible);
+
+        }, this)
+      });
+    },
+
+
+    /**
      * Manifest the fill color on an event.
      */
     setEventColors: function() {
@@ -2144,6 +2146,10 @@ Neatline.module('Simile', { startWithParent: false,
         );
       }, this));
     },
+
+
+    // HELPERS
+    // ------------------------------------------------------------------------
 
 
     /**
