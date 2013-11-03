@@ -15,7 +15,7 @@ describe('Preview Defaults', function() {
   // the new settings should be immediately previewed on the timeline.
   // --------------------------------------------------------------------------
 
-  var el, fx = {
+  var elements, fixtures = {
     records: readFixtures('EditorForm.records.json')
   };
 
@@ -23,14 +23,14 @@ describe('Preview Defaults', function() {
   beforeEach(function() {
 
     SM.loadEditor();
-    SM.respondSimile200(fx.records);
+    SM.respondSimile200(fixtures.records);
 
-    el = {
-      date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
-      unit:   SM.vw.EDITOR.$('select[name="simile-interval-unit"]'),
-      pixels: SM.vw.EDITOR.$('input[name="simile-interval-pixels"]'),
-      tape:   SM.vw.EDITOR.$('input[name="simile-tape-height"]'),
-      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]')
+    elements = {
+      date:   SM.v.editor.$('input[name="simile-default-date"]'),
+      unit:   SM.v.editor.$('select[name="simile-interval-unit"]'),
+      pixels: SM.v.editor.$('input[name="simile-interval-pixels"]'),
+      tape:   SM.v.editor.$('input[name="simile-tape-height"]'),
+      track:  SM.v.editor.$('input[name="simile-track-height"]')
     };
 
   });
@@ -39,7 +39,7 @@ describe('Preview Defaults', function() {
   afterEach(function() {
 
     var spy = spyOn(Neatline.vent, 'trigger');
-    var evt = SM.vw.PUBLIC.getEvents();
+    var evt = SM.v.neatline.getEvents();
 
     // Should re-render events.
     expect(evt[0]._start).toEqual(new Date('2001'));
@@ -62,31 +62,31 @@ describe('Preview Defaults', function() {
 
 
   it('should preview default date', function() {
-    el.date.val('1900-02-01').trigger('change');
+    elements.date.val('1900-02-01').trigger('change');
     SM.assertCurrentYear(1900);
   });
 
 
   it('should preview interval unit', function() {
-    el.unit.val('DAY').trigger('change');
+    elements.unit.val('DAY').trigger('change');
     SM.assertIntervalUnit(1000*60*60*24);
   });
 
 
   it('should preview interval pixels', function() {
-    el.pixels.val('50').trigger('change');
+    elements.pixels.val('50').trigger('change');
     SM.assertIntervalPixels(50);
   });
 
 
   it('should preview track height', function() {
-    el.track.val('50').trigger('change');
+    elements.track.val('50').trigger('change');
     SM.assertTrackHeight(50);
   });
 
 
   it('should update tape height', function() {
-    el.tape.val('50').trigger('change');
+    elements.tape.val('50').trigger('change');
     SM.assertTapeHeight(50);
   });
 

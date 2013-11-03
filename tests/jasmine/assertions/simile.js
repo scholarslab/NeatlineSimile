@@ -18,7 +18,7 @@ var SM = (function(SM) {
    * @param {Number} count: The number.
    */
   SM.assertEventCount = function(count) {
-    expect(this.vw.PUBLIC.eventSource.getCount()).toEqual(count);
+    expect(this.v.neatline.eventSource.getCount()).toEqual(count);
   };
 
 
@@ -28,7 +28,7 @@ var SM = (function(SM) {
    * @param {Number} year: The current year.
    */
   SM.assertCurrentYear = function(year) {
-    var now = this.vw.PUBLIC.band.getCenterVisibleDate().getFullYear();
+    var now = this.v.neatline.band.getCenterVisibleDate().getFullYear();
     expect(now).toEqual(year);
   };
 
@@ -39,7 +39,7 @@ var SM = (function(SM) {
    * @param {Number} ms: The time unit in milliseconds.
    */
   SM.assertIntervalUnit = function(ms) {
-    expect(this.vw.PUBLIC.band._bandInfo.ether._interval).toEqual(ms);
+    expect(this.v.neatline.band._bandInfo.ether._interval).toEqual(ms);
   };
 
 
@@ -49,7 +49,7 @@ var SM = (function(SM) {
    * @param {Number} pixels: The width.
    */
   SM.assertIntervalPixels = function(pixels) {
-    expect(this.vw.PUBLIC.band._bandInfo.ether._pixelsPerInterval).
+    expect(this.v.neatline.band._bandInfo.ether._pixelsPerInterval).
       toEqual(pixels);
   };
 
@@ -60,7 +60,7 @@ var SM = (function(SM) {
    * @param {Number} height: The height.
    */
   SM.assertTrackHeight = function(height) {
-    expect(this.vw.PUBLIC.theme.event.track.height).toEqual(height);
+    expect(this.v.neatline.theme.event.track.height).toEqual(height);
   };
 
 
@@ -70,7 +70,7 @@ var SM = (function(SM) {
    * @param {Number} height: The height.
    */
   SM.assertTapeHeight = function(height) {
-    expect(this.vw.PUBLIC.theme.event.tape.height).toEqual(height);
+    expect(this.v.neatline.theme.event.tape.height).toEqual(height);
   };
 
 

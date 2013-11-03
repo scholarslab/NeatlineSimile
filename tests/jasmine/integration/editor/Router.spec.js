@@ -11,14 +11,14 @@
 describe('Router', function() {
 
 
-  var el;
+  var elements;
 
 
   beforeEach(function() {
 
     SM.loadEditor();
 
-    el = {
+    elements = {
       simile: NL.v.exhibit.$('li[data-slug="simile"]')
     };
 
@@ -35,10 +35,10 @@ describe('Router', function() {
 
     // Tabs and SIMILE form should be visible.
     expect(NL.v.editor.__ui.editor).toContain(NL.v.exhibit.$el);
-    expect(NL.v.editor.__ui.editor).toContain(SM.vw.EDITOR.$el);
+    expect(NL.v.editor.__ui.editor).toContain(SM.v.editor.$el);
 
     // "SIMILE Timeline" tab should be active.
-    expect(el.simile).toHaveClass('active');
+    expect(elements.simile).toHaveClass('active');
 
   });
 

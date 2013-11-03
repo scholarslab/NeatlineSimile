@@ -11,20 +11,20 @@
 describe('Save Defaults', function() {
 
 
-  var el;
+  var elements;
 
 
   beforeEach(function() {
 
     SM.loadEditor();
 
-    el = {
-      unit:   SM.vw.EDITOR.$('select[name="simile-interval-unit"]'),
-      date:   SM.vw.EDITOR.$('input[name="simile-default-date"]'),
-      pixels: SM.vw.EDITOR.$('input[name="simile-interval-pixels"]'),
-      tape:   SM.vw.EDITOR.$('input[name="simile-tape-height"]'),
-      track:  SM.vw.EDITOR.$('input[name="simile-track-height"]'),
-      save:   SM.vw.EDITOR.$('a[name="save"]')
+    elements = {
+      unit:   SM.v.editor.$('select[name="simile-interval-unit"]'),
+      date:   SM.v.editor.$('input[name="simile-default-date"]'),
+      pixels: SM.v.editor.$('input[name="simile-interval-pixels"]'),
+      tape:   SM.v.editor.$('input[name="simile-tape-height"]'),
+      track:  SM.v.editor.$('input[name="simile-track-height"]'),
+      save:   SM.v.editor.$('a[name="save"]')
     };
 
   });
@@ -37,14 +37,14 @@ describe('Save Defaults', function() {
     // the exhibit API with the new values.
     // ------------------------------------------------------------------------
 
-    el.unit.    val('DAY'). trigger('change');
-    el.date.    val('1').   trigger('change');
-    el.pixels.  val('2').   trigger('change');
-    el.tape.    val('3').   trigger('change');
-    el.track.   val('4').   trigger('change');
+    elements.unit.    val('DAY'). trigger('change');
+    elements.date.    val('1').   trigger('change');
+    elements.pixels.  val('2').   trigger('change');
+    elements.tape.    val('3').   trigger('change');
+    elements.track.   val('4').   trigger('change');
 
     // Click "Save" button.
-    el.save.trigger('click');
+    elements.save.trigger('click');
 
     // Should issue PUT request to exhibits API.
     NL.assertLastRequestRoute(Neatline.g.neatline.exhibits_api);

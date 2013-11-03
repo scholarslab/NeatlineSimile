@@ -18,7 +18,7 @@ var SM = (function(SM) {
    * @param {Object} event: The event.
    */
   SM.clickEvent = function(event) {
-    this.vw.PUBLIC.band._eventPainter._showBubble(1, 2, event);
+    this.v.neatline.band._eventPainter._showBubble(1, 2, event);
   };
 
 
@@ -28,7 +28,7 @@ var SM = (function(SM) {
    * @param {String} date: The date.
    */
   SM.setFocus = function(date) {
-    this.vw.PUBLIC.setCenterDate(new Date(date));
+    this.v.neatline.setCenterDate(new Date(date));
   };
 
 

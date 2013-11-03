@@ -11,7 +11,7 @@
 describe('Event Loading', function() {
 
 
-  var fx = {
+  var fixtures = {
     points:   readFixtures('NeatlineEventLoading.points.json'),
     spans:    readFixtures('NeatlineEventLoading.spans.json'),
     nostart:  readFixtures('NeatlineEventLoading.nostart.json')
@@ -20,7 +20,7 @@ describe('Event Loading', function() {
 
   beforeEach(function() {
     SM.loadNeatline();
-    SM.respondSimile200(fx.points);
+    SM.respondSimile200(fixtures.points);
     SM.setFocus('2000');
   });
 
@@ -44,7 +44,7 @@ describe('Event Loading', function() {
     // rendered as point events (end date same as start date).
     // ------------------------------------------------------------------------
 
-    var evt = SM.vw.PUBLIC.getEvents();
+    var evt = SM.v.neatline.getEvents();
     expect(evt[0]._start).toEqual(new Date('2001'));
     expect(evt[0]._end).toEqual(new Date('2001'));
     expect(evt[1]._start).toEqual(new Date('2002'));
@@ -62,9 +62,9 @@ describe('Event Loading', function() {
     // as duration events (end date after start date).
     // ------------------------------------------------------------------------
 
-    SM.refreshWidget(fx.spans);
+    SM.refreshWidget(fixtures.spans);
 
-    var evt = SM.vw.PUBLIC.getEvents();
+    var evt = SM.v.neatline.getEvents();
     expect(evt[0]._start).toEqual(new Date('2001'));
     expect(evt[0]._end).toEqual(new Date('2004'));
     expect(evt[1]._start).toEqual(new Date('2002'));
@@ -81,7 +81,7 @@ describe('Event Loading', function() {
     // Records with no `start_date` should not be displayed at all.
     // ------------------------------------------------------------------------
 
-    SM.refreshWidget(fx.nostart);
+    SM.refreshWidget(fixtures.nostart);
     SM.assertEventCount(2);
 
   });
@@ -95,19 +95,19 @@ describe('Event Loading', function() {
     // ------------------------------------------------------------------------
 
     it('point events', function() {
-      SM.refreshWidget(fx.points);
+      SM.refreshWidget(fixtures.points);
     });
 
     it('duration events', function() {
-      SM.refreshWidget(fx.spans);
+      SM.refreshWidget(fixtures.spans);
     });
 
     afterEach(function() {
 
-      var evt = SM.vw.PUBLIC.getEvents();
-      var el1 = SM.vw.PUBLIC.getEventElement(evt[0]);
-      var el2 = SM.vw.PUBLIC.getEventElement(evt[1]);
-      var el3 = SM.vw.PUBLIC.getEventElement(evt[2]);
+      var evt = SM.v.neatline.getEvents();
+      var el1 = SM.v.neatline.getEventElement(evt[0]);
+      var el2 = SM.v.neatline.getEventElement(evt[1]);
+      var el3 = SM.v.neatline.getEventElement(evt[2]);
 
       var hex1 = SM.rgbToHex($(el1).css('background-color'));
       var hex2 = SM.rgbToHex($(el2).css('background-color'));
@@ -129,9 +129,9 @@ describe('Event Loading', function() {
     // ------------------------------------------------------------------------
 
     Neatline.vent.trigger('refresh');
-    SM.respondSimile200(fx.spans);
+    SM.respondSimile200(fixtures.spans);
 
-    var evt = SM.vw.PUBLIC.getEvents();
+    var evt = SM.v.neatline.getEvents();
     expect(evt[0]._start).toEqual(new Date('2001'));
     expect(evt[0]._end).toEqual(new Date('2004'));
     expect(evt[1]._start).toEqual(new Date('2002'));

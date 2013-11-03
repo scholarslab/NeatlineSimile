@@ -11,7 +11,7 @@
 describe('Publications', function() {
 
 
-  var vent, fx = {
+  var vent, fixtures = {
     records: readFixtures('NeatlinePublications.json')
   };
 
@@ -69,11 +69,11 @@ describe('Publications', function() {
       // ----------------------------------------------------------------------
 
       SM.loadNeatline();
-      SM.respondSimile200(fx.records);
+      SM.respondSimile200(fixtures.records);
 
       // Click an event.
       vent = spyOn(Neatline.vent, 'trigger');
-      var event = SM.vw.PUBLIC.getEvents()[0];
+      var event = SM.v.neatline.getEvents()[0];
       SM.clickEvent(event);
 
       // Should publish `select`.

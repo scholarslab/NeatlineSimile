@@ -11,7 +11,7 @@
 describe('Subscribe `select`', function() {
 
 
-  var fx = {
+  var fixtures = {
     records: readFixtures('NeatlineSubscribeSelect.json')
   };
 
@@ -83,10 +83,10 @@ describe('Subscribe `select`', function() {
     // ------------------------------------------------------------------------
 
     // Load an event.
-    SM.respondSimile200(fx.records);
+    SM.respondSimile200(fixtures.records);
 
     // Click on the event.
-    SM.clickEvent(SM.vw.PUBLIC.getEvents()[0]);
+    SM.clickEvent(SM.v.neatline.getEvents()[0]);
 
     // Should not focus.
     SM.assertCurrentYear(1999);

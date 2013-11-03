@@ -16,8 +16,8 @@ var SM = (function(SM) {
    * Shortcut public views.
    */
   SM.aliasNeatline = function() {
-    this.vw = {
-      PUBLIC: Neatline.Simile.__controller.view
+    this.v = {
+      neatline: Neatline.Simile.__controller.view
     };
   };
 
@@ -26,9 +26,9 @@ var SM = (function(SM) {
    * Shortcut editor views.
    */
   SM.aliasEditor = function() {
-    this.vw = {
-      PUBLIC: Neatline.Simile.__controller.view,
-      EDITOR: Neatline.Editor.Exhibit.Simile.__controller.view
+    this.v = {
+      neatline: Neatline.Simile.__controller.view,
+      editor:   Neatline.Editor.Exhibit.Simile.__controller.view
     };
   };
 
