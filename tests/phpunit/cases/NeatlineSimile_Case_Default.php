@@ -22,14 +22,8 @@ class NeatlineSimile_Case_Default extends Neatline_Case_Abstract
 
         parent::setUp();
 
-        // Authenticate and set the current user.
-        $this->user = $this->db->getTable('User')->find(1);
-        $this->_authenticateUser($this->user);
-
-        // Install Neatline and NeatlineSimile.
-        $pluginHelper = new Omeka_Test_Helper_Plugin;
-        $pluginHelper->setUp('Neatline');
-        $pluginHelper->setUp('NeatlineSimile');
+        // Install NeatlineSimile.
+        $this->helper->setUp('NeatlineSimile');
 
         // Register script paths.
         get_view()->setScriptPath(NL_SIMILE_DIR . '/views/shared');
