@@ -34,7 +34,7 @@ class FixturesTest_EventLoading extends NeatlineSimile_Case_Fixture
         $record2->save();
         $record3->save();
 
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'NeatlineEventLoading.points.json'
         );
 
@@ -46,16 +46,14 @@ class FixturesTest_EventLoading extends NeatlineSimile_Case_Fixture
         $record2->save();
         $record3->save();
 
-        $this->resetResponse();
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'NeatlineEventLoading.spans.json'
         );
 
         $record3->start_date = null;
         $record3->save();
 
-        $this->resetResponse();
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'NeatlineEventLoading.nostart.json'
         );
 

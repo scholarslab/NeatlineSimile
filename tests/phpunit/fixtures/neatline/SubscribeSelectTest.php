@@ -20,7 +20,7 @@ class FixturesTest_SubscribeSelect extends NeatlineSimile_Case_Fixture
         $record->start_date = '2000-02-01';
         $record->save();
 
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'NeatlineSubscribeSelect.json'
         );
 

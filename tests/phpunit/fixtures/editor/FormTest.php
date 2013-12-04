@@ -34,7 +34,7 @@ class FixturesTest_Form extends NeatlineSimile_Case_Fixture
         $record2->save();
         $record3->save();
 
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'EditorForm.records.json'
         );
 

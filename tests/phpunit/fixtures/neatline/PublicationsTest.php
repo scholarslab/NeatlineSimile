@@ -20,7 +20,7 @@ class FixturesTest_Publications extends NeatlineSimile_Case_Fixture
         $record->start_date = '2001';
         $record->save();
 
-        $this->_writeFixtureFromRoute('neatline/records',
+        $this->_writeRecordsApiFixture($this->exhibit,
             'NeatlinePublications.json'
         );
 
