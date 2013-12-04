@@ -18,13 +18,16 @@ class NeatlineSimile_Case_Fixture extends NeatlineSimile_Case_Default
 
 
     /**
-     * Create exhibit, set `exhibit_id` GET parameter.
+     * Create a mock exhibit.
      */
     public function setUp()
     {
+
         parent::setUp();
+
+        // Create a mock exhibit.
         $this->exhibit = $this->_exhibit();
-        $this->request->setQuery('exhibit_id', $this->exhibit->id);
+
     }
 
 
