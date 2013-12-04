@@ -18,12 +18,19 @@ class NeatlineSimile_Case_Fixture extends NeatlineSimile_Case_Default
 
 
     /**
-     * Create a mock exhibit.
+     * Create a mock exhibit, register script paths.
      */
     public function setUp()
     {
+
         parent::setUp();
+
         $this->exhibit = $this->_exhibit();
+
+        // Register script paths.
+        get_view()->setScriptPath(NL_SIMILE_DIR . '/views/shared');
+        get_view()->addScriptPath(NL_DIR . '/views/shared');
+
     }
 
 

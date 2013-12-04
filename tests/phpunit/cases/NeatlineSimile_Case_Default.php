@@ -15,20 +15,12 @@ class NeatlineSimile_Case_Default extends Neatline_Case_Default
 
 
     /**
-     * Bootstrap the plugin.
+     * Install NeatlineSimile.
      */
     public function setUp()
     {
-
         parent::setUp();
-
-        // Install NeatlineSimile.
         $this->helper->setUp('NeatlineSimile');
-
-        // Register script paths.
-        get_view()->setScriptPath(NL_SIMILE_DIR . '/views/shared');
-        get_view()->addScriptPath(NL_DIR . '/views/shared');
-
     }
 
 
