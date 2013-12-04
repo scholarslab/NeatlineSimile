@@ -22,12 +22,19 @@ class NeatlineSimile_Case_Fixture extends NeatlineSimile_Case_Default
      */
     public function setUp()
     {
-
         parent::setUp();
-
-        // Create a mock exhibit.
         $this->exhibit = $this->_exhibit();
+    }
 
+
+    /**
+     * Get the Jasmine fixtures directory.
+     *
+     * @return string The directory.
+     */
+    protected function _getFixturesPath()
+    {
+        return NL_SIMILE_DIR . '/tests/jasmine/fixtures/';
     }
 
 

@@ -10,18 +10,12 @@
  */
 
 
-// Define path variables.
-define('NL_SIMILE_DIR', dirname(dirname(dirname(__FILE__))));
-define('OMEKA_DIR', dirname(dirname(NL_SIMILE_DIR)));
-define('NL_DIR', dirname((NL_SIMILE_DIR)) . '/Neatline');
-define('NL_TEST_DIR', NL_DIR . '/tests/phpunit');
+// Load Neatline testing bootstrap.
+require_once '../../Neatline/tests/phpunit/bootstrap.php';
 
-// Bootstrap Omeka, load plugin managers.
-require_once OMEKA_DIR . '/application/tests/bootstrap.php';
-require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
-require_once NL_DIR . '/NeatlinePlugin.php';
+// Set plugin path.
+define('NL_SIMILE_DIR', PLUGIN_DIR.'/NeatlineSimile');
 
-// Load abstract test cases.
-require_once NL_TEST_DIR . '/cases/Neatline_Case_Abstract.php';
+// Load test cases.
 require_once 'cases/NeatlineSimile_Case_Default.php';
 require_once 'cases/NeatlineSimile_Case_Fixture.php';

@@ -10,7 +10,7 @@
  */
 
 
-class NeatlineSimile_Case_Default extends Neatline_Case_Abstract
+class NeatlineSimile_Case_Default extends Neatline_Case_Default
 {
 
 
@@ -29,17 +29,6 @@ class NeatlineSimile_Case_Default extends Neatline_Case_Abstract
         get_view()->setScriptPath(NL_SIMILE_DIR . '/views/shared');
         get_view()->addScriptPath(NL_DIR . '/views/shared');
 
-    }
-
-
-    /**
-     * Get the Jasmine fixtures directory.
-     *
-     * @return string The directory.
-     */
-    protected function _getFixturesPath()
-    {
-        return NL_SIMILE_DIR . '/tests/jasmine/fixtures/';
     }
 
 

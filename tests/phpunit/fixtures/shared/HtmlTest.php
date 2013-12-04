@@ -9,28 +9,25 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class FixturesTest_SharedHtml extends NeatlineSimile_Case_Default
+class FixturesTest_SharedHtml extends NeatlineSimile_Case_Fixture
 {
 
 
-    protected $_isAdminTest = false;
-
-
     /**
-     * Mock an exhibit and set it on the view.
+     * Activate the SIMILE widget.
      */
     public function setUp()
     {
 
         parent::setUp();
 
-        $exhibit = $this->_exhibit();
-        $exhibit->spatial_layer = 'OpenStreetMap';
-        $exhibit->widgets = 'Simile';
-        $exhibit->save();
+        // Set spatial layer, flip on SIMILE.
+        $this->exhibit->spatial_layer = 'OpenStreetMap';
+        $this->exhibit->widgets = 'Simile';
+        $this->exhibit->save();
 
         // Reload to join extensions.
-        $this->exhibit = $this->_reload($exhibit);
+        $this->exhibit = $this->_reload($this->exhibit);
 
     }
 
