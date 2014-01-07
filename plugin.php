@@ -16,7 +16,6 @@ if (!defined('NL_SIMILE_DIR')) {
 
 require_once NL_SIMILE_DIR . '/NeatlineSimilePlugin.php';
 require_once NL_SIMILE_DIR . '/helpers/Assets.php';
-require_once NL_SIMILE_DIR . '/helpers/Globals.php';
 
 $simile = new NeatlineSimilePlugin();
 $simile->setUp();
