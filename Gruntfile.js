@@ -225,11 +225,7 @@ module.exports = function(grunt) {
   });
 
   // Run tests.
-  grunt.registerTask('default', [
-    'clean:fixtures',
-    'phpunit',
-    'jasmine:connect'
-  ]);
+  grunt.registerTask('default', 'test');
 
   // Build the application.
   grunt.registerTask('build', [
@@ -276,6 +272,14 @@ module.exports = function(grunt) {
   grunt.registerTask('jasmine:editor:server', [
     'jasmine:editor:build',
     'connect:permanent'
+  ]);
+
+  // Run application tests.
+  grunt.registerTask('test', [
+    'compile:min',
+    'clean:fixtures',
+    'phpunit',
+    'jasmine:connect'
   ]);
 
   // Spawn release package.
