@@ -47,7 +47,7 @@ describe('Save Defaults', function() {
     elements.save.trigger('click');
 
     // Should issue PUT request to exhibits API.
-    NL.assertLastRequestRoute(Neatline.g.neatline.exhibits_api);
+    NL.assertLastRequestRoute(Neatline.g.neatline.exhibit_api);
     NL.assertLastRequestMethod('PUT');
 
     // Parse request parameters.

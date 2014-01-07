@@ -54,13 +54,16 @@ Neatline.module('Editor.Exhibit.Simile', function(Simile) {
 
 
     /**
-     * Save the settings.
+     * When the "Save" button is clicked.
      */
     save: function() {
+
+      // Save the settings.
       this.model.save(null, {
         success:  _.bind(this.onSaveSuccess, this),
         error:    _.bind(this.onSaveError, this)
       });
+
     },
 
 
