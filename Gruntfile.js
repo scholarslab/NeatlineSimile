@@ -206,15 +206,29 @@ module.exports = function(grunt) {
 
           '**',
 
+          // GIT
           '!.git/**',
+
+          // BOWER
+          '!bower.json',
+          '!bower_components/**',
+
+          // NPM
           '!package.json',
           '!node_modules/**',
-          '!bower_components/**',
+
+          // GRUNT
           '!.grunt/**',
           '!Gruntfile.js',
           '!paths.json',
+
+          // SYMLINK
           '!Neatline/**',
+
+          // DIST
           '!pkg/**',
+
+          // TESTS
           '!tests/**'
 
         ]
