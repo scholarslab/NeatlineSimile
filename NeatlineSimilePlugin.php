@@ -29,9 +29,10 @@ class NeatlineSimilePlugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array(
         'neatline_exhibit_expansions',
-        'neatline_exhibit_tabs',
         'neatline_exhibit_widgets',
-        'neatline_record_widgets'
+        'neatline_record_widgets',
+        'neatline_exhibit_tabs',
+        'neatline_globals'
     );
 
 
@@ -83,7 +84,6 @@ SQL
     public function hookNeatlineEditorTemplates($args)
     {
         if ($args['exhibit']->hasWidget(self::ID)) {
-            echo get_view()->partial('simile/editor/strings.php');
             echo get_view()->partial('simile/editor/form.php');
         }
     }
@@ -127,10 +127,32 @@ SQL
      */
     public function filterNeatlineExhibitExpansions($tables)
     {
-        $tables[] = $this->_db->getTable(
-            'NeatlineSimileExhibitExpansion'
-        );
+        $tables[] = $this->_db->getTable('NeatlineSimileExhibitExpansion');
         return $tables;
+    }
+
+
+    /**
+     * Register the exhibit widget.
+     *
+     * @param array $widgets Widgets, <NAME> => <ID>.
+     * @return array The modified array.
+     */
+    public function filterNeatlineExhibitWidgets($widgets)
+    {
+        return array_merge($widgets, array(self::NAME => self::ID));
+    }
+
+
+    /**
+     * Register the record widget.
+     *
+     * @param array $widgets Widgets, <NAME> => <ID>.
+     * @return array The modified array.
+     */
+    public function filterNeatlineRecordWidgets($widgets)
+    {
+        return array_merge($widgets, array(self::NAME => self::ID));
     }
 
 
@@ -150,30 +172,17 @@ SQL
 
 
     /**
-     * Register the exhibit widget.
+     * Register ordering API endpoint on `Neatline.g`.
      *
-     * @param array $widgets Widgets, <NAME> => <ID>.
+     * @param array $globals The array of global properties.
+     * @param array $args Array of arguments, with `exhibit`.
      * @return array The modified array.
      */
-    public function filterNeatlineExhibitWidgets($widgets)
+    public function filterNeatlineGlobals($globals, $args)
     {
-        return array_merge($widgets, array(
-            self::NAME => self::ID
-        ));
-    }
-
-
-    /**
-     * Register the record widget.
-     *
-     * @param array $widgets Widgets, <NAME> => <ID>.
-     * @return array The modified array.
-     */
-    public function filterNeatlineRecordWidgets($widgets)
-    {
-        return array_merge($widgets, array(
-            self::NAME => self::ID
-        ));
+        return array_merge($globals, array('simile' => array(
+            'strings' => nl_getStrings(NL_SIMILE_DIR.'/strings.json')
+        )));
     }
 
 

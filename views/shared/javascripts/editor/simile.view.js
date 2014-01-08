@@ -74,7 +74,7 @@ Neatline.module('Editor.Exhibit.Simile', function(Simile) {
 
       // Flash success message.
       Neatline.execute('EDITOR:notifySuccess',
-        SM_STRINGS.settings.save.success
+        Neatline.g.simile.strings.settings.save.success
       );
 
     },
@@ -87,7 +87,7 @@ Neatline.module('Editor.Exhibit.Simile', function(Simile) {
 
       // Flash error message.
       Neatline.execute('EDITOR:notifyError',
-        SM_STRINGS.settings.save.error
+        Neatline.g.simile.strings.settings.save.error
       );
 
     }
