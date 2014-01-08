@@ -9,14 +9,11 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-class FixturesTest_Form extends NeatlineSimile_Case_Fixture
+class FixturesTest_PreviewDefaults extends NeatlineSimile_Case_Fixture
 {
 
 
-    /**
-     * `Form.records.json`
-     */
-    public function testForm()
+    public function testRecords()
     {
 
         $record1 = $this->_record($this->exhibit);
@@ -35,7 +32,7 @@ class FixturesTest_Form extends NeatlineSimile_Case_Fixture
         $record3->save();
 
         $this->_writeRecordsApiFixture($this->exhibit,
-            'EditorForm.records.json'
+            'EditorPreviewDefaults.json'
         );
 
     }

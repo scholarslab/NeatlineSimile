@@ -16,7 +16,7 @@ describe('Preview Defaults', function() {
   // --------------------------------------------------------------------------
 
   var elements, fixtures = {
-    records: readFixtures('EditorForm.records.json')
+    records: readFixtures('EditorPreviewDefaults.json')
   };
 
 
