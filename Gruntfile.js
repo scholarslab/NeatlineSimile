@@ -277,8 +277,7 @@ module.exports = function(grunt) {
 
   // Assemble/min static assets.
   grunt.registerTask('compile:min', [
-    'stylus',
-    'concat',
+    'compile',
     'uglify'
   ]);
 
