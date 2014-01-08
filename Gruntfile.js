@@ -129,12 +129,12 @@ module.exports = function(grunt) {
     uglify: {
 
       simile_public: {
-        src: '<%= concat.simile_public.src %>',
+        src: '<%= concat.simile_public.dest %>',
         dest: paths.payloads.shared.js+'/simile-public.js'
       },
 
       simile_editor: {
-        src: '<%= concat.simile_editor.src %>',
+        src: '<%= concat.simile_editor.dest %>',
         dest: paths.payloads.shared.js+'/simile-editor.js'
       }
 
@@ -262,27 +262,24 @@ module.exports = function(grunt) {
 
   // Build the application.
   grunt.registerTask('build', [
+    'symlink',
     'clean',
     'shell:bower',
-    'symlink',
     'copy',
     'compile'
   ]);
 
   // Assemble static assets.
   grunt.registerTask('compile', [
-    'concat:simile_public',
-    'concat:simile_editor',
     'stylus',
-    'concat:simile_public_css'
+    'concat'
   ]);
 
   // Assemble/min static assets.
   grunt.registerTask('compile:min', [
-    'uglify:simile_public',
-    'uglify:simile_editor',
     'stylus',
-    'concat:simile_public_css'
+    'concat',
+    'uglify'
   ]);
 
   // Run PHPUnit.
