@@ -63,4 +63,46 @@ describe('Save Defaults', function() {
   });
 
 
+  it('should flash notification when save succeeds', function() {
+
+    // ------------------------------------------------------------------------
+    // When the "Save" button is clicked and the request succeeds, a success
+    // notification should be displayed.
+    // ------------------------------------------------------------------------
+
+    spyOn(toastr, 'info');
+
+    // Click on "Save".
+    elements.save.trigger('click');
+    NL.respondLast200('[]');
+
+    // Should flash success.
+    expect(toastr.info).toHaveBeenCalledWith(
+      Neatline.g.simile.strings.settings.save.success
+    );
+
+  });
+
+
+  it('should flash notification when save fails', function() {
+
+    // ------------------------------------------------------------------------
+    // When the "Save" button is clicked and the request fails, a failure
+    // notification should be displayed.
+    // ------------------------------------------------------------------------
+
+    spyOn(toastr, 'error');
+
+    // Click on "Save".
+    elements.save.trigger('click');
+    NL.respondLast500();
+
+    // Should flash error.
+    expect(toastr.error).toHaveBeenCalledWith(
+      Neatline.g.simile.strings.settings.save.error
+    );
+
+  });
+
+
 });
