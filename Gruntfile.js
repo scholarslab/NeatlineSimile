@@ -29,9 +29,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     shell: {
+
       options: {
         stdout: true
       },
+
       phpunit: {
         command: 'phpunit --color',
         options: {
@@ -40,12 +42,15 @@ module.exports = function(grunt) {
           }
         }
       },
+
       bower: {
         command: 'bower install'
       }
+
     },
 
     symlink: {
+
       neatline: {
         link: 'Neatline',
         target: '../Neatline',
@@ -53,35 +58,45 @@ module.exports = function(grunt) {
           overwrite: true
         }
       }
+
     },
 
     connect: {
+
       options: {
         port: 1337
       },
+
       temporary: {
         options: {
           keepalive: false
         }
       },
+
       permanent: {
         options: {
           keepalive: true
         }
       }
+
     },
 
     clean: {
+
       payloads: [
         paths.payloads.shared.js,
         paths.payloads.shared.css
       ],
+
       fixtures: [
         paths.jasmine+'/fixtures/*.json',
         paths.jasmine+'/fixtures/*.html'
       ],
+
       bower: '/bower_components',
+
       pkg: 'pkg'
+
     },
 
     concat: {
@@ -126,15 +141,18 @@ module.exports = function(grunt) {
     },
 
     stylus: {
+
       compile: {
         files: {
           './views/shared/css/payloads/simile-public.css':
             paths.stylus.shared+'/public/*.styl'
         }
       }
+
     },
 
     copy: {
+
       simile: {
         files: [{
           cwd: 'bower_components/simile/',
@@ -144,9 +162,11 @@ module.exports = function(grunt) {
           expand: true
         }]
       }
+
     },
 
     watch: {
+
       payload: {
         files: [
           '<%= concat.simile_public.src %>',
@@ -155,6 +175,7 @@ module.exports = function(grunt) {
         ],
         tasks: ['compile']
       }
+
     },
 
     jasmine: {
