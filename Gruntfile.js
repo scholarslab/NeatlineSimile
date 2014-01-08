@@ -143,10 +143,8 @@ module.exports = function(grunt) {
     stylus: {
 
       compile: {
-        files: {
-          './views/shared/css/payloads/simile-public.css':
-            paths.stylus.shared+'/public/*.styl'
-        }
+        src: paths.stylus.shared+'/public/*.styl',
+        dest: paths.payloads.shared.css+'/simile-public.css'
       }
 
     },
