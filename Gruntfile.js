@@ -117,14 +117,6 @@ module.exports = function(grunt) {
         dest: paths.payloads.shared.js+'/simile-editor.js'
       },
 
-      jasmine_vendor: {
-        src: [
-          paths.jasmine+'/assertions/*.js',
-          paths.jasmine+'/helpers/*.js'
-        ],
-        dest: paths.jasmine+'/payloads/vendor.js'
-      },
-
       simile_public_css: {
         src: [
           paths.payloads.shared.css+'/simile-public.css'
@@ -191,7 +183,8 @@ module.exports = function(grunt) {
         template: 'Neatline/'+nlPaths.jasmine+'/runner.tmpl',
         helpers: [
           'Neatline/'+nlPaths.jasmine+'/payloads/vendor.js',
-          paths.jasmine+'/payloads/vendor.js'
+          paths.jasmine+'/helpers/*.js',
+          paths.jasmine+'/assertions/*.js'
         ]
       },
 
