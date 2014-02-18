@@ -15,39 +15,19 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-phpunit');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-symbolic-link');
-  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-bower-task');
 
   var pkg     = grunt.file.readJSON('package.json');
   var nlPaths = grunt.file.readJSON('../Neatline/paths.json');
   var paths   = grunt.file.readJSON('paths.json');
 
   grunt.initConfig({
-
-    shell: {
-
-      options: {
-        stdout: true
-      },
-
-      phpunit: {
-        command: 'phpunit --color',
-        options: {
-          execOptions: {
-            cwd: 'tests/phpunit'
-          }
-        }
-      },
-
-      bower: {
-        command: 'bower install'
-      }
-
-    },
 
     symlink: {
 
@@ -61,24 +41,10 @@ module.exports = function(grunt) {
 
     },
 
-    connect: {
-
-      options: {
-        port: 1337
-      },
-
-      temporary: {
-        options: {
-          keepalive: false
-        }
-      },
-
-      permanent: {
-        options: {
-          keepalive: true
-        }
+    bower: {
+      install: {
+        options: { copy: false }
       }
-
     },
 
     clean: {
@@ -176,6 +142,21 @@ module.exports = function(grunt) {
 
     },
 
+    phpunit: {
+
+      options: {
+        bin: 'Neatline/vendor/bin/phpunit',
+        bootstrap: 'tests/phpunit/bootstrap.php',
+        followOutput: true,
+        colors: true
+      },
+
+      application: {
+        dir: 'tests/phpunit'
+      }
+
+    },
+
     jasmine: {
 
       options: {
@@ -205,6 +186,26 @@ module.exports = function(grunt) {
         ],
         options: {
           specs: paths.jasmine+'/tests/editor/**/*.spec.js'
+        }
+      }
+
+    },
+
+    connect: {
+
+      options: {
+        port: 1337
+      },
+
+      temporary: {
+        options: {
+          keepalive: false
+        }
+      },
+
+      permanent: {
+        options: {
+          keepalive: true
         }
       }
 
@@ -260,7 +261,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'symlink',
     'clean',
-    'shell:bower',
+    'bower',
     'copy',
     'compile'
   ]);
@@ -276,9 +277,6 @@ module.exports = function(grunt) {
     'compile',
     'uglify'
   ]);
-
-  // Run PHPUnit.
-  grunt.registerTask('phpunit', 'shell:phpunit');
 
   // Run Jasmine via Connect server.
   grunt.registerTask('jasmine:connect', [
