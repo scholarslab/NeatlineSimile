@@ -52,11 +52,11 @@ describe('Preview Defaults', function() {
 
     // Should re-bind scroll listener.
     SM.setFocus('2000');
-    expect(spy.mostRecentCall.args[0]).toEqual('setFilter');
+    expect(spy.calls.mostRecent().args[0]).toEqual('setFilter');
 
     // Should re-bind select listener.
     SM.clickEvent(evt[0]);
-    expect(spy.mostRecentCall.args[0]).toEqual('select');
+    expect(spy.calls.mostRecent().args[0]).toEqual('select');
 
   });
 

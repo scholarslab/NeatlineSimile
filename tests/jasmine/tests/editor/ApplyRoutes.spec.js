@@ -34,8 +34,8 @@ describe('Apply Routes', function() {
     NL.navigate('simile');
 
     // Tabs and SIMILE form should be visible.
-    expect(NL.v.editor.__ui.editor).toContain(NL.v.exhibit.$el);
-    expect(NL.v.editor.__ui.editor).toContain(SM.v.editor.$el);
+    expect(NL.v.editor.__ui.editor).toContainHtml(NL.v.exhibit.$el);
+    expect(NL.v.editor.__ui.editor).toContainHtml(SM.v.editor.$el);
 
     // "SIMILE Timeline" tab should be active.
     expect(elements.simile).toHaveClass('active');
