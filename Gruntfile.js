@@ -50,8 +50,8 @@ module.exports = function(grunt) {
     clean: {
 
       payloads: [
-        paths.payloads.shared.js,
-        paths.payloads.shared.css
+        paths.payloads.js.shared,
+        paths.payloads.css.shared
       ],
 
       fixtures: [
@@ -70,24 +70,24 @@ module.exports = function(grunt) {
       simile_public: {
         src: [
           paths.vendor.moment,
-          paths.src.shared+'/public/*.js'
+          paths.src.js.shared+'/public/*.js'
         ],
-        dest: paths.payloads.shared.js+'/simile-public.js'
+        dest: paths.payloads.js.shared+'/simile-public.js'
       },
 
       simile_editor: {
         src: [
           '<%= concat.simile_public.src %>',
-          paths.src.shared+'/editor/*.js'
+          paths.src.js.shared+'/editor/*.js'
         ],
-        dest: paths.payloads.shared.js+'/simile-editor.js'
+        dest: paths.payloads.js.shared+'/simile-editor.js'
       },
 
       simile_public_css: {
         src: [
-          paths.payloads.shared.css+'/simile-public.css'
+          paths.payloads.css.shared+'/simile-public.css'
         ],
-        dest: paths.payloads.shared.css+'/simile-editor.css'
+        dest: paths.payloads.css.shared+'/simile-editor.css'
       }
 
     },
@@ -96,12 +96,12 @@ module.exports = function(grunt) {
 
       simile_public: {
         src: '<%= concat.simile_public.dest %>',
-        dest: paths.payloads.shared.js+'/simile-public.js'
+        dest: paths.payloads.js.shared+'/simile-public.js'
       },
 
       simile_editor: {
         src: '<%= concat.simile_editor.dest %>',
-        dest: paths.payloads.shared.js+'/simile-editor.js'
+        dest: paths.payloads.js.shared+'/simile-editor.js'
       }
 
     },
@@ -109,8 +109,8 @@ module.exports = function(grunt) {
     stylus: {
 
       compile: {
-        src: paths.stylus.shared+'/public/*.styl',
-        dest: paths.payloads.shared.css+'/simile-public.css'
+        src: paths.src.styl.shared+'/public/*.styl',
+        dest: paths.payloads.css.shared+'/simile-public.css'
       }
 
     },
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
         files: [{
           cwd: 'bower_components/simile/',
           src: '**',
-          dest: paths.payloads.shared.js+'/simile',
+          dest: paths.payloads.js.shared+'/simile',
           flatten: false,
           expand: true
         }]
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
         files: [
           '<%= concat.simile_public.src %>',
           '<%= concat.simile_editor.src %>',
-          paths.stylus.shared+'/**/*.styl'
+          paths.src.styl.shared+'/**/*.styl'
         ],
         tasks: ['compile']
       }
@@ -171,8 +171,8 @@ module.exports = function(grunt) {
 
       neatline: {
         src: [
-          'Neatline/'+nlPaths.payloads.shared.js+'/neatline-public.js',
-          paths.payloads.shared.js+'/simile-public.js'
+          'Neatline/'+nlPaths.payloads.js.shared+'/neatline-public.js',
+          paths.payloads.js.shared+'/simile-public.js'
         ],
         options: {
           specs: paths.jasmine+'/tests/neatline/**/*.spec.js'
@@ -181,8 +181,8 @@ module.exports = function(grunt) {
 
       editor: {
         src: [
-          'Neatline/'+nlPaths.payloads.shared.js+'/neatline-editor.js',
-          paths.payloads.shared.js+'/simile-editor.js'
+          'Neatline/'+nlPaths.payloads.js.shared+'/neatline-editor.js',
+          paths.payloads.js.shared+'/simile-editor.js'
         ],
         options: {
           specs: paths.jasmine+'/tests/editor/**/*.spec.js'

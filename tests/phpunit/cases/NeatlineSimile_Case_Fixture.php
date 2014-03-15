@@ -25,11 +25,12 @@ class NeatlineSimile_Case_Fixture extends NeatlineSimile_Case_Default
 
         parent::setUp();
 
-        $this->exhibit = $this->_exhibit();
-
         // Register script paths.
-        get_view()->setScriptPath(NL_SIMILE_DIR . '/views/shared');
-        get_view()->addScriptPath(NL_DIR . '/views/shared');
+        get_view()->setScriptPath(NL_SIMILE_DIR.'/views/shared');
+        get_view()->addScriptPath(NL_DIR.'/views/shared');
+
+        // Create a mock exhibit.
+        $this->exhibit = $this->_exhibit();
 
     }
 
@@ -41,7 +42,7 @@ class NeatlineSimile_Case_Fixture extends NeatlineSimile_Case_Default
      */
     protected function _getFixturesPath()
     {
-        return NL_SIMILE_DIR . '/tests/jasmine/fixtures/';
+        return NL_SIMILE_DIR.'/tests/jasmine/fixtures/';
     }
 
 
