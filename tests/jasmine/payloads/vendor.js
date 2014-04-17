@@ -1,5 +1,5 @@
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -80,7 +80,7 @@ var SM = (function(SM) {
 })(SM || {});
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -113,7 +113,7 @@ var SM = (function(SM) {
 })(SM || {});
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -153,7 +153,7 @@ var SM = (function(SM) {
 })(SM || {});
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -192,7 +192,7 @@ var SM = (function(SM) {
 })(SM || {});
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -209,7 +209,7 @@ document.write('<script type="text/javascript" src="/views/shared/javascripts/pa
 document.write('<script type="text/javascript" src="/views/shared/javascripts/payloads//simile/js/timeline-api.js?bundle=true"></script>');
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
@@ -248,7 +248,7 @@ var SM = (function(SM) {
 })(SM || {});
 
 
-/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80; */
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2 cc=80: */
 
 /**
  * @package     omeka
