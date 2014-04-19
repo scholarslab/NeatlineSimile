@@ -1,4 +1,3 @@
-.DS_Store
 node_modules
 bower_components
 .grunt
@@ -6,6 +5,3 @@ pkg
 
 /Neatline
 _SpecRunner.html
-
-views/shared/javascripts/payloads
-views/shared/css/payloads
