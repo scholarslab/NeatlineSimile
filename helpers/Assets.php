@@ -18,13 +18,13 @@ function simile_queueSimileApi()
 
     // SimileAjax
     nl_appendScript(web_path_to(
-        'javascripts/dist/simile/ajax/simile-ajax-api.js') .
+        'javascripts/payloads/simile/ajax/simile-ajax-api.js') .
         '?bundle=true'
     );
 
     // Timeline
     nl_appendScript(web_path_to(
-        'javascripts/dist/simile/js/timeline-api.js') .
+        'javascripts/payloads/simile/js/timeline-api.js') .
         '?bundle=true'
     );
 

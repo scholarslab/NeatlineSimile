@@ -98,8 +98,8 @@ SQL
     {
         if ($args['exhibit']->hasWidget(self::ID)) {
             simile_queueSimileApi();
-            queue_css_file('dist/simile-public');
-            queue_js_file('dist/simile-public');
+            queue_css_file('payloads/simile-public');
+            queue_js_file('payloads/simile-public');
         }
     }
 
@@ -113,8 +113,8 @@ SQL
     {
         if ($args['exhibit']->hasWidget(self::ID)) {
             simile_queueSimileApi();
-            queue_css_file('dist/simile-public');
-            queue_js_file('dist/simile-editor');
+            queue_css_file('payloads/simile-public');
+            queue_js_file('payloads/simile-editor');
         }
     }
 
