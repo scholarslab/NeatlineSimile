@@ -85,7 +85,6 @@ Neatline.module('Simile', {
 
             intervalUnit:   Timeline.DateTime[unit],
             intervalPixels: parseInt(pixels),
-            timeZone:       SimileAjax.DateTime.getTimezone(),
             eventSource:    this.eventSource,
 
             theme: this.theme,
@@ -276,9 +275,6 @@ Neatline.module('Simile', {
        * Manifest the fill color on an event.
        */
       setEventColors: function() {
-
-        // TODO|dev
-        console.log('setEventColors');
 
         _.each(this.getEvents(), _.bind(function(event) {
           $(this.getEventElement(event)).css(
