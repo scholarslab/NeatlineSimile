@@ -18,7 +18,7 @@ Neatline.module('Simile', {
 
 
       // INITIALIZERS
-      // ------------------------------------------------------------------------
+      // ----------------------------------------------------------------------
 
 
       /**
@@ -43,10 +43,10 @@ Neatline.module('Simile', {
        * Start SIMILE.
        */
       start: function(exhibit) {
-        this.__initSimile(exhibit);
-        this.__initResize();
-        this.__initSelect();
-        this.__initFilter();
+        this._initSimile(exhibit);
+        this._initResize();
+        this._initSelect();
+        this._initFilter();
       },
 
 
@@ -55,7 +55,7 @@ Neatline.module('Simile', {
        *
        * @param {Object} exhibit: An exhibit model.
        */
-      __initSimile: function(exhibit) {
+      _initSimile: function(exhibit) {
 
         // Destroy existing timeline.
         if (this.timeline) this.timeline.dispose();
@@ -100,7 +100,7 @@ Neatline.module('Simile', {
       /**
        * When the window is resized, resize the timeline.
        */
-      __initResize: function() {
+      _initResize: function() {
         $(window).resize(_.bind(function() {
           this.timeline.layout()
         }, this));
@@ -110,7 +110,7 @@ Neatline.module('Simile', {
       /**
        * Publish `select` on event click.
        */
-      __initSelect: function() {
+      _initSelect: function() {
         this.band._eventPainter._showBubble = _.bind(function(x, y, evt) {
           Neatline.vent.trigger('select', {
             model: evt.nModel, source: this.slug
@@ -122,14 +122,14 @@ Neatline.module('Simile', {
       /**
        * Bind timeline scrolling to the filter.
        */
-      __initFilter: function() {
+      _initFilter: function() {
         this.band.addOnScrollListener(_.bind(this.setFilter, this));
         this.setFilter();
       },
 
 
       // RECORDS
-      // ------------------------------------------------------------------------
+      // ----------------------------------------------------------------------
 
 
       /**
@@ -184,7 +184,7 @@ Neatline.module('Simile', {
 
 
       // VIEWPORT
-      // ------------------------------------------------------------------------
+      // ----------------------------------------------------------------------
 
 
       /**
@@ -266,7 +266,7 @@ Neatline.module('Simile', {
 
 
       // HELPERS
-      // ------------------------------------------------------------------------
+      // ----------------------------------------------------------------------
 
 
       /**
