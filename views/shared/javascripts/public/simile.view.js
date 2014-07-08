@@ -16,6 +16,10 @@ Neatline.module('Simile', {
 
       id: 'simile',
 
+      options: {
+        colorDebounce: 500
+      },
+
 
       // INITIALIZERS
       // ----------------------------------------------------------------------
@@ -46,7 +50,7 @@ Neatline.module('Simile', {
         this._initSimile(exhibit);
         this._initResize();
         this._initSelect();
-        this._initFilter();
+        this._initScroll();
       },
 
 
@@ -120,11 +124,26 @@ Neatline.module('Simile', {
 
 
       /**
-       * Bind timeline scrolling to the filter.
+       * When the timeline is scrolled, apply the date filter and set the
+       * event colors (debounced).
        */
-      _initFilter: function() {
-        this.band.addOnScrollListener(_.bind(this.setFilter, this));
-        this.setFilter();
+      _initScroll: function() {
+
+        // Apply the date filter.
+        this.band.addOnScrollListener(
+          _.bind(this.setFilter, this)
+        );
+
+        // Reset event colors.
+        this.band.addOnScrollListener(
+          _.debounce(
+            _.bind(this.setEventColors, this),
+            this.options.colorDebounce
+          )
+        );
+
+        this.setFilter(); // Initial filter.
+
       },
 
 
@@ -257,11 +276,16 @@ Neatline.module('Simile', {
        * Manifest the fill color on an event.
        */
       setEventColors: function() {
+
+        // TODO|dev
+        console.log('setEventColors');
+
         _.each(this.getEvents(), _.bind(function(event) {
           $(this.getEventElement(event)).css(
             'background', event.nModel.get('fill_color')
           );
         }, this));
+
       },
 
 
