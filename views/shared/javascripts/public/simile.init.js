@@ -6,26 +6,28 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-Neatline.module('Simile', { startWithParent: false,
+Neatline.module('Simile', {
+  startWithParent: false,
   define: function(Simile) {
 
 
-  /**
-   * Since SIMILE publishes a record filter immediately on start-up, wait
-   * until the rest of the modules are running before starting SIMILE.
-   */
-  Neatline.on('initialize:after', function() {
-    Simile.start();
-  });
+    /**
+     * Since SIMILE publishes a record filter immediately on start-up, wait
+     * until the rest of the modules are running before starting SIMILE.
+     */
+    Neatline.on('initialize:after', function() {
+      Simile.start();
+    });
 
 
-  /**
-   * Start the controller, suppress the request to `__history__.html`.
-   */
-  Simile.addInitializer(function() {
-    SimileAjax.History.enabled = false;
-    Simile.__controller = new Simile.Controller();
-  });
+    /**
+     * Start the controller, suppress the request to `__history__.html`.
+     */
+    Simile.addInitializer(function() {
+      SimileAjax.History.enabled = false;
+      Simile.__controller = new Simile.Controller();
+    });
 
 
-}});
+  }
+});
