@@ -95,7 +95,8 @@ Neatline.module('Simile', {
 
         // Reference band, set date.
         this.band = this.timeline.getBand(0);
-        this.setCenterDate(date);
+        var _this = this;
+        setTimeout(function() { _this.setCenterDate(date); }, 500);
 
       },
 
