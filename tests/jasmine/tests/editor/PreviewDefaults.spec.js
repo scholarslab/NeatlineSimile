@@ -31,10 +31,14 @@ describe('Preview Defaults', function() {
       track:  SM.v.editor.$('input[name="simile-track-height"]')
     };
 
+    jasmine.clock().install();
+
   });
 
 
   afterEach(function() {
+
+    jasmine.clock().uninstall();
 
     var spy = spyOn(Neatline.vent, 'trigger');
     var evt = SM.v.neatline.getEvents();
@@ -61,6 +65,7 @@ describe('Preview Defaults', function() {
 
   it('should preview default date', function() {
     elements.date.val('1900-02-01').trigger('change');
+    jasmine.clock().tick(1000);
     SM.assertCurrentYear(1900);
   });
 
