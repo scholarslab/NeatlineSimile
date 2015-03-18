@@ -6,7 +6,7 @@
  * @license     http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
-describe('Load Timelien Events', function() {
+describe('Load Timeline Events', function() {
 
 
   var fixtures = {
