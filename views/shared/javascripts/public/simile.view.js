@@ -7,7 +7,6 @@
  */
 
 Neatline.module('Simile', {
-  startWithParent: false,
   define: function(Simile) {
 
 
