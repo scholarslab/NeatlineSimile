@@ -7,7 +7,6 @@
  */
 
 Neatline.module('Simile', {
-  startWithParent: false,
   define: function(Simile) {
 
 
@@ -224,10 +223,17 @@ Neatline.module('Simile', {
        * @param {Object} model: The record model.
        */
       focusByModel: function(model) {
+        var dateStr1 = model.get('start_date');
+        var dateStr2 = model.get('end_date');
+
+        if (dateStr1 == null) {
+          dateStr1 = model.get('after_date');
+          dateStr2 = model.get('before_date');
+        }
 
         // Parse start and end dates.
-        var d1 = moment(String(model.get('start_date')));
-        var d2 = moment(String(model.get('end_date')));
+        var d1 = moment(String(dateStr1));
+        var d2 = moment(String(dateStr2));
 
         // If both a start date and an end date are defined, focus on the
         // middle point between the two on the timeline.
