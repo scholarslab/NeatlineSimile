@@ -7,7 +7,6 @@
  */
 
 Neatline.module('Simile', {
-  startWithParent: false,
   define: function(Simile) {
 
 
@@ -18,6 +17,7 @@ Neatline.module('Simile', {
 
       events:[
         { 'refresh': 'load' },
+        { 'MAP:ingest': 'ingest' },
         'select'
       ],
 
@@ -60,6 +60,16 @@ Neatline.module('Simile', {
        */
       restart: function(exhibit) {
         this.view.start(exhibit);
+        this.view.ingest(this.view.records);
+      },
+
+
+      /**
+       * Apply the time filter when a batch of records is loaded.
+       *
+       * @param {Array} records: The records being loaded.
+       */
+      ingest: function(records) {
         this.view.ingest(this.view.records);
       }
 

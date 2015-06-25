@@ -11,6 +11,12 @@ describe('Set Exhibit Defaults', function() {
 
   beforeEach(function() {
     loadFixtures('SharedHtml.exhibit.html');
+    jasmine.clock().install();
+  });
+
+
+  afterEach(function() {
+    jasmine.clock().uninstall();
   });
 
 
@@ -27,6 +33,7 @@ describe('Set Exhibit Defaults', function() {
     NL.startApplication();
     SM.aliasNeatline();
 
+    jasmine.clock().tick(1000);
     SM.assertCurrentYear(1900);
 
   });
