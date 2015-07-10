@@ -115,6 +115,9 @@ Neatline.module('Simile', {
        */
       _initSelect: function() {
         this.band._eventPainter._showBubble = _.bind(function(x, y, evt) {
+          Neatline.vent.trigger('unselect', {
+            model: evt.nModel, source: this.slug
+          });
           Neatline.vent.trigger('select', {
             model: evt.nModel, source: this.slug
           });
